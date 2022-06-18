@@ -1,0 +1,41 @@
+{
+  "common": {
+    "done": "Готово"
+  },
+  "screenNames": {
+    "products": "Продукты"
+  },
+  "calendar": {
+    "month": {
+      "january": "Январь",
+      "february": "Февраль",
+      "march": "Март",
+      "april": "Апрель",
+      "may": "Май",
+      "june": "Июнь",
+      "july": "Июль",
+      "august": "Август",
+      "september": "Сентябрь",
+      "october": "Октябрь",
+      "november": "Ноябрь",
+      "december": "Декабрь"
+    },
+    "day": {
+      "today": "Сегодня",
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье",
+      "mo": "Пн",
+      "tu": "Вт",
+      "we": "Ср",
+      "th": "Чт",
+      "fr": "Пт",
+      "sa": "Сб",
+      "su": "Вс"
+    }
+  }
+}
