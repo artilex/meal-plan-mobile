@@ -17,8 +17,12 @@ const App = () => (
 // _TODO: Implement the Text Component
 // _TODO: Implement the Button Component
 // _TODO: Add i18n
-// _TODO: Add navigator
-// _TODO: Implement Menu Navigator (with an empty auth stack)
+// _TODO: Add navigation to the app
+// _TODO: Implement basic navigation (Menu Navigator with an empty auth stack)
+// _TODO: Configure navigation (with nested navigators)
+// TODO: Create the Side Menu
+// TODO: Create Header (with menu button, title and back/close button)
+// TODO: (ONLY FOR THIS PROJECT) Add to Git
 // TODO: Implement the API service
 // TODO: Mock the Food Items API
 // TODO: Create the Food Item List

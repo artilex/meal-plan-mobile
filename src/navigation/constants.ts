@@ -1,3 +1,6 @@
+import {StackNavigationOptions} from '@react-navigation/stack';
+import {DrawerNavigationOptions} from '@react-navigation/drawer';
+
 export const SCREEN_NAMES = Object.freeze({
   AUTH: {
     ROOT: 'AuthRoot',
@@ -17,9 +20,22 @@ export const SCREEN_NAMES = Object.freeze({
     PRODUCT: {
       ROOT: 'ProductRoot',
       LIST: 'ProductList',
+      EDIT: 'ProductEdit',
     },
   },
   ERROR: {
     ROOT: 'ErrorRoot',
   },
 });
+
+export const RootNavigatorOptions: StackNavigationOptions = {
+  headerShown: false,
+};
+
+export const DrawerNavigatorOptions: DrawerNavigationOptions = {
+  headerShown: false,
+};
+
+export const ProductNavigatorOptions: StackNavigationOptions = {
+  headerShown: true,
+};

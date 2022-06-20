@@ -6,8 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {StyledText} from 'src/components';
-import {SCREEN_NAMES} from 'src/navigation/constants';
-import DrawerNavigator from 'src/navigation/DrawerNavigator';
+import {RootNavigatorOptions, SCREEN_NAMES} from './constants';
+import DrawerNavigator from './DrawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,7 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={RootNavigatorOptions}>
         {isSignedIn ? (
           <Stack.Screen
             name={SCREEN_NAMES.DRAWER.ROOT}
