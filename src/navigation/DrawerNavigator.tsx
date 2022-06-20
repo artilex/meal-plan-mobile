@@ -3,8 +3,8 @@ import {View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {StyledText} from 'src/components';
-import {SCREEN_NAMES} from 'src/navigation/constants';
-import ProductNavigator from 'src/navigation/ProductNavigator';
+import {DrawerNavigatorOptions, SCREEN_NAMES} from './constants';
+import ProductNavigator from './ProductNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,7 +16,9 @@ const EmptyScreen = () => (
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={DrawerNavigatorOptions}
+      useLegacyImplementation>
       <Drawer.Screen
         name={SCREEN_NAMES.DRAWER.MEAL_PLAN.ROOT}
         component={EmptyScreen}
