@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {COLOR, FONT_SIZE, PADDING} from 'src/constants/theme';
+import {BORDER_RADIUS, COLOR, FONT_SIZE, PADDING} from 'src/constants/theme';
 
 export const styles = (color?: string) =>
   StyleSheet.create({
     container: {
-      backgroundColor: color ?? COLOR.BACKGROUND,
-      borderRadius: 32,
+      backgroundColor: color ?? COLOR.WHITE,
+      borderRadius: BORDER_RADIUS.REGULAR,
       paddingVertical: PADDING.REGULAR,
       paddingHorizontal: PADDING.EXTRA_LARGE,
       alignItems: 'center',
