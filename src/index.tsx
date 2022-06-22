@@ -20,6 +20,8 @@ const App = () => (
 // _TODO: Add navigation to the app
 // _TODO: Implement basic navigation (Menu Navigator with an empty auth stack)
 // _TODO: Configure navigation (with nested navigators)
+// _TODO: Configure the theme
+// TODO: Change button to solid (main/active) and outline (passive/inactive)
 // TODO: Create the Side Menu
 // TODO: Create Header (with menu button, title and back/close button)
 // TODO: (ONLY FOR THIS PROJECT) Add to Git

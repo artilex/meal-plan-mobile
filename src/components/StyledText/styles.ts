@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {COLOR, FONT_FAMILY, FONT_SIZE} from 'src/constants/theme';
+import {FONT_FAMILY, FONT_SIZE, TEXT_COLOR} from 'src/constants/theme';
 
 export default StyleSheet.create({
   default: {
     fontFamily: FONT_FAMILY.REGULAR,
     fontSize: FONT_SIZE.REGULAR,
-    color: COLOR.TEXT_PRIMARY,
+    color: TEXT_COLOR.PRIMARY,
   },
   bold: {
     fontFamily: FONT_FAMILY.BOLD,

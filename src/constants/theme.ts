@@ -1,24 +1,88 @@
+// COLORS
+//------------------------------------------------------------------------------
 export const COLOR = Object.freeze({
-  PRIMARY: '#58CC02',
-  PRIMARY_LIGHT: '#89E219',
-  PRIMARY_DARK: '#43C000',
-  TEXT_PRIMARY: '#4B4B4B',
-  TEXT_SECONDARY: '#777777',
-
   WHITE: '#FFFFFF',
-  GRAY_DARK: '#AFAFAF',
-  GRAY: '#E5E5E5',
-  GRAY_LIGHT: '#F7F7F7',
-  BLUE_DARK: '#2B70C9',
-  BLUE: '#1CB0F6',
+  BLACK1: '#3C3C3C',
+  BLACK2: '#4B4B4B',
+  GRAY1: '#777777',
+  GRAY2: '#AFAFAF',
+  GRAY3: '#E5E5E5',
+  GRAY4: '#F7F7F7',
+  RED1: '#EA2B2B',
+  RED2: '#FF4B4B',
+  RED3: '#FFDFE0',
+  GREEN1: '#58CC02',
+  GREEN2: '#58A700',
+  GREEN3: '#43C000',
+  GREEN4: '#89E219',
+  GREEN5: '#D7FFB8',
+  BLUE1: '#1CB0F6',
+  BLUE2: '#2B70C9',
+  BLUE3: '#1453a3',
+  BLUE4: '#1899D6',
+  BLUE5: '#84D8FF',
+  BLUE6: '#DDF4FF',
   PURPLE: '#CE82FF',
   PINK: '#FFCAFF',
-  RED: '#FF4B4B',
   BROWN: '#B66E28',
   ORANGE: '#FF9600',
   YELLOW: '#FFC800',
 });
 
+export const BRAND_COLOR = Object.freeze({
+  PRIMARY: COLOR.GREEN1,
+});
+
+export const BACKGROUND_COLOR = Object.freeze({
+  PRIMARY: COLOR.WHITE,
+});
+
+export const TEXT_COLOR = Object.freeze({
+  PRIMARY: COLOR.BLACK1,
+  SECONDARY: COLOR.BLACK2,
+  THIRD: COLOR.GRAY1,
+});
+
+export const DISABLED_COLOR = Object.freeze({
+  BACKGROUND: COLOR.GRAY3,
+  BORDER: COLOR.GRAY3,
+  TEXT: COLOR.GRAY2,
+});
+
+export const INPUT_COLOR = Object.freeze({
+  BACKGROUND: COLOR.GRAY4,
+  TEXT: COLOR.BLACK1,
+});
+
+export const BUTTON = Object.freeze({
+  BACKGROUND_SOLID: COLOR.GREEN1,
+  TEXT_SOLID: COLOR.WHITE,
+  BORDER_SOLID: COLOR.GREEN2,
+  BACKGROUND_OUTLINE: BACKGROUND_COLOR.PRIMARY,
+  TEXT_OUTLINE: COLOR.GREEN2,
+  BORDER_OUTLINE: COLOR.GREEN2,
+});
+
+// TODO: Maybe move to button like a scheme
+export const BLUE_BUTTON = Object.freeze({
+  BACKGROUND: COLOR.BLUE2,
+  TEXT: COLOR.WHITE,
+  BORDER: COLOR.BLUE3,
+});
+export const RED_BUTTON = Object.freeze({
+  BACKGROUND: COLOR.RED2,
+  TEXT: COLOR.WHITE,
+  BORDER: COLOR.RED1,
+});
+
+export const BORDER = Object.freeze({
+  COLOR: COLOR.GRAY3,
+  WIDTH: 2,
+  RADIUS: 10,
+});
+
+// FONT
+//------------------------------------------------------------------------------
 export const FONT_FAMILY = Object.freeze({
   REGULAR: 'Inter-Medium',
   BOLD: 'Inter-Bold',
@@ -38,6 +102,8 @@ export const LINE_HEIGHT = Object.freeze({
   EXTRA_LARGE: 32,
 });
 
+// SIZES
+//------------------------------------------------------------------------------
 export const PADDING = Object.freeze({
   EXTRA_SMALL: 4,
   SMALL: 8,
@@ -50,8 +116,4 @@ export const ICON_SIZE = Object.freeze({
   REGULAR: 36,
   LARGE: 56,
   EXTRA_LARGE: 64,
-});
-
-export const BORDER_RADIUS = Object.freeze({
-  REGULAR: 10,
 });
