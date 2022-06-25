@@ -21,14 +21,19 @@ const App = () => (
 // _TODO: Implement basic navigation (Menu Navigator with an empty auth stack)
 // _TODO: Configure navigation (with nested navigators)
 // _TODO: Configure the theme
-// TODO: Change button to solid (main/active) and outline (passive/inactive)
+// _TODO: Change button to solid (main/active) and outline (passive/inactive)
+// _TODO: Add the ability to use SVG images
 // TODO: Create the Side Menu
 // TODO: Create Header (with menu button, title and back/close button)
-// TODO: (ONLY FOR THIS PROJECT) Add to Git
+// _TODO: (ONLY FOR THIS PROJECT) Add to Git
 // TODO: Implement the API service
-// TODO: Mock the Food Items API
-// TODO: Create the Food Item List
-// TODO: Create the Food Item Card
-// TODO: Implement creating the new Food Item
+// TODO: Mock the Food Items (Products) API
+// TODO: Create the Food Item (Product) List
+// TODO: Create the Food Item (Product) Card
+// TODO: Implement creating the new Food Item (Product)
+// TODO: Mock the Recipe Items API
+// TODO: Create the Recipe Item List
+// TODO: Create the Recipe Item Card
+// TODO: Implement creating the new Recipe Item
 
 export default App;
