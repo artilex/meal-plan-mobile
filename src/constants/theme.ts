@@ -54,31 +54,11 @@ export const INPUT_COLOR = Object.freeze({
   TEXT: COLOR.BLACK1,
 });
 
-export const BUTTON = Object.freeze({
-  BACKGROUND_SOLID: COLOR.GREEN1,
-  TEXT_SOLID: COLOR.WHITE,
-  BORDER_SOLID: COLOR.GREEN2,
-  BACKGROUND_OUTLINE: BACKGROUND_COLOR.PRIMARY,
-  TEXT_OUTLINE: COLOR.GREEN2,
-  BORDER_OUTLINE: COLOR.GREEN2,
-});
-
-// TODO: Maybe move to button like a scheme
-export const BLUE_BUTTON = Object.freeze({
-  BACKGROUND: COLOR.BLUE2,
-  TEXT: COLOR.WHITE,
-  BORDER: COLOR.BLUE3,
-});
-export const RED_BUTTON = Object.freeze({
-  BACKGROUND: COLOR.RED2,
-  TEXT: COLOR.WHITE,
-  BORDER: COLOR.RED1,
-});
-
 export const BORDER = Object.freeze({
   COLOR: COLOR.GRAY3,
   WIDTH: 2,
-  RADIUS: 10,
+  BOTTOM_WIDTH: 4,
+  RADIUS: 12,
 });
 
 // FONT

@@ -1,29 +1,62 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Pressable, View} from 'react-native';
 
-import {styles} from './styles';
+import {
+  styles,
+  redStyles,
+  greenStyles,
+  blueStyles,
+  disabledStyles,
+} from './styles';
 import StyledText from '../StyledText';
+
+export enum ButtonColor {
+  Red = 0,
+  Green = 1,
+  Blue = 2,
+}
 
 type Props = {
   text: string;
-  onPress: () => void;
-  color?: string;
+  color?: ButtonColor;
+  solid?: boolean;
   disabled?: boolean;
+  onPress: () => void;
 };
 
-const StyledButton = ({text, color, disabled, onPress}: Props) => {
-  const s = styles(color);
+const COLOR_STYLES = [redStyles, greenStyles, blueStyles];
+
+const StyledButton = ({text, color = -1, solid, disabled, onPress}: Props) => {
+  let colorStyles = COLOR_STYLES[color];
+
+  const containerStyles = ({pressed}: {pressed: boolean}) => [
+    styles.borderContainer,
+    solid && colorStyles && styles.borderSolid,
+    solid && colorStyles && colorStyles.border,
+    pressed && styles.borderPressed,
+    disabled && disabledStyles.border,
+  ];
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      style={[s.container, disabled && s.disabled]}
-      onPress={onPress}
-      disabled={disabled}>
-      <StyledText style={[s.text, disabled && s.disabledText]} bold>
-        {text}
-      </StyledText>
-    </TouchableOpacity>
+    <Pressable style={containerStyles} onPress={onPress} disabled={disabled}>
+      <View
+        style={[
+          styles.innerContainer,
+          solid && colorStyles && colorStyles.background,
+          disabled && disabledStyles.background,
+        ]}>
+        <StyledText
+          style={[
+            styles.text,
+            colorStyles && colorStyles.text,
+            solid && colorStyles && styles.textSolid,
+            disabled && disabledStyles.text,
+          ]}
+          bold>
+          {text}
+        </StyledText>
+      </View>
+    </Pressable>
   );
 };
 
