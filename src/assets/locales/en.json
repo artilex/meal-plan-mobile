@@ -3,7 +3,10 @@
     "done": "Done"
   },
   "screenNames": {
-    "products": "Products"
+    "MealPlanRoot": "Meal Plan",
+    "ShoppingRoot": "Shopping List",
+    "RecipeRoot": "Recipes",
+    "ProductRoot": "Products"
   },
   "calendar": {
     "month": {

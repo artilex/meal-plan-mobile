@@ -1,6 +1,8 @@
 import {StackNavigationOptions} from '@react-navigation/stack';
 import {DrawerNavigationOptions} from '@react-navigation/drawer';
 
+import s from './components/SideMenu/styles';
+
 export const SCREEN_NAMES = Object.freeze({
   AUTH: {
     ROOT: 'AuthRoot',
@@ -34,6 +36,7 @@ export const RootNavigatorOptions: StackNavigationOptions = {
 
 export const DrawerNavigatorOptions: DrawerNavigationOptions = {
   headerShown: false,
+  drawerStyle: s.rootContainer,
 };
 
 export const ProductNavigatorOptions: StackNavigationOptions = {

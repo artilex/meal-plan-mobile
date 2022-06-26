@@ -58,7 +58,7 @@ export const BORDER = Object.freeze({
   COLOR: COLOR.GRAY3,
   WIDTH: 2,
   BOTTOM_WIDTH: 4,
-  RADIUS: 12,
+  RADIUS: 16,
 });
 
 // FONT
@@ -93,6 +93,7 @@ export const PADDING = Object.freeze({
 });
 
 export const ICON_SIZE = Object.freeze({
+  SMALL: 32,
   REGULAR: 36,
   LARGE: 56,
   EXTRA_LARGE: 64,

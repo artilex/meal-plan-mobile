@@ -3,7 +3,10 @@
     "done": "Готово"
   },
   "screenNames": {
-    "products": "Продукты"
+    "MealPlanRoot": "План Питания",
+    "ShoppingRoot": "Список Покупок",
+    "RecipeRoot": "Рецепты",
+    "ProductRoot": "Продукты"
   },
   "calendar": {
     "month": {
