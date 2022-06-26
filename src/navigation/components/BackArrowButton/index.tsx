@@ -7,7 +7,7 @@ import s from './styles';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
 
-const {SMALL} = ICON_SIZE;
+const {EXTRA_SMALL} = ICON_SIZE;
 
 const BackArrowButton = () => {
   const navigation = useNavigation<StackNavigationProp<any>>();
@@ -21,7 +21,11 @@ const BackArrowButton = () => {
       activeOpacity={0.7}
       style={s.container}
       onPress={handleGoBack}>
-      <BackArrowIcon width={SMALL} height={SMALL} fill={COLOR.GRAY2} />
+      <BackArrowIcon
+        width={EXTRA_SMALL}
+        height={EXTRA_SMALL}
+        fill={COLOR.GRAY2}
+      />
     </TouchableOpacity>
   );
 };

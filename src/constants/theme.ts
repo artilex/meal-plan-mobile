@@ -94,6 +94,7 @@ export const PADDING = Object.freeze({
 });
 
 export const ICON_SIZE = Object.freeze({
+  EXTRA_SMALL: 28,
   SMALL: 32,
   REGULAR: 36,
   LARGE: 56,
