@@ -31,6 +31,7 @@ export const COLOR = Object.freeze({
 
 export const BRAND_COLOR = Object.freeze({
   PRIMARY: COLOR.GREEN1,
+  SECONDARY: COLOR.GREEN2,
 });
 
 export const BACKGROUND_COLOR = Object.freeze({

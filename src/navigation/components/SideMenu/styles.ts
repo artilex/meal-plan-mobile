@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {BACKGROUND_COLOR, COLOR, PADDING} from 'src/constants/theme';
+import {
+  BACKGROUND_COLOR,
+  COLOR,
+  PADDING,
+  TEXT_COLOR,
+} from 'src/constants/theme';
 import {adapt} from 'src/constants/layout';
 
 export default StyleSheet.create({
@@ -22,6 +27,9 @@ export default StyleSheet.create({
   },
   itemIcon: {
     marginRight: PADDING.EXTRA_LARGE,
+  },
+  itemText: {
+    color: TEXT_COLOR.THIRD,
   },
   activeItemText: {
     color: COLOR.GREEN2,

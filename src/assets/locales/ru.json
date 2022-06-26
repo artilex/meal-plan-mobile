@@ -6,7 +6,10 @@
     "MealPlanRoot": "План Питания",
     "ShoppingRoot": "Список Покупок",
     "RecipeRoot": "Рецепты",
-    "ProductRoot": "Продукты"
+    "ProductRoot": "Продукты",
+    "productList": "Список Продуктов",
+    "createProduct": "Новый Продукт",
+    "editProduct": "Редактировать Продукт"
   },
   "calendar": {
     "month": {

@@ -24,7 +24,7 @@ const App = () => (
 // _TODO: Change button to solid (main/active) and outline (passive/inactive)
 // _TODO: Add the ability to use SVG images
 // _TODO: Create the Side Menu
-// TODO: Create Header (with menu button, title and back/close button)
+// _TODO: Create Header (with menu button, title and back/close button)
 // _TODO: (ONLY FOR THIS PROJECT) Add to Git
 // TODO: Implement the API service
 // TODO: Mock the Food Items (Products) API

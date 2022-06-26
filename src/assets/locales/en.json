@@ -6,7 +6,10 @@
     "MealPlanRoot": "Meal Plan",
     "ShoppingRoot": "Shopping List",
     "RecipeRoot": "Recipes",
-    "ProductRoot": "Products"
+    "ProductRoot": "Products",
+    "productList": "Product List",
+    "createProduct": "Create Product",
+    "editProduct": "Edit Product"
   },
   "calendar": {
     "month": {
