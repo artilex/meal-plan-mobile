@@ -19,8 +19,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
-    paddingLeft: adapt(30),
-    paddingRight: adapt(20),
+    paddingLeft: adapt(20),
+    paddingRight: adapt(15),
   },
   activeItemContainer: {
     backgroundColor: COLOR.GRAY4,
@@ -32,6 +32,6 @@ export default StyleSheet.create({
     color: TEXT_COLOR.PRIMARY,
   },
   activeItemText: {
-    color: COLOR.GREEN2,
+    color: COLOR.GREEN3,
   },
 });

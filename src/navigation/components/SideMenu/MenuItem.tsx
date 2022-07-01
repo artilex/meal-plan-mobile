@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 
-import {COLOR, ICON_SIZE, TEXT_COLOR} from 'src/constants/theme';
+import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import {StyledText} from 'src/components';
 import s from './styles';
 
@@ -13,7 +13,7 @@ type Props = {
   onPress: () => void;
 };
 
-const {SMALL: iconSize} = ICON_SIZE;
+const {EXTRA_SMALL: iconSize} = ICON_SIZE;
 
 const MenuItem = ({label, Icon, isActive, onPress}: Props) => (
   <TouchableOpacity
@@ -23,7 +23,7 @@ const MenuItem = ({label, Icon, isActive, onPress}: Props) => (
     <Icon
       width={iconSize}
       height={iconSize}
-      fill={isActive ? COLOR.GREEN2 : COLOR.GRAY2}
+      fill={COLOR.GRAY2}
       style={s.itemIcon}
     />
     <StyledText style={[s.itemText, isActive && s.activeItemText]}>

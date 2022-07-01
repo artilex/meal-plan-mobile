@@ -21,7 +21,7 @@ const BurgerMenuButton = () => {
       activeOpacity={0.7}
       style={s.container}
       onPress={handleOpenMenu}>
-      <BurgerMenuIcon width={SMALL} height={SMALL} fill={COLOR.GREEN2} />
+      <BurgerMenuIcon width={SMALL} height={SMALL} fill={COLOR.GREEN1} />
     </TouchableOpacity>
   );
 };

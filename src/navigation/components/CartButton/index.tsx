@@ -22,7 +22,7 @@ const CartButton = () => {
       activeOpacity={0.7}
       style={s.container}
       onPress={handleOpenCartScreen}>
-      <CartIcon width={SMALL} height={SMALL} fill={COLOR.GREEN2} />
+      <CartIcon width={SMALL} height={SMALL} fill={COLOR.GREEN1} />
     </TouchableOpacity>
   );
 };
