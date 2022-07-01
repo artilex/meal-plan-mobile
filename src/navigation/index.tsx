@@ -8,11 +8,18 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {StyledText} from 'src/components';
 import {RootNavigatorOptions, SCREEN_NAMES} from './constants';
 import DrawerNavigator from './DrawerNavigator';
+import {BACKGROUND_COLOR} from 'src/constants/theme';
 
 const Stack = createStackNavigator();
 
 const EmptyScreen = () => (
-  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  <View
+    style={{
+      flex: 1,
+      backgroundColor: BACKGROUND_COLOR.PRIMARY,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
     <StyledText>In progress...</StyledText>
   </View>
 );

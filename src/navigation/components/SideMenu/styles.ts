@@ -29,7 +29,7 @@ export default StyleSheet.create({
     marginRight: PADDING.EXTRA_LARGE,
   },
   itemText: {
-    color: TEXT_COLOR.THIRD,
+    color: TEXT_COLOR.PRIMARY,
   },
   activeItemText: {
     color: COLOR.GREEN2,

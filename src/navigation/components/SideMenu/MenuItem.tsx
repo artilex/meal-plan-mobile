@@ -23,10 +23,10 @@ const MenuItem = ({label, Icon, isActive, onPress}: Props) => (
     <Icon
       width={iconSize}
       height={iconSize}
-      fill={isActive ? COLOR.GREEN2 : TEXT_COLOR.THIRD}
+      fill={isActive ? COLOR.GREEN2 : COLOR.GRAY2}
       style={s.itemIcon}
     />
-    <StyledText style={[s.itemText, isActive && s.activeItemText]} bold>
+    <StyledText style={[s.itemText, isActive && s.activeItemText]}>
       {label}
     </StyledText>
   </TouchableOpacity>

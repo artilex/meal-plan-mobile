@@ -72,6 +72,9 @@ export const styles = StyleSheet.create({
   borderPressed: {
     paddingBottom: BORDER.WIDTH,
   },
+  borderSolidPressed: {
+    paddingBottom: 0,
+  },
   innerContainer: {
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
     borderRadius: BORDER.RADIUS,

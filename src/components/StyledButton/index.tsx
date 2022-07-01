@@ -27,13 +27,15 @@ type Props = {
 const COLOR_STYLES = [redStyles, greenStyles, blueStyles];
 
 const StyledButton = ({text, color = -1, solid, disabled, onPress}: Props) => {
-  let colorStyles = COLOR_STYLES[color];
+  const colorStyles = COLOR_STYLES[color];
+  const solidWithColor = solid && colorStyles;
 
   const containerStyles = ({pressed}: {pressed: boolean}) => [
     styles.borderContainer,
-    solid && colorStyles && styles.borderSolid,
-    solid && colorStyles && colorStyles.border,
+    solidWithColor && styles.borderSolid,
+    solidWithColor && colorStyles.border,
     pressed && styles.borderPressed,
+    pressed && solidWithColor && styles.borderSolidPressed,
     disabled && disabledStyles.border,
   ];
 

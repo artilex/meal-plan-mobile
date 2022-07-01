@@ -5,8 +5,8 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import s from './styles';
 import {StyledButton, StyledText} from 'src/components';
-import {BRAND_COLOR} from 'src/constants/theme';
 import {SCREEN_NAMES} from 'src/navigation/constants';
+import {ButtonColor} from 'src/components/StyledButton';
 
 type Props = {
   //
@@ -25,7 +25,7 @@ const ProductList = ({}: Props) => {
       <StyledButton
         text={'Go To Change Product'}
         onPress={handlePress}
-        color={BRAND_COLOR.PRIMARY}
+        color={ButtonColor.Green}
       />
     </View>
   );

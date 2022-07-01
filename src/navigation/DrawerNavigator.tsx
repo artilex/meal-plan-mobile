@@ -7,6 +7,7 @@ import {ButtonColor} from 'src/components/StyledButton';
 import {DrawerNavigatorOptions, SCREEN_NAMES} from './constants';
 import ProductNavigator from './ProductNavigator';
 import SideMenu from './components/SideMenu';
+import {BACKGROUND_COLOR} from 'src/constants/theme';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,9 +16,10 @@ const EmptyScreen = () => (
   <View
     style={{
       flex: 1,
+      backgroundColor: BACKGROUND_COLOR.PRIMARY,
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      margin: 16,
+      padding: 16,
     }}>
     <StyledButton text={'Default Outline Button'} onPress={() => null} />
     <StyledButton text={'Default Solid Button'} onPress={() => null} solid />
