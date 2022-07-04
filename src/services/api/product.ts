@@ -33,8 +33,8 @@ export const PRODUCT_CATEGORIES = [
   },
   {
     id: 'pc7',
-    name: 'Bakery',
-    nameRu: 'Выпечка',
+    name: 'Baking',
+    nameRu: 'Для Выпечки',
   },
   {
     id: 'pc8',
@@ -44,7 +44,7 @@ export const PRODUCT_CATEGORIES = [
   {
     id: 'pc9',
     name: 'Canned Foods',
-    nameRu: 'Консервы',
+    nameRu: 'Консервированные продукты',
   },
   {
     id: 'pc10',
@@ -60,6 +60,16 @@ export const PRODUCT_CATEGORIES = [
     id: 'pc12',
     name: 'Spices',
     nameRu: 'Специи',
+  },
+  {
+    id: 'pc13',
+    name: 'Beverages',
+    nameRu: 'Напитки',
+  },
+  {
+    id: 'pc14',
+    name: 'Bread and Bakery',
+    nameRu: 'Хлебобулочные изделия',
   },
   {
     id: 'pc99',
@@ -82,6 +92,20 @@ export const PRODUCT_UNITS = [
     nameRu: 'грамм',
     shortNameRu: 'г',
   },
+  {
+    id: 'pu2',
+    name: '',
+    shortName: '',
+    nameRu: 'штук',
+    shortNameRu: 'шт',
+  },
+  {
+    id: 'pu3',
+    name: '',
+    shortName: '',
+    nameRu: 'упаковка',
+    shortNameRu: 'упак',
+  },
 ];
 
 export const PRODUCTS = [
@@ -100,7 +124,7 @@ export const PRODUCTS = [
   {
     id: 'p3',
     name: 'Овощная смесь',
-    category: 'pc1',
+    category: 'pc10',
     image: null,
   },
   {
@@ -176,7 +200,7 @@ export const PRODUCTS = [
     image: null,
   },
   {
-    id: 'p112',
+    id: 'p119',
     name: 'Кабачок',
     category: 'pc1',
     image: null,
@@ -218,7 +242,7 @@ export const PRODUCTS = [
     image: null,
   },
   {
-    id: 'p12',
+    id: 'p12222',
     name: 'Яблоко красное',
     category: 'pc2',
     image: null,
@@ -242,7 +266,7 @@ export const PRODUCTS = [
     image: null,
   },
   {
-    id: 'p13',
+    id: 'p2313',
     name: 'Клубника',
     category: 'pc2',
     image: null,
@@ -364,7 +388,7 @@ export const PRODUCTS = [
   {
     id: 'p26',
     name: 'Тонкий Лаваш',
-    category: 'pc7',
+    category: 'pc14',
     image: null,
   },
   {
@@ -382,163 +406,163 @@ export const PRODUCTS = [
   {
     id: 'p29',
     name: 'Макароны твердых сортов',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p30',
     name: 'Горький Шоколад 75%',
-    category: 'pc7',
+    category: 'pc6',
     image: null,
   },
   {
     id: 'p31',
     name: 'Миндаль',
-    category: 'pc7',
+    category: 'pc6',
     image: null,
   },
   {
     id: 'p32',
     name: 'Кешью',
-    category: 'pc7',
+    category: 'pc6',
     image: null,
   },
   {
     id: 'p33',
     name: 'Хлебцы Dr. Korner сладкие',
-    category: 'pc7',
+    category: 'pc6',
     image: null,
   },
   {
     id: 'p34',
     name: 'Овсянка',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p35',
     name: 'Томатная паста',
-    category: 'pc7',
+    category: 'pc9',
     image: null,
   },
   {
     id: 'p36',
     name: 'Гречка',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p37',
     name: 'Рис басмати',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p737',
     name: 'Рис жасмин',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p38',
     name: 'Булгур',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p738',
     name: 'Пшено',
-    category: 'pc7',
+    category: 'pc8',
     image: null,
   },
   {
     id: 'p39',
     name: 'Соевый соус',
-    category: 'pc7',
+    category: 'pc9',
     image: null,
   },
   {
     id: 'p40',
     name: 'Оливковое масло',
-    category: 'pc7',
+    category: 'pc11',
     image: null,
   },
   {
     id: 'p41',
     name: 'Соль',
-    category: 'pc7',
+    category: 'pc12',
     image: null,
   },
   {
     id: 'p42',
     name: 'Черный перец молотый',
-    category: 'pc7',
+    category: 'pc12',
     image: null,
   },
   {
     id: 'p43',
     name: 'Семга слабосоленая',
-    category: 'pc7',
+    category: 'pc5',
     image: null,
   },
   {
     id: 'p44',
     name: 'Хлеб цельнозерновой',
-    category: 'pc7',
+    category: 'pc14',
     image: null,
   },
   {
     id: 'p45',
     name: 'Семечки подсолнуха',
-    category: 'pc7',
+    category: 'pc6',
     image: null,
   },
   {
     id: 'p46',
     name: 'Лавровый лист',
-    category: 'pc7',
+    category: 'pc12',
     image: null,
   },
   {
     id: 'p47',
     name: 'Зеленный чай',
-    category: 'pc7',
+    category: 'pc13',
     image: null,
   },
   {
     id: 'p48',
     name: 'Кофе',
-    category: 'pc7',
+    category: 'pc13',
     image: null,
   },
   {
     id: 'p49',
     name: 'Кофе 3 в 1',
-    category: 'pc7',
+    category: 'pc13',
     image: null,
   },
   {
     id: 'p50',
     name: 'Корица',
-    category: 'pc7',
+    category: 'pc12',
     image: null,
   },
   {
     id: 'p51',
     name: 'Маслины',
-    category: 'pc7',
+    category: 'pc9',
     image: null,
   },
   {
     id: 'p52',
     name: 'Стручковая фасоль',
-    category: 'pc7',
+    category: 'pc10',
     image: null,
   },
   {
     id: 'p53',
     name: 'Брынза соленая',
-    category: 'pc7',
+    category: 'pc3',
     image: null,
   },
 
@@ -550,7 +574,11 @@ export const PRODUCTS = [
   },
 ];
 
-export const getProducts = (): any => {
+export const getProducts = async (): Promise<any> => {
   return PRODUCTS;
   // return api.get('/api/some/endpoint');
+};
+
+export const getProductCategories = async (): Promise<any> => {
+  return PRODUCT_CATEGORIES;
 };

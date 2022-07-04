@@ -26,8 +26,8 @@ const App = () => (
 // _TODO: Create the Side Menu
 // _TODO: Create Header (with menu button, title and back/close button)
 // _TODO: (ONLY FOR THIS PROJECT) Add to Git
-// TODO: Implement the API service
-// TODO: Mock the Food Items (Products) API
+// _TODO: Implement the API service
+// _TODO: Mock the Food Items (Products) API
 // TODO: Create the Food Item (Product) List
 // TODO: Create the Food Item (Product) Card
 // TODO: Implement creating the new Food Item (Product)
