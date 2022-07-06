@@ -1,6 +1,6 @@
 // import {api} from './client';
 
-export const PRODUCT_CATEGORIES = [
+export const PRODUCT_CATEGORIES: Category[] = [
   {
     id: 'pc1',
     name: 'Vegetables',
@@ -108,7 +108,7 @@ export const PRODUCT_UNITS = [
   },
 ];
 
-export const PRODUCTS = [
+export let PRODUCTS: Product[] = [
   {
     id: 'p1',
     name: 'Шампиньоны свежие',
@@ -574,11 +574,45 @@ export const PRODUCTS = [
   },
 ];
 
-export const getProducts = async (): Promise<any> => {
-  return PRODUCTS;
+export type Product = {
+  id: string;
+  name: string;
+  category: string;
+  image: string | null;
+};
+
+export type Category = {
+  id: string;
+  name: string;
+  nameRu: string;
+};
+
+const getCategoryById = (categoryId: string) => {
+  const category = PRODUCT_CATEGORIES.find(item => item.id === categoryId);
+
+  return category?.nameRu ?? '';
+};
+
+export const getProducts = async (): Promise<Product[]> => {
+  return PRODUCTS.filter(item => item.name)
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(product => ({
+      ...product,
+      category: getCategoryById(product.category),
+    }));
   // return api.get('/api/some/endpoint');
 };
 
+export const deleteProduct = async (productId: string): Promise<Product[]> => {
+  PRODUCTS = PRODUCTS.filter(item => item.id !== productId);
+
+  return getProducts();
+};
+
 export const getProductCategories = async (): Promise<any> => {
-  return PRODUCT_CATEGORIES;
+  return PRODUCT_CATEGORIES.map(category => ({
+    ...category,
+    title: category.nameRu,
+    data: PRODUCTS.filter(product => product.category === category.id),
+  }));
 };
