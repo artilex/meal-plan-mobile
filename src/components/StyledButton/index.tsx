@@ -21,12 +21,20 @@ type Props = {
   color?: ButtonColor;
   solid?: boolean;
   disabled?: boolean;
+  small?: boolean;
   onPress: () => void;
 };
 
 const COLOR_STYLES = [redStyles, greenStyles, blueStyles];
 
-const StyledButton = ({text, color = -1, solid, disabled, onPress}: Props) => {
+const StyledButton = ({
+  text,
+  color = -1,
+  solid,
+  disabled,
+  small,
+  onPress,
+}: Props) => {
   const colorStyles = COLOR_STYLES[color];
   const solidWithColor = solid && colorStyles;
 
@@ -44,6 +52,7 @@ const StyledButton = ({text, color = -1, solid, disabled, onPress}: Props) => {
       <View
         style={[
           styles.innerContainer,
+          small && styles.smallInnerContainer,
           solid && colorStyles && colorStyles.background,
           disabled && disabledStyles.background,
         ]}>

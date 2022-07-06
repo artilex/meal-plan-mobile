@@ -82,6 +82,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: PADDING.EXTRA_LARGE,
     alignItems: 'center',
   },
+  smallInnerContainer: {
+    paddingVertical: PADDING.SMALL,
+    paddingHorizontal: PADDING.LARGE,
+  },
   text: {
     color: COLOR.GRAY2,
     fontSize: FONT_SIZE.LARGE,
