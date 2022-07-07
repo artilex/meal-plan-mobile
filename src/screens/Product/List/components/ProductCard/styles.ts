@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {COLOR, FONT_SIZE, ICON_SIZE, PADDING} from 'src/constants/theme';
+import {
+  BORDER,
+  COLOR,
+  FONT_SIZE,
+  ICON_SIZE,
+  PADDING,
+} from 'src/constants/theme';
 
 const {LARGE: SIZE} = ICON_SIZE;
 
@@ -7,12 +13,14 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    borderLeftWidth: BORDER.WIDTH,
+    borderRightWidth: BORDER.WIDTH,
+    borderColor: BORDER.COLOR,
   },
   touchableContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: PADDING.REGULAR,
   },
   image: {
     marginHorizontal: PADDING.REGULAR,

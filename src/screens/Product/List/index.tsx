@@ -7,7 +7,10 @@ import s from './styles';
 import {StyledText} from 'src/components';
 import {SCREEN_NAMES} from 'src/navigation/constants';
 import {deleteProduct, getProducts, Product} from 'src/services/api/product';
-import ProductCard from 'src/screens/Product/List/components/ProductCard';
+import ProductCard from './components/ProductCard';
+import ListHeader from './components/ListHeader';
+import ListFooter from './components/ListFooter';
+import ListSeparator from './components/ListSeparator';
 
 type Props = {
   //
@@ -41,7 +44,6 @@ const ProductList = ({}: Props) => {
       onEdit={handleEditProduct}
     />
   );
-  const ItemSeparator = () => <View style={s.itemSeparator} />;
   const ListEmpty = () => (
     <View style={s.emptyList}>
       <StyledText>Empty...</StyledText>
@@ -66,9 +68,10 @@ const ProductList = ({}: Props) => {
           data={products}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
-          ItemSeparatorComponent={ItemSeparator}
+          ItemSeparatorComponent={ListSeparator}
+          ListHeaderComponent={ListHeader}
+          ListFooterComponent={ListFooter}
           ListEmptyComponent={ListEmpty}
-          contentContainerStyle={s.flatList}
           showsVerticalScrollIndicator={false}
         />
       </View>
