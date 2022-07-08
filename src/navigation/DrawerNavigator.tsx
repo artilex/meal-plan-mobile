@@ -38,23 +38,27 @@ const EmptyScreen = () => (
       text={'Main Outline Button'}
       onPress={() => null}
       color={ButtonColor.Green}
+      stretch
     />
     <StyledButton
       text={'Main Solid Button'}
       onPress={() => null}
       color={ButtonColor.Green}
       solid
+      stretch
     />
     <StyledButton
       text={'Red Outline Button'}
       onPress={() => null}
       color={ButtonColor.Red}
+      small
     />
     <StyledButton
       text={'Red Solid Button'}
       onPress={() => null}
       color={ButtonColor.Red}
       solid
+      small
     />
     <StyledButton
       text={'Blue Outline Button'}

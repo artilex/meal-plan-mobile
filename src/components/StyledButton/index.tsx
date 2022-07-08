@@ -22,6 +22,7 @@ type Props = {
   solid?: boolean;
   disabled?: boolean;
   small?: boolean;
+  stretch?: boolean;
   onPress: () => void;
 };
 
@@ -33,6 +34,7 @@ const StyledButton = ({
   solid,
   disabled,
   small,
+  stretch,
   onPress,
 }: Props) => {
   const colorStyles = COLOR_STYLES[color];
@@ -48,26 +50,34 @@ const StyledButton = ({
   ];
 
   return (
-    <Pressable style={containerStyles} onPress={onPress} disabled={disabled}>
-      <View
-        style={[
-          styles.innerContainer,
-          small && styles.smallInnerContainer,
-          solid && colorStyles && colorStyles.background,
-          disabled && disabledStyles.background,
-        ]}>
-        <StyledText
+    <View
+      style={[
+        styles.rootContainer,
+        small && styles.smallRootContainer,
+        stretch && styles.stretchedRootContainer,
+      ]}>
+      <Pressable style={containerStyles} onPress={onPress} disabled={disabled}>
+        <View
           style={[
-            styles.text,
-            colorStyles && colorStyles.text,
-            solid && colorStyles && styles.textSolid,
-            disabled && disabledStyles.text,
-          ]}
-          bold>
-          {text}
-        </StyledText>
-      </View>
-    </Pressable>
+            styles.innerContainer,
+            small && styles.smallInnerContainer,
+            solid && colorStyles && colorStyles.background,
+            disabled && disabledStyles.background,
+          ]}>
+          <StyledText
+            style={[
+              styles.text,
+              small && styles.smallText,
+              colorStyles && colorStyles.text,
+              solid && colorStyles && styles.textSolid,
+              disabled && disabledStyles.text,
+            ]}
+            bold>
+            {text}
+          </StyledText>
+        </View>
+      </Pressable>
+    </View>
   );
 };
 
