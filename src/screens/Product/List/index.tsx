@@ -63,18 +63,16 @@ const ProductList = ({}: Props) => {
 
   return (
     <View style={s.container}>
-      <View style={s.listWrapper}>
-        <FlatList
-          data={products}
-          keyExtractor={keyExtractor}
-          renderItem={renderItem}
-          ItemSeparatorComponent={ListSeparator}
-          ListHeaderComponent={ListHeader}
-          ListFooterComponent={ListFooter}
-          ListEmptyComponent={ListEmpty}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      <FlatList
+        data={products}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        ItemSeparatorComponent={ListSeparator}
+        ListHeaderComponent={ListHeader}
+        ListFooterComponent={ListFooter}
+        ListEmptyComponent={ListEmpty}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };

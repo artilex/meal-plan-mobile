@@ -5,8 +5,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
-  },
-  listWrapper: {
     paddingHorizontal: PADDING.LARGE,
   },
   emptyList: {

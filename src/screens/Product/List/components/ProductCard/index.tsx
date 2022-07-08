@@ -1,5 +1,6 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import s from './styles';
 import {StyledButton, StyledText} from 'src/components';
@@ -14,21 +15,43 @@ type Props = {
 
 // TODO: Add image support instead of the color circle
 // TODO: Replace "X" with a delete icon
+// TODO: Check Swipeable component and styles, configure it
 const ProductCard = React.memo(({product, onDelete, onEdit}: Props) => {
   const handleDelete = () => {
-    onDelete(product.id);
+    // onDelete(product.id);
   };
 
   const handleEdit = () => {
-    onEdit(product.id);
+    // onEdit(product.id);
   };
 
   return (
     <View style={s.container}>
-      <TouchableOpacity
-        style={s.touchableContainer}
-        activeOpacity={0.7}
-        onPress={handleEdit}>
+      <Swipeable
+        childrenContainerStyle={s.swipeableContainer}
+        renderRightActions={() => (
+          <View style={s.rightActions}>
+            <View style={s.buttonWrapper}>
+              <StyledButton
+                text={'/'}
+                color={ButtonColor.Green}
+                onPress={handleEdit}
+                solid
+                small
+              />
+            </View>
+
+            <View style={s.buttonWrapper}>
+              <StyledButton
+                text={'X'}
+                color={ButtonColor.Red}
+                onPress={handleDelete}
+                solid
+                small
+              />
+            </View>
+          </View>
+        )}>
         <View style={s.image} />
 
         <View style={s.content}>
@@ -37,17 +60,7 @@ const ProductCard = React.memo(({product, onDelete, onEdit}: Props) => {
           </StyledText>
           <StyledText style={s.categoryText}>{product.category}</StyledText>
         </View>
-      </TouchableOpacity>
-
-      <View style={s.removeWrapper}>
-        <StyledButton
-          text={'X'}
-          color={ButtonColor.Red}
-          onPress={handleDelete}
-          solid
-          small
-        />
-      </View>
+      </Swipeable>
     </View>
   );
 });

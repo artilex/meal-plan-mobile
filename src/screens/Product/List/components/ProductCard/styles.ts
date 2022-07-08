@@ -11,16 +11,13 @@ const {LARGE: SIZE} = ICON_SIZE;
 
 export default StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flex: 1,
     borderLeftWidth: BORDER.WIDTH,
     borderRightWidth: BORDER.WIDTH,
     borderColor: BORDER.COLOR,
   },
-  touchableContainer: {
-    flex: 1,
+  swipeableContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
   },
   image: {
     marginHorizontal: PADDING.REGULAR,
@@ -38,7 +35,12 @@ export default StyleSheet.create({
   categoryText: {
     color: COLOR.GRAY2,
   },
-  removeWrapper: {
-    paddingHorizontal: PADDING.SMALL,
+  rightActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: PADDING.SMALL,
+  },
+  buttonWrapper: {
+    marginRight: PADDING.SMALL,
   },
 });
