@@ -52,7 +52,7 @@ export const DISABLED_COLOR = Object.freeze({
 
 export const INPUT_COLOR = Object.freeze({
   BACKGROUND: COLOR.GRAY4,
-  TEXT: COLOR.BLACK1,
+  TEXT: COLOR.BLACK2,
 });
 
 export const BORDER = Object.freeze({

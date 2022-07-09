@@ -1,9 +1,17 @@
 import {StyleSheet} from 'react-native';
+import {PADDING} from 'src/constants/theme';
 
 export default StyleSheet.create({
-  iconWrapper: {
+  iconContainer: {
     flex: 1,
+    flexDirection: 'row',
+  },
+  clearIcon: {
     justifyContent: 'center',
-    alignItems: 'center',
+    paddingHorizontal: PADDING.SMALL,
+  },
+  searchIcon: {
+    justifyContent: 'center',
+    paddingHorizontal: PADDING.EXTRA_SMALL,
   },
 });

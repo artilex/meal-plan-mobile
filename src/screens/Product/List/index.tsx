@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import s from './styles';
-import {StyledText} from 'src/components';
+import {SearchInput, StyledText} from 'src/components';
 import {SCREEN_NAMES} from 'src/navigation/constants';
 import {deleteProduct, getProducts, Product} from 'src/services/api/product';
 import ProductCard from './components/ProductCard';
@@ -17,14 +17,27 @@ type Props = {
 };
 
 const ProductList = ({}: Props) => {
-  const [products, setProducts] = useState<Product[]>([]);
   const navigation = useNavigation<StackNavigationProp<any>>();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     getProducts()
       .then(setProducts)
       .catch(error => console.log('getProducts: ', error));
   }, []);
+
+  useEffect(() => {
+    const foundProducts = products.filter(product => {
+      const productName = product.name.toLocaleLowerCase();
+      const search = searchText.toLocaleLowerCase();
+
+      return productName.includes(search);
+    });
+
+    setFilteredProducts(foundProducts);
+  }, [products, searchText]);
 
   const handleEditProduct = (productId: string) => {
     navigation.navigate(SCREEN_NAMES.DRAWER.PRODUCT.EDIT);
@@ -52,7 +65,7 @@ const ProductList = ({}: Props) => {
 
   // _TODO: Implement Product Card Component
   // _TODO: Implement Product List
-  // TODO: Implement search for products
+  // _TODO: Implement search for products
   // TODO: Implement Product Form (Another Screen)
   // TODO: Implement Add Product Button
   // _TODO: Implement Delete Product Button (Functionality)
@@ -63,8 +76,12 @@ const ProductList = ({}: Props) => {
 
   return (
     <View style={s.container}>
+      <View style={s.searchContainer}>
+        <SearchInput text={searchText} onSearch={setSearchText} />
+      </View>
+
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         ItemSeparatorComponent={ListSeparator}

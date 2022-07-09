@@ -18,7 +18,7 @@ export default StyleSheet.create({
     overflow: 'hidden',
   },
   rightContainer: {
-    paddingHorizontal: PADDING.REGULAR,
+    paddingRight: PADDING.REGULAR,
   },
   textInput: {
     flex: 1,

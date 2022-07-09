@@ -1,12 +1,11 @@
 import React, {useRef, useState} from 'react';
-import {TextInput, TouchableOpacity} from 'react-native';
+import {TextInput, TouchableOpacity, View} from 'react-native';
 
 import SearchIcon from 'src/assets/images/search-icon.svg';
+import ClearIcon from 'src/assets/images/close-x.svg';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import StyledTextInput from '../StyledTextInput';
 import s from './styles';
-
-const {EXTRA_SMALL: SIZE} = ICON_SIZE;
 
 type Props = {
   text: string;
@@ -22,10 +21,28 @@ const SearchInput = ({text, onSearch}: Props) => {
     textInputRef.current?.blur();
   };
 
-  const renderIcon = () => (
-    <TouchableOpacity style={s.iconWrapper} onPress={handleSearch}>
-      <SearchIcon width={SIZE} height={SIZE} stroke={COLOR.GREEN1} />
-    </TouchableOpacity>
+  const handleClear = () => {
+    setInputText('');
+    onSearch('');
+    textInputRef.current?.blur();
+  };
+
+  const renderIcons = () => (
+    <View style={s.iconContainer}>
+      {!!inputText && (
+        <TouchableOpacity style={s.clearIcon} onPress={handleClear}>
+          <ClearIcon width={18} height={18} fill={COLOR.BLACK2} />
+        </TouchableOpacity>
+      )}
+
+      <TouchableOpacity style={s.searchIcon} onPress={handleSearch}>
+        <SearchIcon
+          width={ICON_SIZE.EXTRA_SMALL}
+          height={ICON_SIZE.EXTRA_SMALL}
+          stroke={COLOR.GREEN1}
+        />
+      </TouchableOpacity>
+    </View>
   );
 
   return (
@@ -33,7 +50,7 @@ const SearchInput = ({text, onSearch}: Props) => {
       textInputRef={textInputRef}
       value={inputText}
       onChangeText={setInputText}
-      RightComponent={renderIcon}
+      RightComponent={renderIcons}
     />
   );
 };
