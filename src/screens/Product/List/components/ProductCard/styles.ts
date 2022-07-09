@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {
-  BORDER,
+  BACKGROUND_COLOR,
   COLOR,
   FONT_SIZE,
   ICON_SIZE,
@@ -10,14 +10,10 @@ import {
 const {LARGE: SIZE} = ICON_SIZE;
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    borderLeftWidth: BORDER.WIDTH,
-    borderRightWidth: BORDER.WIDTH,
-    borderColor: BORDER.COLOR,
-  },
   swipeableContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: BACKGROUND_COLOR.PRIMARY,
   },
   image: {
     marginHorizontal: PADDING.REGULAR,
@@ -28,6 +24,7 @@ export default StyleSheet.create({
   },
   content: {
     flex: 1,
+    paddingVertical: PADDING.REGULAR,
   },
   nameText: {
     fontSize: FONT_SIZE.LARGE,
@@ -35,12 +32,10 @@ export default StyleSheet.create({
   categoryText: {
     color: COLOR.GRAY2,
   },
-  rightActions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingLeft: PADDING.SMALL,
-  },
-  buttonWrapper: {
-    marginRight: PADDING.SMALL,
+  // SwipeableActionLayout
+  actionContainer: {
+    justifyContent: 'center',
+    backgroundColor: COLOR.GRAY3,
+    paddingHorizontal: PADDING.EXTRA_LARGE,
   },
 });
