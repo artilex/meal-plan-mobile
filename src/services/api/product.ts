@@ -3,84 +3,84 @@
 export const PRODUCT_CATEGORIES: Category[] = [
   {
     id: 'pc1',
-    name: 'Vegetables',
-    nameRu: 'Овощи',
+    nameEn: 'Vegetables',
+    name: 'Овощи',
   },
   {
     id: 'pc2',
-    name: 'Fruit',
-    nameRu: 'Фрукты',
+    nameEn: 'Fruit',
+    name: 'Фрукты',
   },
   {
     id: 'pc3',
-    name: 'Dairy',
-    nameRu: 'Молочка',
+    nameEn: 'Dairy',
+    name: 'Молочка',
   },
   {
     id: 'pc4',
-    name: 'Meat',
-    nameRu: 'Мясо',
+    nameEn: 'Meat',
+    name: 'Мясо',
   },
   {
     id: 'pc5',
-    name: 'Seafood and Fish',
-    nameRu: 'Морепродукты и Рыба',
+    nameEn: 'Seafood and Fish',
+    name: 'Морепродукты и Рыба',
   },
   {
     id: 'pc6',
-    name: 'Snacks',
-    nameRu: 'Снеки',
+    nameEn: 'Snacks',
+    name: 'Снеки',
   },
   {
     id: 'pc7',
-    name: 'Baking',
-    nameRu: 'Для Выпечки',
+    nameEn: 'Baking',
+    name: 'Для Выпечки',
   },
   {
     id: 'pc8',
-    name: 'Grains and Pasta',
-    nameRu: 'Крупы и Макароны',
+    nameEn: 'Grains and Pasta',
+    name: 'Крупы и Макароны',
   },
   {
     id: 'pc9',
-    name: 'Canned Foods',
-    nameRu: 'Консервированные продукты',
+    nameEn: 'Canned Foods',
+    name: 'Консервированные продукты',
   },
   {
     id: 'pc10',
-    name: 'Frozen Foods',
-    nameRu: 'Замороженные продукты',
+    nameEn: 'Frozen Foods',
+    name: 'Замороженные продукты',
   },
   {
     id: 'pc11',
-    name: 'Sauces and Oils',
-    nameRu: 'Соусы и Масла',
+    nameEn: 'Sauces and Oils',
+    name: 'Соусы и Масла',
   },
   {
     id: 'pc12',
-    name: 'Spices',
-    nameRu: 'Специи',
+    nameEn: 'Spices',
+    name: 'Специи',
   },
   {
     id: 'pc13',
-    name: 'Beverages',
-    nameRu: 'Напитки',
+    nameEn: 'Beverages',
+    name: 'Напитки',
   },
   {
     id: 'pc14',
-    name: 'Bread and Bakery',
-    nameRu: 'Хлебобулочные изделия',
+    nameEn: 'Bread and Bakery',
+    name: 'Хлебобулочные изделия',
   },
   {
     id: 'pc99',
-    name: 'Other',
-    nameRu: 'Другое',
+    nameEn: 'Other',
+    name: 'Другое',
   },
 
   {
     id: 'pc',
+    nameEn: '',
     name: '',
-    nameRu: '',
   },
 ];
 
@@ -584,13 +584,13 @@ export type Product = {
 export type Category = {
   id: string;
   name: string;
-  nameRu: string;
+  nameEn: string;
 };
 
 const getCategoryById = (categoryId: string) => {
   const category = PRODUCT_CATEGORIES.find(item => item.id === categoryId);
 
-  return category?.nameRu ?? '';
+  return category?.name ?? '';
 };
 
 export const getProducts = async (): Promise<Product[]> => {
@@ -610,9 +610,5 @@ export const deleteProduct = async (productId: string): Promise<Product[]> => {
 };
 
 export const getProductCategories = async (): Promise<any> => {
-  return PRODUCT_CATEGORIES.map(category => ({
-    ...category,
-    title: category.nameRu,
-    data: PRODUCTS.filter(product => product.category === category.id),
-  }));
+  return PRODUCT_CATEGORIES.filter(item => item.name);
 };

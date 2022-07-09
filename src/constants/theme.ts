@@ -38,6 +38,12 @@ export const BACKGROUND_COLOR = Object.freeze({
   PRIMARY: COLOR.WHITE,
 });
 
+export enum ButtonColor {
+  Red = 0,
+  Green = 1,
+  Blue = 2,
+}
+
 export const TEXT_COLOR = Object.freeze({
   PRIMARY: COLOR.BLACK1,
   SECONDARY: COLOR.BLACK2,
@@ -94,9 +100,11 @@ export const PADDING = Object.freeze({
 });
 
 export const ICON_SIZE = Object.freeze({
+  EXTRA_EXTRA_SMALL: 24,
   EXTRA_SMALL: 28,
   SMALL: 32,
   REGULAR: 36,
-  LARGE: 56,
-  EXTRA_LARGE: 64,
+  LARGE: 44,
+  EXTRA_LARGE: 56,
+  EXTRA_EXTRA_LARGE: 64,
 });

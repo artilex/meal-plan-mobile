@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Pressable, View} from 'react-native';
 
 import {
@@ -9,15 +9,12 @@ import {
   disabledStyles,
 } from './styles';
 import StyledText from '../StyledText';
-
-export enum ButtonColor {
-  Red = 0,
-  Green = 1,
-  Blue = 2,
-}
+import {ButtonColor, COLOR} from 'src/constants/theme';
+import {SvgProps} from 'react-native-svg';
 
 type Props = {
-  text: string;
+  text?: string;
+  Icon?: FC<SvgProps>;
   color?: ButtonColor;
   solid?: boolean;
   disabled?: boolean;
@@ -27,9 +24,11 @@ type Props = {
 };
 
 const COLOR_STYLES = [redStyles, greenStyles, blueStyles];
+const TEXT_COLORS = [COLOR.RED2, COLOR.GREEN1, COLOR.BLUE1];
 
 const StyledButton = ({
   text,
+  Icon,
   color = -1,
   solid,
   disabled,
@@ -39,6 +38,7 @@ const StyledButton = ({
 }: Props) => {
   const colorStyles = COLOR_STYLES[color];
   const solidWithColor = solid && colorStyles;
+  const iconColor = solid ? COLOR.WHITE : TEXT_COLORS[color];
 
   const containerStyles = ({pressed}: {pressed: boolean}) => [
     styles.borderContainer,
@@ -64,17 +64,21 @@ const StyledButton = ({
             solid && colorStyles && colorStyles.background,
             disabled && disabledStyles.background,
           ]}>
-          <StyledText
-            style={[
-              styles.text,
-              small && styles.smallText,
-              colorStyles && colorStyles.text,
-              solid && colorStyles && styles.textSolid,
-              disabled && disabledStyles.text,
-            ]}
-            bold>
-            {text}
-          </StyledText>
+          {!!Icon && <Icon width={20} height={20} fill={iconColor} />}
+
+          {!!text && (
+            <StyledText
+              style={[
+                styles.text,
+                small && styles.smallText,
+                colorStyles && colorStyles.text,
+                solid && colorStyles && styles.textSolid,
+                disabled && disabledStyles.text,
+              ]}
+              bold>
+              {text}
+            </StyledText>
+          )}
         </View>
       </Pressable>
     </View>

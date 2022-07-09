@@ -3,11 +3,10 @@ import {View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {StyledButton} from 'src/components';
-import {ButtonColor} from 'src/components/StyledButton';
 import {DrawerNavigatorOptions, SCREEN_NAMES} from './constants';
 import ProductNavigator from './ProductNavigator';
 import SideMenu from './components/SideMenu';
-import {BACKGROUND_COLOR} from 'src/constants/theme';
+import {BACKGROUND_COLOR, ButtonColor} from 'src/constants/theme';
 
 const Drawer = createDrawerNavigator();
 

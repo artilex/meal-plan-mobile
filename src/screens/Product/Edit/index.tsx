@@ -3,7 +3,7 @@ import {View} from 'react-native';
 
 import s from './styles';
 import {StyledButton, StyledText} from 'src/components';
-import {ButtonColor} from 'src/components/StyledButton';
+import {ButtonColor} from 'src/constants/theme';
 
 type Props = {
   //

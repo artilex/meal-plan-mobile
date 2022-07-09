@@ -104,7 +104,7 @@ export const styles = StyleSheet.create({
   },
   smallInnerContainer: {
     paddingVertical: PADDING.SMALL,
-    paddingHorizontal: PADDING.LARGE,
+    paddingHorizontal: PADDING.REGULAR,
   },
   text: {
     color: COLOR.GRAY2,

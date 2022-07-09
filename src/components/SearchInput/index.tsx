@@ -37,8 +37,8 @@ const SearchInput = ({text, onSearch}: Props) => {
 
       <TouchableOpacity style={s.searchIcon} onPress={handleSearch}>
         <SearchIcon
-          width={ICON_SIZE.EXTRA_SMALL}
-          height={ICON_SIZE.EXTRA_SMALL}
+          width={ICON_SIZE.EXTRA_EXTRA_SMALL}
+          height={ICON_SIZE.EXTRA_EXTRA_SMALL}
           stroke={COLOR.GREEN1}
         />
       </TouchableOpacity>
@@ -46,12 +46,14 @@ const SearchInput = ({text, onSearch}: Props) => {
   );
 
   return (
-    <StyledTextInput
-      textInputRef={textInputRef}
-      value={inputText}
-      onChangeText={setInputText}
-      RightComponent={renderIcons}
-    />
+    <View style={s.container}>
+      <StyledTextInput
+        textInputRef={textInputRef}
+        value={inputText}
+        onChangeText={setInputText}
+        RightComponent={renderIcons}
+      />
+    </View>
   );
 };
 
