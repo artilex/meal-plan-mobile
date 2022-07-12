@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import 'src/services/i18n';
 
+import 'src/services/i18n';
 import AppNavigator from 'src/navigation';
 
 const App = () => (
@@ -35,5 +35,6 @@ const App = () => (
 // TODO: Create the Recipe Item List
 // TODO: Create the Recipe Item Card
 // TODO: Implement creating the new Recipe Item
+// TODO: Add Splash Screen and logo
 
 export default App;

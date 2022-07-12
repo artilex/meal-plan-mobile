@@ -1,23 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import Modal from 'react-native-modal';
 
 import s from './styles';
 import {SearchInput, StyledText} from 'src/components';
 import {SCREEN_NAMES} from 'src/navigation/constants';
-import {
-  deleteProduct,
-  getProductCategories,
-  getProducts,
-  Product,
-} from 'src/services/api/product';
-import FilterIcon from 'src/assets/images/filter.svg';
+import {deleteProduct, getProducts, Product} from 'src/services/api/product';
 import ProductCard from './components/ProductCard';
 import ListSeparator from './components/ListSeparator';
-import {COLOR, ICON_SIZE} from 'src/constants/theme';
-import CloseIcon from 'src/assets/images/close-x.svg';
+import FilterButton from './components/FilterButton';
 
 type Props = {
   //
@@ -26,19 +18,13 @@ type Props = {
 const ProductList = ({}: Props) => {
   const navigation = useNavigation<StackNavigationProp<any>>();
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState('');
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     getProducts()
       .then(setProducts)
       .catch(error => console.log('getProducts: ', error));
-
-    getProductCategories()
-      .then(setCategories)
-      .catch(error => console.log('getProductCategories: ', error));
   }, []);
 
   useEffect(() => {
@@ -93,16 +79,7 @@ const ProductList = ({}: Props) => {
     <View style={s.container}>
       <View style={s.searchContainer}>
         <SearchInput text={searchText} onSearch={setSearchText} />
-        <TouchableOpacity
-          activeOpacity={0.4}
-          onPress={() => setShowModal(true)}
-          style={s.filterContainer}>
-          <FilterIcon
-            width={ICON_SIZE.EXTRA_SMALL}
-            height={ICON_SIZE.EXTRA_SMALL}
-            fill={COLOR.GREEN1}
-          />
-        </TouchableOpacity>
+        <FilterButton />
       </View>
 
       <FlatList
@@ -113,29 +90,6 @@ const ProductList = ({}: Props) => {
         ListEmptyComponent={ListEmpty}
         showsVerticalScrollIndicator={false}
       />
-
-      <Modal
-        isVisible={showModal}
-        onBackdropPress={() => setShowModal(false)}
-        style={s.modal}>
-        <View style={s.modalContainer}>
-          <TouchableOpacity
-            activeOpacity={0.4}
-            onPress={() => setShowModal(false)}
-            style={s.modalCloseWrapper}>
-            <CloseIcon width={32} height={32} fill={COLOR.GREEN1} />
-          </TouchableOpacity>
-
-          <FlatList
-            data={categories}
-            keyExtractor={keyExtractor}
-            renderItem={renderItem}
-            ItemSeparatorComponent={ListSeparator}
-            ListEmptyComponent={ListEmpty}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-      </Modal>
     </View>
   );
 };
