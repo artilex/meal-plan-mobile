@@ -7,6 +7,7 @@ type Props = {
   textInputRef: RefObject<TextInput>;
   value: string;
   onChangeText: (text: string) => void;
+  onSubmitEditing?: () => void;
   RightComponent?: () => JSX.Element;
 };
 
@@ -14,6 +15,7 @@ const StyledTextInput = ({
   textInputRef,
   value,
   onChangeText,
+  onSubmitEditing,
   RightComponent,
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -35,6 +37,7 @@ const StyledTextInput = ({
         style={s.textInput}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onSubmitEditing={onSubmitEditing}
       />
 
       {!!RightComponent && (

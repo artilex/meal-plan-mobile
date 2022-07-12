@@ -1,10 +1,9 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {
   BORDER,
   FONT_FAMILY,
   FONT_SIZE,
   INPUT_COLOR,
-  LINE_HEIGHT,
   PADDING,
 } from 'src/constants/theme';
 
@@ -27,6 +26,5 @@ export default StyleSheet.create({
     color: INPUT_COLOR.TEXT,
     fontFamily: FONT_FAMILY.REGULAR,
     fontSize: FONT_SIZE.LARGE,
-    lineHeight: LINE_HEIGHT.REGULAR,
   },
 });
