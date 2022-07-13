@@ -1,6 +1,7 @@
 {
   "common": {
-    "done": "Готово"
+    "done": "Готово",
+    "apply": "Применить"
   },
   "screenNames": {
     "MealPlanRoot": "План Питания",

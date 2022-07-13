@@ -1,23 +1,14 @@
 import React, {RefObject, useState} from 'react';
-import {TextInput, View} from 'react-native';
+import {TextInput, TextInputProps, View} from 'react-native';
 
 import s from './styles';
 
-type Props = {
+type Props = TextInputProps & {
   textInputRef: RefObject<TextInput>;
-  value: string;
-  onChangeText: (text: string) => void;
-  onSubmitEditing?: () => void;
   RightComponent?: () => JSX.Element;
 };
 
-const StyledTextInput = ({
-  textInputRef,
-  value,
-  onChangeText,
-  onSubmitEditing,
-  RightComponent,
-}: Props) => {
+const StyledTextInput = ({textInputRef, RightComponent, ...props}: Props) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -32,12 +23,10 @@ const StyledTextInput = ({
     <View style={s.container}>
       <TextInput
         ref={textInputRef}
-        value={value}
-        onChangeText={onChangeText}
         style={s.textInput}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onSubmitEditing={onSubmitEditing}
+        {...props}
       />
 
       {!!RightComponent && (

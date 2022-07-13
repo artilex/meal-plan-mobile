@@ -4,8 +4,8 @@ import {TouchableOpacity} from 'react-native';
 import {getProductCategories} from 'src/services/api/product';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import FilterIcon from 'src/assets/images/filter.svg';
-import FilterModal from './FilterModal';
-import s from './styles';
+import FilterListModal from './FilterListModal';
+import {buttonStyles as s} from './styles';
 
 const FilterButton = React.memo(() => {
   const [categories, setCategories] = useState([]);
@@ -38,10 +38,11 @@ const FilterButton = React.memo(() => {
         />
       </TouchableOpacity>
 
-      <FilterModal
+      <FilterListModal
         categories={categories}
         isVisible={showModal}
         onClose={handleCloseModal}
+        onApply={() => console.log('IMPLEMENT APPLY')}
       />
     </>
   );

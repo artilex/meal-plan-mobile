@@ -7,3 +7,5 @@ const guidelineBaseWidth = 390;
 const guidelineBaseHeight = 844;
 
 export const adapt = (size: number) => (width / guidelineBaseWidth) * size;
+export const adaptVertical = (size: number) =>
+  (height / guidelineBaseHeight) * size;

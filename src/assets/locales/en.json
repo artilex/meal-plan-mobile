@@ -1,6 +1,7 @@
 {
   "common": {
-    "done": "Done"
+    "done": "Done",
+    "apply": "Apply"
   },
   "screenNames": {
     "MealPlanRoot": "Meal Plan",

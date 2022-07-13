@@ -53,6 +53,7 @@ const SearchInput = ({text, onSearch}: Props) => {
         onChangeText={setInputText}
         onSubmitEditing={handleSearch}
         RightComponent={renderIcons}
+        returnKeyType={'search'}
       />
     </View>
   );
