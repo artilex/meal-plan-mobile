@@ -7,7 +7,12 @@ import FilterIcon from 'src/assets/images/filter.svg';
 import FilterListModal from './FilterListModal';
 import {buttonStyles as s} from './styles';
 
-const FilterButton = React.memo(() => {
+type Props = {
+  selectedCategory: string;
+  onSelect: (categoryId: string) => void;
+};
+
+const FilterButton = React.memo(({selectedCategory, onSelect}: Props) => {
   const [categories, setCategories] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -34,16 +39,18 @@ const FilterButton = React.memo(() => {
         <FilterIcon
           width={ICON_SIZE.EXTRA_SMALL}
           height={ICON_SIZE.EXTRA_SMALL}
-          fill={COLOR.GREEN1}
+          fill={selectedCategory ? COLOR.GREEN1 : COLOR.GRAY3}
         />
       </TouchableOpacity>
 
-      <FilterListModal
-        categories={categories}
-        isVisible={showModal}
-        onClose={handleCloseModal}
-        onApply={() => console.log('IMPLEMENT APPLY')}
-      />
+      {showModal && (
+        <FilterListModal
+          selectedCategory={selectedCategory}
+          categories={categories}
+          onClose={handleCloseModal}
+          onApply={onSelect}
+        />
+      )}
     </>
   );
 });

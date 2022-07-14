@@ -1,7 +1,8 @@
 {
   "common": {
     "done": "Готово",
-    "apply": "Применить"
+    "apply": "Применить",
+    "cancel": "Отмена"
   },
   "screenNames": {
     "MealPlanRoot": "План Питания",

@@ -1,12 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {adapt} from 'src/constants/layout';
-import {
-  BACKGROUND_COLOR,
-  BORDER,
-  COLOR,
-  ICON_SIZE,
-  PADDING,
-} from 'src/constants/theme';
+import {BACKGROUND_COLOR, BORDER, COLOR, PADDING} from 'src/constants/theme';
 
 export const buttonStyles = StyleSheet.create({
   container: {
@@ -17,8 +11,8 @@ export const buttonStyles = StyleSheet.create({
 
 export const listItemStyles = StyleSheet.create({
   container: {
-    paddingHorizontal: PADDING.REGULAR,
-    paddingVertical: PADDING.SMALL,
+    paddingHorizontal: PADDING.LARGE,
+    paddingVertical: PADDING.REGULAR,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -44,14 +38,17 @@ export const listModalStyles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
     borderRadius: BORDER.RADIUS,
     overflow: 'hidden',
-    paddingTop: ICON_SIZE.SMALL + PADDING.REGULAR * 2,
+    paddingTop: PADDING.SMALL,
     paddingBottom: PADDING.SMALL,
   },
   footer: {
-    borderTopWidth: BORDER.WIDTH,
-    borderTopColor: BORDER.COLOR,
     paddingTop: PADDING.SMALL,
-    paddingHorizontal: adapt(PADDING.EXTRA_LARGE * 2),
+    flexDirection: 'row',
+    paddingHorizontal: adapt(PADDING.REGULAR),
+  },
+  buttonWrapper: {
+    flex: 1,
+    paddingHorizontal: adapt(PADDING.REGULAR),
   },
   emptyList: {
     borderLeftWidth: BORDER.WIDTH,
@@ -60,11 +57,5 @@ export const listModalStyles = StyleSheet.create({
     paddingVertical: PADDING.EXTRA_LARGE * 1.5,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  closeWrapper: {
-    position: 'absolute',
-    right: PADDING.REGULAR,
-    top: PADDING.REGULAR,
-    zIndex: 10,
   },
 });

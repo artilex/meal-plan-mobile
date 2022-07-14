@@ -20,6 +20,7 @@ const ProductList = ({}: Props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     getProducts()
@@ -35,8 +36,12 @@ const ProductList = ({}: Props) => {
       return productName.includes(search);
     });
 
-    setFilteredProducts(foundProducts);
-  }, [products, searchText]);
+    const filtered = selectedCategory
+      ? foundProducts.filter(product => product.categoryId === selectedCategory)
+      : foundProducts;
+
+    setFilteredProducts(filtered);
+  }, [products, searchText, selectedCategory]);
 
   const handleEditProduct = (productId: string) => {
     navigation.navigate(SCREEN_NAMES.DRAWER.PRODUCT.EDIT);
@@ -67,9 +72,9 @@ const ProductList = ({}: Props) => {
   // _TODO: Implement search for products
   // _TODO: Implement Delete Product Button (Functionality)
   // _TODO: Implement Edit Product Button (Functionality)
-  // TODO: Move Modal Component and Filter Button into different component
-  // TODO: Implement the filter in the top of the screen to choose the only one group to show
-  // TODO: When show products for only one group, don't show group, just a list
+  // _TODO: Move Modal Component and Filter Button into different component
+  // _TODO: Implement the filter in the top of the screen to choose the only one group to show
+  // _TODO: When show products for only one group, don't show group, just a list
   // TODO: Implement Add Product Button
   // TODO: Check and optimize performance (maybe enable useNativeDriver props)
   // TODO: Implement Product Form (Another Screen)
@@ -79,7 +84,10 @@ const ProductList = ({}: Props) => {
     <View style={s.container}>
       <View style={s.searchContainer}>
         <SearchInput text={searchText} onSearch={setSearchText} />
-        <FilterButton />
+        <FilterButton
+          selectedCategory={selectedCategory}
+          onSelect={setSelectedCategory}
+        />
       </View>
 
       <FlatList

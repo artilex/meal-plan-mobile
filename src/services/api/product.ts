@@ -577,6 +577,7 @@ export let PRODUCTS: Product[] = [
 export type Product = {
   id: string;
   name: string;
+  categoryId?: string;
   category: string;
   image: string | null;
 };
@@ -598,6 +599,7 @@ export const getProducts = async (): Promise<Product[]> => {
     .sort((a, b) => a.name.localeCompare(b.name))
     .map(product => ({
       ...product,
+      categoryId: product.category,
       category: getCategoryById(product.category),
     }));
   // return api.get('/api/some/endpoint');
