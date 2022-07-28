@@ -15,6 +15,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
+  addButtonContainer: {
+    position: 'absolute',
+    zIndex: 10,
+    right: PADDING.EXTRA_LARGE,
+    bottom: PADDING.EXTRA_LARGE,
+  },
   emptyList: {
     borderLeftWidth: BORDER.WIDTH,
     borderRightWidth: BORDER.WIDTH,

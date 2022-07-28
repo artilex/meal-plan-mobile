@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 
 import {getProductCategories} from 'src/services/api/product';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
@@ -39,8 +39,9 @@ const FilterButton = React.memo(({selectedCategory, onSelect}: Props) => {
         <FilterIcon
           width={ICON_SIZE.EXTRA_SMALL}
           height={ICON_SIZE.EXTRA_SMALL}
-          fill={selectedCategory ? COLOR.GREEN1 : COLOR.GRAY3}
+          fill={COLOR.GREEN1}
         />
+        {!!selectedCategory && <View style={s.redCircle} />}
       </TouchableOpacity>
 
       {showModal && (

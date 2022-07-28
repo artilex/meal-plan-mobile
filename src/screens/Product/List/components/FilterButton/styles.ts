@@ -7,6 +7,15 @@ export const buttonStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: PADDING.REGULAR,
   },
+  redCircle: {
+    position: 'absolute',
+    right: 2,
+    bottom: 10,
+    width: 8,
+    height: 8,
+    backgroundColor: COLOR.RED2,
+    borderRadius: 10,
+  },
 });
 
 export const listItemStyles = StyleSheet.create({

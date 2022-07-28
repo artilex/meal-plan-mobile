@@ -10,7 +10,7 @@ import {deleteProduct, getProducts, Product} from 'src/services/api/product';
 import ProductCard from './components/ProductCard';
 import ListSeparator from './components/ListSeparator';
 import FilterButton from './components/FilterButton';
-
+import PlusButton from 'src/components/PlusButton';
 type Props = {
   //
 };
@@ -47,6 +47,10 @@ const ProductList = ({}: Props) => {
     navigation.navigate(SCREEN_NAMES.DRAWER.PRODUCT.EDIT);
   };
 
+  const handleAddProduct = () => {
+    navigation.navigate(SCREEN_NAMES.DRAWER.PRODUCT.EDIT);
+  };
+
   const handleDeleteProduct = async (productId: string) => {
     deleteProduct(productId)
       .then(setProducts)
@@ -75,7 +79,7 @@ const ProductList = ({}: Props) => {
   // _TODO: Move Modal Component and Filter Button into different component
   // _TODO: Implement the filter in the top of the screen to choose the only one group to show
   // _TODO: When show products for only one group, don't show group, just a list
-  // TODO: Implement Add Product Button
+  // _TODO: Implement Add Product Button
   // TODO: Check and optimize performance (maybe enable useNativeDriver props)
   // TODO: Implement Product Form (Another Screen)
   // TODO: FINISH IMPLEMENTATION OF THE WHOLE LIST, GROUPED BY THE CATEGORIES
@@ -88,6 +92,10 @@ const ProductList = ({}: Props) => {
           selectedCategory={selectedCategory}
           onSelect={setSelectedCategory}
         />
+      </View>
+
+      <View style={s.addButtonContainer}>
+        <PlusButton onPress={handleAddProduct} />
       </View>
 
       <FlatList
