@@ -4,13 +4,12 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import s from './styles';
-import {SearchInput, StyledText} from 'src/components';
-import {SCREEN_NAMES} from 'src/navigation/constants';
+import {SearchInput, StyledText, PlusButton} from 'src/components';
 import {deleteProduct, getProducts, Product} from 'src/services/api/product';
 import ProductCard from './components/ProductCard';
 import ListSeparator from './components/ListSeparator';
 import FilterButton from './components/FilterButton';
-import PlusButton from 'src/components/PlusButton';
+import {ScreenNames} from 'src/navigation/types';
 type Props = {
   //
 };
@@ -21,11 +20,19 @@ const ProductList = ({}: Props) => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
+  const fetchProducts = () => {
+    setRefreshing(true);
+
     getProducts()
       .then(setProducts)
-      .catch(error => console.log('getProducts: ', error));
+      .catch(error => console.log('getProducts: ', error))
+      .finally(() => setRefreshing(false));
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   useEffect(() => {
@@ -44,11 +51,11 @@ const ProductList = ({}: Props) => {
   }, [products, searchText, selectedCategory]);
 
   const handleEditProduct = (productId: string) => {
-    navigation.navigate(SCREEN_NAMES.DRAWER.PRODUCT.EDIT);
+    navigation.navigate(ScreenNames.ProductEditScreen, {productId});
   };
 
   const handleAddProduct = () => {
-    navigation.navigate(SCREEN_NAMES.DRAWER.PRODUCT.EDIT);
+    navigation.navigate(ScreenNames.ProductEditScreen, {productId: null});
   };
 
   const handleDeleteProduct = async (productId: string) => {
@@ -71,19 +78,6 @@ const ProductList = ({}: Props) => {
     </View>
   );
 
-  // _TODO: Implement Product Card Component
-  // _TODO: Implement Product List
-  // _TODO: Implement search for products
-  // _TODO: Implement Delete Product Button (Functionality)
-  // _TODO: Implement Edit Product Button (Functionality)
-  // _TODO: Move Modal Component and Filter Button into different component
-  // _TODO: Implement the filter in the top of the screen to choose the only one group to show
-  // _TODO: When show products for only one group, don't show group, just a list
-  // _TODO: Implement Add Product Button
-  // TODO: Check and optimize performance (maybe enable useNativeDriver props)
-  // TODO: Implement Product Form (Another Screen)
-  // TODO: FINISH IMPLEMENTATION OF THE WHOLE LIST, GROUPED BY THE CATEGORIES
-
   return (
     <View style={s.container}>
       <View style={s.searchContainer}>
@@ -99,6 +93,8 @@ const ProductList = ({}: Props) => {
       </View>
 
       <FlatList
+        refreshing={refreshing}
+        onRefresh={fetchProducts}
         data={filteredProducts}
         keyExtractor={keyExtractor}
         renderItem={renderItem}

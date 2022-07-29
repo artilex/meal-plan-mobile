@@ -1,8 +1,15 @@
 {
   "common": {
+    "save": "Сохранить",
     "done": "Готово",
     "apply": "Применить",
     "cancel": "Отмена"
+  },
+  "product": {
+    "nameLabel": "Название",
+    "namePlaceholder": "Введите название продукта",
+    "categoryLabel": "Категория",
+    "imageLabel": "Картинка продукта"
   },
   "screenNames": {
     "MealPlanRoot": "План Питания",

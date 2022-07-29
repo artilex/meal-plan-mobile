@@ -21,7 +21,7 @@ export const SCREEN_NAMES = Object.freeze({
     },
     PRODUCT: {
       ROOT: 'ProductRoot',
-      LIST: 'ProductList',
+      LIST: 'ProductListScreen',
       EDIT: 'ProductEdit',
     },
   },

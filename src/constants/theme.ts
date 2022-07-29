@@ -105,6 +105,6 @@ export const ICON_SIZE = Object.freeze({
   SMALL: 32,
   REGULAR: 36,
   LARGE: 44,
-  EXTRA_LARGE: 56,
+  EXTRA_LARGE: 52,
   EXTRA_EXTRA_LARGE: 64,
 });

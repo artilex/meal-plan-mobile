@@ -4,7 +4,7 @@ import {TextInput, TextInputProps, View} from 'react-native';
 import s from './styles';
 
 type Props = TextInputProps & {
-  textInputRef: RefObject<TextInput>;
+  textInputRef?: RefObject<TextInput>;
   RightComponent?: () => JSX.Element;
 };
 

@@ -1,8 +1,15 @@
 {
   "common": {
+    "save": "Save",
     "done": "Done",
     "apply": "Apply",
     "cancel": "Cancel"
+  },
+  "product": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter the product name",
+    "categoryLabel": "Category",
+    "imageLabel": "Product Image"
   },
   "screenNames": {
     "MealPlanRoot": "Meal Plan",

@@ -5,14 +5,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useTranslation} from 'react-i18next';
 
 import {ProductEditScreen, ProductListScreen} from 'src/screens';
-import {SCREEN_NAMES} from './constants';
 import BurgerMenuButton from 'src/navigation/components/BurgerMenuButton';
 import CartButton from 'src/navigation/components/CartButton';
 import HeaderTitle from 'src/navigation/components/HeaderTitle';
 import BackArrowButton from 'src/navigation/components/BackArrowButton';
 import {BACKGROUND_COLOR, BORDER} from 'src/constants/theme';
+import {DrawerParamList, ScreenNames} from 'src/navigation/types';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<DrawerParamList>();
 
 const ProductNavigator = () => {
   const {t} = useTranslation();
@@ -22,7 +22,7 @@ const ProductNavigator = () => {
     <SafeAreaView style={s.safeArea} edges={['bottom']}>
       <Stack.Navigator>
         <Stack.Screen
-          name={SCREEN_NAMES.DRAWER.PRODUCT.LIST}
+          name={ScreenNames.ProductListScreen}
           component={ProductListScreen}
           options={{
             headerBackgroundContainerStyle: {
@@ -39,25 +39,29 @@ const ProductNavigator = () => {
           }}
         />
         <Stack.Screen
-          name={SCREEN_NAMES.DRAWER.PRODUCT.EDIT}
+          name={ScreenNames.ProductEditScreen}
           component={ProductEditScreen}
-          options={{
-            headerBackgroundContainerStyle: {
-              borderBottomWidth: BORDER.WIDTH,
-              borderBottomColor: BORDER.COLOR,
-            },
-            headerTitleAlign: 'center',
-            headerShadowVisible: false,
-            headerLeft: BackArrowButton,
-            headerTitle: () => (
-              <HeaderTitle
-                title={
-                  false
-                    ? t('screenNames.editProduct')
-                    : t('screenNames.createProduct')
-                }
-              />
-            ),
+          options={props => {
+            const hasProductId = !!props.route.params?.productId;
+
+            return {
+              headerBackgroundContainerStyle: {
+                borderBottomWidth: BORDER.WIDTH,
+                borderBottomColor: BORDER.COLOR,
+              },
+              headerTitleAlign: 'center',
+              headerShadowVisible: false,
+              headerLeft: BackArrowButton,
+              headerTitle: () => (
+                <HeaderTitle
+                  title={
+                    hasProductId
+                      ? t('screenNames.editProduct')
+                      : t('screenNames.createProduct')
+                  }
+                />
+              ),
+            };
           }}
         />
       </Stack.Navigator>

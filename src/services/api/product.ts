@@ -594,6 +594,7 @@ const getCategoryById = (categoryId: string) => {
   return category?.name ?? '';
 };
 
+// TODO: Move Products to Redux
 export const getProducts = async (): Promise<Product[]> => {
   return PRODUCTS.filter(item => item.name)
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -605,12 +606,48 @@ export const getProducts = async (): Promise<Product[]> => {
   // return api.get('/api/some/endpoint');
 };
 
+export const getProductById = async (id: string) => {
+  return PRODUCTS.find(item => item.id === id);
+};
+
 export const deleteProduct = async (productId: string): Promise<Product[]> => {
   PRODUCTS = PRODUCTS.filter(item => item.id !== productId);
 
   return getProducts();
 };
 
-export const getProductCategories = async (): Promise<any> => {
+type NewProduct = {
+  name: string;
+  categoryId: string;
+};
+
+export const createProduct = async (product: NewProduct) => {
+  PRODUCTS.push({
+    id: new Date().getTime().toString(),
+    name: product.name,
+    category: product.categoryId,
+    image: null,
+  });
+};
+
+export const updateProduct = async (
+  productId: string,
+  productData: Partial<NewProduct>,
+) => {
+  PRODUCTS = PRODUCTS.map(old => {
+    if (old.id === productId) {
+      return {
+        ...old,
+        name: productData.name ?? '',
+        category: productData.categoryId ?? '',
+      };
+    }
+
+    return old;
+  });
+};
+
+// TODO: Move Categories to Redux
+export const getProductCategories = async (): Promise<Category[]> => {
   return PRODUCT_CATEGORIES.filter(item => item.name);
 };

@@ -11,10 +11,14 @@ export default StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
   },
   default: {
-    borderWidth: BORDER.BOTTOM_WIDTH,
     borderColor: BORDER.COLOR,
     borderRadius: ICON_SIZE.EXTRA_EXTRA_LARGE,
-    padding: PADDING.SMALL,
+    padding: PADDING.EXTRA_SMALL,
+    borderWidth: BORDER.WIDTH,
     overflow: 'hidden',
+  },
+  bigContainer: {
+    padding: PADDING.REGULAR,
+    borderWidth: BORDER.BOTTOM_WIDTH,
   },
 });

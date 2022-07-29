@@ -18,7 +18,11 @@ const ProductImage = React.memo(
       activeOpacity={0.8}
       onPress={onPress}
       disabled={disabled}
-      style={[s.container, !image && s.default]}>
+      style={[
+        s.container,
+        !image && s.default,
+        size > ICON_SIZE.REGULAR && s.bigContainer,
+      ]}>
       <DefaultImage width={size} height={size} fill={COLOR.GRAY2} />
     </TouchableOpacity>
   ),

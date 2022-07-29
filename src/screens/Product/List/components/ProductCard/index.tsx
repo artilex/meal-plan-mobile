@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import {Product} from 'src/services/api/product';
-import {StyledText} from 'src/components';
+import {StyledText, ProductImage} from 'src/components';
 import {COLOR} from 'src/constants/theme';
 import DeleteIcon from 'src/assets/images/delete-trash.svg';
 import EditIcon from 'src/assets/images/edit-pencil.svg';
@@ -16,7 +16,6 @@ type Props = {
   onEdit: (id: string) => void;
 };
 
-// TODO: Add image support instead of the color circle
 const ProductCard = React.memo(({product, onDelete, onEdit}: Props) => {
   const swipeableRef = useRef<Swipeable>(null);
 
@@ -48,7 +47,9 @@ const ProductCard = React.memo(({product, onDelete, onEdit}: Props) => {
           onPress={handleDelete}
         />
       )}>
-      <View style={s.image} />
+      <View style={s.image}>
+        <ProductImage onPress={() => null} disabled />
+      </View>
 
       <View style={s.content}>
         <StyledText style={s.nameText} bold>

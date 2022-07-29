@@ -1,13 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-  BACKGROUND_COLOR,
-  COLOR,
-  FONT_SIZE,
-  ICON_SIZE,
-  PADDING,
-} from 'src/constants/theme';
-
-const {LARGE: SIZE} = ICON_SIZE;
+import {BACKGROUND_COLOR, COLOR, FONT_SIZE, PADDING} from 'src/constants/theme';
 
 export default StyleSheet.create({
   swipeableContainer: {
@@ -17,10 +9,6 @@ export default StyleSheet.create({
   },
   image: {
     marginHorizontal: PADDING.REGULAR,
-    width: SIZE,
-    height: SIZE,
-    borderRadius: SIZE / 2,
-    backgroundColor: COLOR.GREEN1,
   },
   content: {
     flex: 1,
