@@ -1,88 +1,6 @@
 // import {api} from './client';
-
-export const PRODUCT_CATEGORIES: Category[] = [
-  {
-    id: 'pc1',
-    nameEn: 'Vegetables',
-    name: 'Овощи',
-  },
-  {
-    id: 'pc2',
-    nameEn: 'Fruit',
-    name: 'Фрукты',
-  },
-  {
-    id: 'pc3',
-    nameEn: 'Dairy',
-    name: 'Молочка',
-  },
-  {
-    id: 'pc4',
-    nameEn: 'Meat',
-    name: 'Мясо',
-  },
-  {
-    id: 'pc5',
-    nameEn: 'Seafood and Fish',
-    name: 'Морепродукты и Рыба',
-  },
-  {
-    id: 'pc6',
-    nameEn: 'Snacks',
-    name: 'Снеки',
-  },
-  {
-    id: 'pc7',
-    nameEn: 'Baking',
-    name: 'Для Выпечки',
-  },
-  {
-    id: 'pc8',
-    nameEn: 'Grains and Pasta',
-    name: 'Крупы и Макароны',
-  },
-  {
-    id: 'pc9',
-    nameEn: 'Canned Foods',
-    name: 'Консервированные продукты',
-  },
-  {
-    id: 'pc10',
-    nameEn: 'Frozen Foods',
-    name: 'Замороженные продукты',
-  },
-  {
-    id: 'pc11',
-    nameEn: 'Sauces and Oils',
-    name: 'Соусы и Масла',
-  },
-  {
-    id: 'pc12',
-    nameEn: 'Spices',
-    name: 'Специи',
-  },
-  {
-    id: 'pc13',
-    nameEn: 'Beverages',
-    name: 'Напитки',
-  },
-  {
-    id: 'pc14',
-    nameEn: 'Bread and Bakery',
-    name: 'Хлебобулочные изделия',
-  },
-  {
-    id: 'pc99',
-    nameEn: 'Other',
-    name: 'Другое',
-  },
-
-  {
-    id: 'pc',
-    nameEn: '',
-    name: '',
-  },
-];
+import {NewProduct, Product} from './types';
+import {PRODUCT_CATEGORIES} from './category';
 
 export const PRODUCT_UNITS = [
   {
@@ -108,12 +26,12 @@ export const PRODUCT_UNITS = [
   },
 ];
 
-export let PRODUCTS: Product[] = [
+export let PRODUCTS = [
   {
     id: 'p1',
     name: 'Шампиньоны свежие',
     category: 'pc1',
-    image: null,
+    image: '',
   },
   {
     id: 'p2',
@@ -574,66 +492,59 @@ export let PRODUCTS: Product[] = [
   },
 ];
 
-export type Product = {
-  id: string;
-  name: string;
-  categoryId?: string;
-  category: string;
-  image: string | null;
-};
-
-export type Category = {
-  id: string;
-  name: string;
-  nameEn: string;
-};
-
-const getCategoryById = (categoryId: string) => {
+const _getCategoryById = (categoryId: string) => {
   const category = PRODUCT_CATEGORIES.find(item => item.id === categoryId);
 
-  return category?.name ?? '';
+  if (!category) {
+    return {id: '_', name: '_'};
+  }
+
+  return {id: category.id, name: category.name};
 };
 
-// TODO: Move Products to Redux
-export const getProducts = async (): Promise<Product[]> => {
+export const fetchProducts = async (): Promise<Product[]> => {
+  // TODO: Remove sort and map when it will be implemented on BE
   return PRODUCTS.filter(item => item.name)
     .sort((a, b) => a.name.localeCompare(b.name))
     .map(product => ({
       ...product,
-      categoryId: product.category,
-      category: getCategoryById(product.category),
+      category: _getCategoryById(product.category),
     }));
   // return api.get('/api/some/endpoint');
 };
 
-export const getProductById = async (id: string) => {
-  return PRODUCTS.find(item => item.id === id);
+export const getProductById = async (
+  id: string,
+): Promise<Product | undefined> => {
+  const product = PRODUCTS.find(item => item.id === id);
+
+  if (!product) {
+    return;
+  }
+
+  return {
+    ...product,
+    category: _getCategoryById(product.category),
+  };
 };
 
-export const deleteProduct = async (productId: string): Promise<Product[]> => {
-  PRODUCTS = PRODUCTS.filter(item => item.id !== productId);
-
-  return getProducts();
-};
-
-type NewProduct = {
-  name: string;
-  categoryId: string;
-};
-
-export const createProduct = async (product: NewProduct) => {
+export const createProduct = async (
+  product: NewProduct,
+): Promise<Product[]> => {
   PRODUCTS.push({
     id: new Date().getTime().toString(),
     name: product.name,
     category: product.categoryId,
-    image: null,
+    image: product.image ?? null,
   });
+
+  return fetchProducts();
 };
 
 export const updateProduct = async (
   productId: string,
   productData: Partial<NewProduct>,
-) => {
+): Promise<Product[]> => {
   PRODUCTS = PRODUCTS.map(old => {
     if (old.id === productId) {
       return {
@@ -645,9 +556,12 @@ export const updateProduct = async (
 
     return old;
   });
+
+  return fetchProducts();
 };
 
-// TODO: Move Categories to Redux
-export const getProductCategories = async (): Promise<Category[]> => {
-  return PRODUCT_CATEGORIES.filter(item => item.name);
+export const deleteProduct = async (productId: string): Promise<Product[]> => {
+  PRODUCTS = PRODUCTS.filter(item => item.id !== productId);
+
+  return fetchProducts();
 };
