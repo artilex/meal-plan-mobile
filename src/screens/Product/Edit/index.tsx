@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import type {RouteProp} from '@react-navigation/native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
-import {DrawerParamList, ScreenNames} from 'src/navigation/types';
+import {ProductNavigatorParamList, ScreenNames} from 'src/navigation/types';
 import {
   HorizontalList,
   ProductImage,
@@ -14,50 +15,34 @@ import {
 import {ButtonColor} from 'src/constants/theme';
 import s from './styles';
 import {useTranslation} from 'react-i18next';
-import {
-  Category,
-  createProduct,
-  getProductById,
-  getProductCategories,
-  Product,
-  updateProduct,
-} from 'src/services/api/product';
 import {adapt} from 'src/constants/layout';
+import {productActions, RootState} from 'src/store';
+import {getProductById} from 'src/services/api/product';
+import {Product} from 'src/services/api/types';
 
-type DrawerRouteProp = RouteProp<
-  DrawerParamList,
+type ProductRouteProp = RouteProp<
+  ProductNavigatorParamList,
   ScreenNames.ProductEditScreen
 >;
 
-type Props = {
-  //
-};
-
-const ProductEdit = ({}: Props) => {
+const ProductEdit = () => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
   const navigation = useNavigation();
-  const route = useRoute<DrawerRouteProp>();
+  const route = useRoute<ProductRouteProp>();
   const productId = route.params?.productId ?? '';
 
   const [name, setName] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [categories, setCategories] = useState<Category[]>([]);
+  const categories = useSelector((state: RootState) => state.category.list);
   const buttonDisabled = !categoryId || !name;
-
-  useEffect(() => {
-    getProductCategories()
-      .then(setCategories)
-      .catch(error => console.log('getProductCategories: ', error));
-  }, []);
 
   useEffect(() => {
     getProductById(productId)
       .then((product?: Product) => {
         if (product) {
-          console.log('product');
-          console.log(product);
           setName(product.name);
-          setCategoryId(product.category ?? '');
+          setCategoryId(product.category?.id ?? '');
         }
       })
       .catch(error => console.log('getProductById error: ' + error));
@@ -67,12 +52,13 @@ const ProductEdit = ({}: Props) => {
     console.log('Implement Upload Image');
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     try {
+      const productData = {name, categoryId};
       if (productId) {
-        await updateProduct(productId, {name, categoryId});
+        dispatch(productActions.update({productId, productData}));
       } else {
-        await createProduct({name, categoryId});
+        dispatch(productActions.create(productData));
       }
 
       navigation.goBack();

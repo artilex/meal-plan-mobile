@@ -1,39 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import s from './styles';
-import {SearchInput, StyledText, PlusButton} from 'src/components';
-import {deleteProduct, getProducts, Product} from 'src/services/api/product';
+import {PlusButton, SearchInput, StyledText} from 'src/components';
 import ProductCard from './components/ProductCard';
 import ListSeparator from './components/ListSeparator';
 import FilterButton from './components/FilterButton';
-import {ScreenNames} from 'src/navigation/types';
-type Props = {
-  //
-};
+import {ProductNavigatorParamList, ScreenNames} from 'src/navigation/types';
+import {productActions, RootState} from 'src/store';
+import {Product} from 'src/services/api/types';
+import {RequestStatus} from 'src/store/types';
 
-const ProductList = ({}: Props) => {
-  const navigation = useNavigation<StackNavigationProp<any>>();
-  const [products, setProducts] = useState<Product[]>([]);
+type Navigation = StackNavigationProp<ProductNavigatorParamList>;
+
+const ProductList = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation<Navigation>();
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [refreshing, setRefreshing] = useState(false);
-
-  const fetchProducts = () => {
-    setRefreshing(true);
-
-    getProducts()
-      .then(setProducts)
-      .catch(error => console.log('getProducts: ', error))
-      .finally(() => setRefreshing(false));
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const products = useSelector((state: RootState) => state.product.list);
+  const requestStatus = useSelector((state: RootState) => state.product.status);
+  const loading = requestStatus === RequestStatus.Loading;
 
   useEffect(() => {
     const foundProducts = products.filter(product => {
@@ -44,7 +35,9 @@ const ProductList = ({}: Props) => {
     });
 
     const filtered = selectedCategory
-      ? foundProducts.filter(product => product.categoryId === selectedCategory)
+      ? foundProducts.filter(
+          product => product.category.id === selectedCategory,
+        )
       : foundProducts;
 
     setFilteredProducts(filtered);
@@ -58,10 +51,12 @@ const ProductList = ({}: Props) => {
     navigation.navigate(ScreenNames.ProductEditScreen, {productId: null});
   };
 
-  const handleDeleteProduct = async (productId: string) => {
-    deleteProduct(productId)
-      .then(setProducts)
-      .catch(err => console.log(err));
+  const handleDeleteProduct = (productId: string) => {
+    dispatch(productActions.delete(productId));
+  };
+
+  const handleRefreshProducts = () => {
+    dispatch(productActions.fetch());
   };
 
   const keyExtractor = (item: Product) => item.id;
@@ -93,8 +88,8 @@ const ProductList = ({}: Props) => {
       </View>
 
       <FlatList
-        refreshing={refreshing}
-        onRefresh={fetchProducts}
+        refreshing={loading}
+        onRefresh={handleRefreshProducts}
         data={filteredProducts}
         keyExtractor={keyExtractor}
         renderItem={renderItem}

@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 
 import {StyledButton, StyledText} from 'src/components';
 import {ButtonColor} from 'src/constants/theme';
-import {Category} from 'src/services/api/product';
+import {Category} from 'src/services/api/types';
 import ListSeparator from '../ListSeparator';
 import FilterItem from './FilterItem';
 import {listModalStyles as s} from './styles';

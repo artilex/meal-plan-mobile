@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -10,12 +10,20 @@ import CartButton from 'src/navigation/components/CartButton';
 import HeaderTitle from 'src/navigation/components/HeaderTitle';
 import BackArrowButton from 'src/navigation/components/BackArrowButton';
 import {BACKGROUND_COLOR, BORDER} from 'src/constants/theme';
-import {DrawerParamList, ScreenNames} from 'src/navigation/types';
+import {ProductNavigatorParamList, ScreenNames} from 'src/navigation/types';
+import {useDispatch} from 'react-redux';
+import {categoryActions, productActions} from 'src/store';
 
-const Stack = createStackNavigator<DrawerParamList>();
+const Stack = createStackNavigator<ProductNavigatorParamList>();
 
 const ProductNavigator = () => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(categoryActions.fetch());
+    dispatch(productActions.fetch());
+  }, [dispatch]);
 
   // TODO: Move common screen options to utils or constants
   return (

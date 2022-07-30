@@ -1,4 +1,4 @@
-export type DrawerParamList = {
+export type ProductNavigatorParamList = {
   ProductListScreen: undefined;
   ProductEditScreen: {
     productId: string | null;

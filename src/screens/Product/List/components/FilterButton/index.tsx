@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import {TouchableOpacity, View} from 'react-native';
 
-import {getProductCategories} from 'src/services/api/product';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import FilterIcon from 'src/assets/images/filter.svg';
 import FilterListModal from './FilterListModal';
+import {RootState} from 'src/store';
 import {buttonStyles as s} from './styles';
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const FilterButton = React.memo(({selectedCategory, onSelect}: Props) => {
-  const [categories, setCategories] = useState([]);
+  const categories = useSelector((state: RootState) => state.category.list);
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -23,12 +24,6 @@ const FilterButton = React.memo(({selectedCategory, onSelect}: Props) => {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  useEffect(() => {
-    getProductCategories()
-      .then(setCategories)
-      .catch(error => console.log('getProductCategories: ', error));
-  }, []);
 
   return (
     <>
