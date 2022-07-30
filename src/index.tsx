@@ -1,12 +1,16 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import 'src/services/i18n';
 import AppNavigator from 'src/navigation';
+import {store} from 'src/store';
 
 const App = () => (
   <SafeAreaProvider>
-    <AppNavigator />
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
   </SafeAreaProvider>
 );
 
@@ -28,9 +32,11 @@ const App = () => (
 // _TODO: (ONLY FOR THIS PROJECT) Add to Git
 // _TODO: Implement the API service
 // _TODO: Mock the Food Items (Products) API
-// TODO: Create the Food Item (Product) List
-// TODO: Create the Food Item (Product) Card
-// TODO: Implement creating the new Food Item (Product)
+// _TODO: Create the Food Item (Product) List
+// _TODO: Create the Food Item (Product) Card
+// _TODO: Implement creating the new Food Item (Product)
+// _TODO: Add Redux Saga to the app
+// TODO: Add Redux to store categories and products
 // TODO: Mock the Recipe Items API
 // TODO: Create the Recipe Item List
 // TODO: Create the Recipe Item Card
