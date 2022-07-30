@@ -19,6 +19,7 @@ import {adapt} from 'src/constants/layout';
 import {productActions, RootState} from 'src/store';
 import {getProductById} from 'src/services/api/product';
 import {Product} from 'src/services/api/types';
+import {RequestStatus} from 'src/store/types';
 
 type ProductRouteProp = RouteProp<
   ProductNavigatorParamList,
@@ -35,7 +36,9 @@ const ProductEdit = () => {
   const [name, setName] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const categories = useSelector((state: RootState) => state.category.list);
-  const buttonDisabled = !categoryId || !name;
+  const requestStatus = useSelector((state: RootState) => state.product.status);
+  const loading = requestStatus === RequestStatus.Loading;
+  const buttonDisabled = loading || !categoryId || !name;
 
   useEffect(() => {
     getProductById(productId)

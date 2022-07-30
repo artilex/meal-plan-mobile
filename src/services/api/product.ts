@@ -491,6 +491,9 @@ export let PRODUCTS = [
     image: null,
   },
 ];
+// TODO: I get freeze when I have many items before loading
+// TODO: So, when BE will be ready, move items from redux and only keep in local state,
+// TODO: Also, don't show all list, only items for search or filtered items
 
 const _getCategoryById = (categoryId: string) => {
   const category = PRODUCT_CATEGORIES.find(item => item.id === categoryId);
@@ -502,7 +505,7 @@ const _getCategoryById = (categoryId: string) => {
   return {id: category.id, name: category.name};
 };
 
-export const fetchProducts = async (): Promise<Product[]> => {
+export const fetchProducts = (): Product[] => {
   // TODO: Remove sort and map when it will be implemented on BE
   return PRODUCTS.filter(item => item.name)
     .sort((a, b) => a.name.localeCompare(b.name))

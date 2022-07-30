@@ -62,7 +62,9 @@ const ProductList = () => {
   const keyExtractor = (item: Product) => item.id;
   const renderItem = ({item}: {item: Product}) => (
     <ProductCard
-      product={item}
+      productId={item.id}
+      productName={item.name}
+      categoryName={item.category.name}
       onDelete={handleDeleteProduct}
       onEdit={handleEditProduct}
     />
