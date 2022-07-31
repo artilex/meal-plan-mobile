@@ -1,16 +1,19 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 
 import BackArrowIcon from 'src/assets/images/back-arrow.svg';
-import s from './styles';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
+import {ProductStackParamList, RecipeStackParamList} from '../../types';
+import s from './styles';
 
-const {EXTRA_SMALL} = ICON_SIZE;
+type NavigationType = StackNavigationProp<
+  ProductStackParamList | RecipeStackParamList
+>;
 
 const BackArrowButton = () => {
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  const navigation = useNavigation<NavigationType>();
 
   const handleGoBack = () => {
     navigation.goBack();
@@ -22,8 +25,8 @@ const BackArrowButton = () => {
       style={s.container}
       onPress={handleGoBack}>
       <BackArrowIcon
-        width={EXTRA_SMALL}
-        height={EXTRA_SMALL}
+        width={ICON_SIZE.EXTRA_SMALL}
+        height={ICON_SIZE.EXTRA_SMALL}
         fill={COLOR.GRAY2}
       />
     </TouchableOpacity>

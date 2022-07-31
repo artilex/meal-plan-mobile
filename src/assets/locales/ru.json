@@ -14,13 +14,14 @@
     "imageLabel": "Картинка продукта"
   },
   "screenNames": {
-    "MealPlanRoot": "План Питания",
-    "ShoppingRoot": "Список Покупок",
-    "RecipeRoot": "Рецепты",
-    "ProductRoot": "Продукты",
+    "DrawerMealPlan": "План Питания",
+    "DrawerShopping": "Список Покупок",
+    "DrawerRecipe": "Рецепты",
+    "DrawerProduct": "Продукты",
     "productList": "Список Продуктов",
     "createProduct": "Новый Продукт",
-    "editProduct": "Редактировать Продукт"
+    "editProduct": "Редактировать Продукт",
+    "recipeList": "Список Рецептов"
   },
   "calendar": {
     "month": {

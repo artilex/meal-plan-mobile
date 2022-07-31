@@ -4,17 +4,17 @@ import {useNavigation} from '@react-navigation/native';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 
 import CartIcon from 'src/assets/images/cart.svg';
-import s from './styles';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
-import {SCREEN_NAMES} from 'src/navigation/constants';
+import {DrawerParamList, DrawerScreens} from '../../types';
+import s from './styles';
 
 const {SMALL} = ICON_SIZE;
 
 const CartButton = () => {
-  const navigation = useNavigation<DrawerNavigationProp<any>>();
+  const navigation = useNavigation<DrawerNavigationProp<DrawerParamList>>();
 
   const handleOpenCartScreen = () => {
-    navigation.navigate(SCREEN_NAMES.DRAWER.SHOPPING.ROOT);
+    navigation.navigate(DrawerScreens.Shopping);
   };
 
   return (

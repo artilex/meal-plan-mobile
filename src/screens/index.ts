@@ -1,4 +1,5 @@
-import ProductListScreen from 'src/screens/Product/List';
-import ProductEditScreen from 'src/screens/Product/Edit';
+import ProductListScreen from './Product/List';
+import ProductEditScreen from './Product/Edit';
+import RecipeListScreen from './Recipe/List';
 
-export {ProductListScreen, ProductEditScreen};
+export {ProductListScreen, ProductEditScreen, RecipeListScreen};

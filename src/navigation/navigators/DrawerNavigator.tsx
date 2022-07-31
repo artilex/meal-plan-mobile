@@ -2,13 +2,15 @@ import React from 'react';
 import {View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import {StyledButton} from 'src/components';
-import {DrawerNavigatorOptions, SCREEN_NAMES} from './constants';
-import ProductNavigator from './ProductNavigator';
-import SideMenu from './components/SideMenu';
 import {BACKGROUND_COLOR, ButtonColor} from 'src/constants/theme';
+import {StyledButton} from 'src/components';
+import SideMenu from '../components/SideMenu';
+import {DrawerNavigatorOptions} from '../constants';
+import {DrawerParamList, DrawerScreens} from '../types';
+import ProductNavigator from './ProductNavigator';
+import RecipeNavigator from './RecipeNavigator';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 // TODO: Remove later
 const EmptyScreen = () => (
@@ -79,20 +81,11 @@ const DrawerNavigator = () => {
       drawerContent={props => <SideMenu {...props} />}
       screenOptions={DrawerNavigatorOptions}
       useLegacyImplementation>
+      <Drawer.Screen name={DrawerScreens.MealPlan} component={EmptyScreen} />
+      <Drawer.Screen name={DrawerScreens.Shopping} component={EmptyScreen} />
+      <Drawer.Screen name={DrawerScreens.Recipe} component={RecipeNavigator} />
       <Drawer.Screen
-        name={SCREEN_NAMES.DRAWER.MEAL_PLAN.ROOT}
-        component={EmptyScreen}
-      />
-      <Drawer.Screen
-        name={SCREEN_NAMES.DRAWER.SHOPPING.ROOT}
-        component={EmptyScreen}
-      />
-      <Drawer.Screen
-        name={SCREEN_NAMES.DRAWER.RECIPE.ROOT}
-        component={EmptyScreen}
-      />
-      <Drawer.Screen
-        name={SCREEN_NAMES.DRAWER.PRODUCT.ROOT}
+        name={DrawerScreens.Product}
         component={ProductNavigator}
       />
     </Drawer.Navigator>

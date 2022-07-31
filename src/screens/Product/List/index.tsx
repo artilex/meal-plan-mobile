@@ -9,12 +9,12 @@ import {PlusButton, SearchInput, StyledText} from 'src/components';
 import ProductCard from './components/ProductCard';
 import ListSeparator from './components/ListSeparator';
 import FilterButton from './components/FilterButton';
-import {ProductNavigatorParamList, ScreenNames} from 'src/navigation/types';
+import {ProductStackParamList, ProductScreens} from 'src/navigation/types';
 import {Product} from 'src/services/api/types';
 import {COLOR, ICON_SIZE, PADDING} from 'src/constants/theme';
 import {useProduct} from 'src/hooks/useProduct';
 
-type Navigation = StackNavigationProp<ProductNavigatorParamList>;
+type Navigation = StackNavigationProp<ProductStackParamList>;
 
 const ProductList = () => {
   const navigation = useNavigation<Navigation>();
@@ -25,11 +25,11 @@ const ProductList = () => {
     useProduct(searchText, selectedCategory);
 
   const handleEditProduct = (productId: string) => {
-    navigation.navigate(ScreenNames.ProductEditScreen, {productId});
+    navigation.navigate(ProductScreens.Edit, {productId});
   };
 
   const handleAddProduct = () => {
-    navigation.navigate(ScreenNames.ProductEditScreen, {productId: null});
+    navigation.navigate(ProductScreens.Edit, {productId: null});
   };
 
   const keyExtractor = (item: Product) => item.id;

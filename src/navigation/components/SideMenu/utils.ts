@@ -8,10 +8,10 @@ import RecipeIcon from 'src/assets/images/note-page.svg';
 import ProductIcon from 'src/assets/images/cheese.svg';
 
 const Icons: {[key: string]: FC<SvgProps>} = {
-  MealPlanRoot: MealPlanIcon,
-  ShoppingRoot: ShoppingIcon,
-  RecipeRoot: RecipeIcon,
-  ProductRoot: ProductIcon,
+  DrawerMealPlan: MealPlanIcon,
+  DrawerShopping: ShoppingIcon,
+  DrawerRecipe: RecipeIcon,
+  DrawerProduct: ProductIcon,
 };
 
 export const getItemIcon = (screenName: string) => {

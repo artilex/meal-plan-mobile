@@ -4,13 +4,14 @@ import {useNavigation} from '@react-navigation/native';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 
 import BurgerMenuIcon from 'src/assets/images/burger-menu.svg';
-import s from './styles';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
+import {DrawerParamList} from '../../types';
+import s from './styles';
 
 const {SMALL} = ICON_SIZE;
 
 const BurgerMenuButton = () => {
-  const navigation = useNavigation<DrawerNavigationProp<any>>();
+  const navigation = useNavigation<DrawerNavigationProp<DrawerParamList>>();
 
   const handleOpenMenu = () => {
     navigation.openDrawer();

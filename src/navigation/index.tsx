@@ -6,11 +6,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {StyledText} from 'src/components';
-import {RootNavigatorOptions, SCREEN_NAMES} from './constants';
-import DrawerNavigator from './DrawerNavigator';
 import {BACKGROUND_COLOR} from 'src/constants/theme';
+import DrawerNavigator from './navigators/DrawerNavigator';
+import {RootNavigatorOptions} from './constants';
+import {RootScreens, RootStackParamList} from './types';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const EmptyScreen = () => (
   <View
@@ -32,14 +33,11 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={RootNavigatorOptions}>
         {isSignedIn ? (
-          <Stack.Screen
-            name={SCREEN_NAMES.DRAWER.ROOT}
-            component={DrawerNavigator}
-          />
+          <Stack.Screen name={RootScreens.Drawer} component={DrawerNavigator} />
         ) : (
-          <Stack.Screen name={SCREEN_NAMES.AUTH.ROOT} component={EmptyScreen} />
+          <Stack.Screen name={RootScreens.Auth} component={EmptyScreen} />
         )}
-        <Stack.Screen name={SCREEN_NAMES.ERROR.ROOT} component={EmptyScreen} />
+        <Stack.Screen name={RootScreens.Error} component={EmptyScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -14,13 +14,14 @@
     "imageLabel": "Product Image"
   },
   "screenNames": {
-    "MealPlanRoot": "Meal Plan",
-    "ShoppingRoot": "Shopping List",
-    "RecipeRoot": "Recipes",
-    "ProductRoot": "Products",
+    "DrawerMealPlan": "Meal Plan",
+    "DrawerShopping": "Shopping List",
+    "DrawerRecipe": "Recipes",
+    "DrawerProduct": "Products",
     "productList": "Product List",
     "createProduct": "Create Product",
-    "editProduct": "Edit Product"
+    "editProduct": "Edit Product",
+    "recipeList": "Recipe List"
   },
   "calendar": {
     "month": {

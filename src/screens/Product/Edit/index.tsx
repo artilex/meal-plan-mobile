@@ -3,8 +3,9 @@ import {View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import type {RouteProp} from '@react-navigation/native';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
-import {ProductNavigatorParamList, ScreenNames} from 'src/navigation/types';
+import {ProductStackParamList, ProductScreens} from 'src/navigation/types';
 import {
   HorizontalList,
   ProductImage,
@@ -14,17 +15,13 @@ import {
 } from 'src/components';
 import {ButtonColor} from 'src/constants/theme';
 import s from './styles';
-import {useTranslation} from 'react-i18next';
 import {adapt} from 'src/constants/layout';
 import {productActions, RootState} from 'src/store';
 import {getProductById} from 'src/services/api/product';
 import {Product} from 'src/services/api/types';
 import {RequestStatus} from 'src/store/types';
 
-type ProductRouteProp = RouteProp<
-  ProductNavigatorParamList,
-  ScreenNames.ProductEditScreen
->;
+type ProductRouteProp = RouteProp<ProductStackParamList, ProductScreens.Edit>;
 
 const ProductEdit = () => {
   const {t} = useTranslation();
