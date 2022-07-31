@@ -35,6 +35,7 @@ const ProductEdit = () => {
 
   const [name, setName] = useState('');
   const [categoryId, setCategoryId] = useState('');
+  const [saved, setSaved] = useState(false);
   const categories = useSelector((state: RootState) => state.category.list);
   const requestStatus = useSelector((state: RootState) => state.product.status);
   const loading = requestStatus === RequestStatus.Loading;
@@ -51,6 +52,14 @@ const ProductEdit = () => {
       .catch(error => console.log('getProductById error: ' + error));
   }, [productId]);
 
+  useEffect(() => {
+    if (!loading && saved) {
+      setSaved(false);
+
+      navigation.goBack();
+    }
+  }, [saved, loading, navigation]);
+
   const handleUploadImage = () => {
     console.log('Implement Upload Image');
   };
@@ -64,7 +73,7 @@ const ProductEdit = () => {
         dispatch(productActions.create(productData));
       }
 
-      navigation.goBack();
+      setSaved(true);
     } catch (error) {
       console.log('handleSave error: ');
       console.log(error);

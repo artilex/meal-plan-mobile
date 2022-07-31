@@ -59,6 +59,7 @@ export function* handleDeleteProduct({payload}: PayloadAction<string>) {
 
 export function* watchProduct() {
   yield takeLatest(productActions.fetch.type, handleFetchProducts);
+  yield takeLatest(productActions.refresh.type, handleFetchProducts);
   yield takeLatest(productActions.create.type, handleCreateProduct);
   yield takeLatest(productActions.update.type, handleUpdateProduct);
   yield takeLatest(productActions.delete.type, handleDeleteProduct);

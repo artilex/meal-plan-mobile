@@ -16,6 +16,9 @@ const productSlice = createSlice({
     fetch(state) {
       state.status = RequestStatus.Loading;
     },
+    refresh(state) {
+      state.status = RequestStatus.Refreshing;
+    },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     create(state, action: PayloadAction<NewProduct>) {
       state.status = RequestStatus.Loading;

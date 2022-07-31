@@ -36,7 +36,7 @@ const App = () => (
 // _TODO: Create the Food Item (Product) Card
 // _TODO: Implement creating the new Food Item (Product)
 // _TODO: Add Redux Saga to the app
-// TODO: Add Redux to store categories and products
+// _TODO: Add Redux to store categories and products
 // TODO: Mock the Recipe Items API
 // TODO: Create the Recipe Item List
 // TODO: Create the Recipe Item Card

@@ -9,7 +9,7 @@ type Props = {
   size?: number;
   image?: string;
   disabled?: boolean;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 const ProductImage = React.memo(

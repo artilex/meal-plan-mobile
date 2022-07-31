@@ -2,10 +2,12 @@ import {StyleSheet} from 'react-native';
 import {BACKGROUND_COLOR, COLOR, FONT_SIZE, PADDING} from 'src/constants/theme';
 
 export default StyleSheet.create({
-  swipeableContainer: {
+  container: {
+    backgroundColor: BACKGROUND_COLOR.PRIMARY,
+  },
+  body: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: BACKGROUND_COLOR.PRIMARY,
   },
   image: {
     marginHorizontal: PADDING.REGULAR,
@@ -19,11 +21,5 @@ export default StyleSheet.create({
   },
   categoryText: {
     color: COLOR.GRAY2,
-  },
-  // SwipeableActionLayout
-  actionContainer: {
-    justifyContent: 'center',
-    backgroundColor: COLOR.GRAY3,
-    paddingHorizontal: PADDING.EXTRA_LARGE,
   },
 });

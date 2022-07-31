@@ -505,7 +505,12 @@ const _getCategoryById = (categoryId: string) => {
   return {id: category.id, name: category.name};
 };
 
-export const fetchProducts = (): Product[] => {
+const sleep = (seconds: number) => {
+  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+};
+
+export const fetchProducts = async (): Promise<Product[]> => {
+  await sleep(1);
   // TODO: Remove sort and map when it will be implemented on BE
   return PRODUCTS.filter(item => item.name)
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -534,6 +539,7 @@ export const getProductById = async (
 export const createProduct = async (
   product: NewProduct,
 ): Promise<Product[]> => {
+  await sleep(0);
   PRODUCTS.push({
     id: new Date().getTime().toString(),
     name: product.name,
@@ -548,6 +554,7 @@ export const updateProduct = async (
   productId: string,
   productData: Partial<NewProduct>,
 ): Promise<Product[]> => {
+  await sleep(0);
   PRODUCTS = PRODUCTS.map(old => {
     if (old.id === productId) {
       return {
@@ -564,6 +571,7 @@ export const updateProduct = async (
 };
 
 export const deleteProduct = async (productId: string): Promise<Product[]> => {
+  await sleep(0);
   PRODUCTS = PRODUCTS.filter(item => item.id !== productId);
 
   return fetchProducts();

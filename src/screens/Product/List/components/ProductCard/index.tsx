@@ -1,12 +1,9 @@
-import React, {useEffect, useRef} from 'react';
-import {View} from 'react-native';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import React, {useState} from 'react';
+import {Pressable, View} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
-import {StyledText, ProductImage} from 'src/components';
-import {COLOR} from 'src/constants/theme';
-import DeleteIcon from 'src/assets/images/delete-trash.svg';
-import EditIcon from 'src/assets/images/edit-pencil.svg';
-import SwipeableActionLayout from './SwipeableActionLayout';
+import {ProductImage, StyledText} from 'src/components';
+import CardFooter from './CardFooter';
 import s from './styles';
 
 type Props = {
@@ -19,7 +16,8 @@ type Props = {
 
 const ProductCard = React.memo(
   ({productId, productName, categoryName, onDelete, onEdit}: Props) => {
-    const swipeableRef = useRef<Swipeable>(null);
+    const {t} = useTranslation();
+    const [showFooter, setShowFooter] = useState(false);
 
     const handleDelete = () => {
       onDelete(productId);
@@ -27,39 +25,37 @@ const ProductCard = React.memo(
 
     const handleEdit = () => {
       onEdit(productId);
-      swipeableRef.current?.close();
+      setShowFooter(false);
+    };
+
+    const handleShowFooter = () => {
+      setShowFooter(oldState => !oldState);
     };
 
     return (
-      <Swipeable
-        ref={swipeableRef}
-        friction={1.2}
-        childrenContainerStyle={s.swipeableContainer}
-        renderLeftActions={() => (
-          <SwipeableActionLayout
-            Icon={EditIcon}
-            color={COLOR.GREEN1}
-            onPress={handleEdit}
-          />
-        )}
-        renderRightActions={() => (
-          <SwipeableActionLayout
-            Icon={DeleteIcon}
-            color={COLOR.RED2}
-            onPress={handleDelete}
-          />
-        )}>
-        <View style={s.image}>
-          <ProductImage onPress={() => null} disabled />
+      <Pressable style={s.container} onPress={handleShowFooter}>
+        <View style={s.body}>
+          <View style={s.image}>
+            <ProductImage image={''} disabled />
+          </View>
+
+          <View style={s.content}>
+            <StyledText style={s.nameText} bold>
+              {productName}
+            </StyledText>
+            <StyledText style={s.categoryText}>{categoryName}</StyledText>
+          </View>
         </View>
 
-        <View style={s.content}>
-          <StyledText style={s.nameText} bold>
-            {productName}
-          </StyledText>
-          <StyledText style={s.categoryText}>{categoryName}</StyledText>
-        </View>
-      </Swipeable>
+        {showFooter && (
+          <CardFooter
+            editLabel={t('common.edit')}
+            deleteLabel={t('common.delete')}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
+        )}
+      </Pressable>
     );
   },
 );

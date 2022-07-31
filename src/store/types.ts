@@ -3,6 +3,7 @@ import {NewProduct} from 'src/services/api/types';
 export enum RequestStatus {
   Idle = 'idle',
   Loading = 'loading',
+  Refreshing = 'refreshing',
   Succeeded = 'succeeded',
   Failed = 'failed',
 }
