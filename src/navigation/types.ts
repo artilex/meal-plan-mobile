@@ -1,3 +1,5 @@
+import {StackNavigationProp} from '@react-navigation/stack';
+
 // Navigator Types
 export type RootStackParamList = {
   RootAuth: undefined;
@@ -14,6 +16,13 @@ export type DrawerParamList = {
 
 export type RecipeStackParamList = {
   RecipeList: undefined;
+  RecipeSearch: undefined;
+  RecipeEdit: {
+    recipeId: string | null;
+  };
+  RecipeDetail: {
+    recipeId: string;
+  };
 };
 
 export type ProductStackParamList = {
@@ -22,6 +31,11 @@ export type ProductStackParamList = {
     productId: string | null;
   };
 };
+
+// Types for useNavigation
+export type DynamicStackNavigationProp = StackNavigationProp<
+  ProductStackParamList | RecipeStackParamList
+>;
 
 // Screen Names
 export enum RootScreens {
@@ -39,6 +53,9 @@ export enum DrawerScreens {
 
 export enum RecipeScreens {
   List = 'RecipeList',
+  Search = 'RecipeSearch',
+  Edit = 'RecipeEdit',
+  Detail = 'RecipeDetail',
 }
 
 export enum ProductScreens {

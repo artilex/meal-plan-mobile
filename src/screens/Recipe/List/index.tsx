@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {RecipeStackParamList} from 'src/navigation/types';
-import {StyledText} from 'src/components';
-import s from './styles';
-import RecipeCard from 'src/screens/Recipe/List/components/RecipeCard';
+import HeaderRightButtons from 'src/navigation/components/HeaderRightButtons';
+import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
 import {BORDER, PADDING} from 'src/constants/theme';
+import {StyledText} from 'src/components';
+import RecipeCard from './components/RecipeCard';
+import s from './styles';
 
 type NavigationType = StackNavigationProp<RecipeStackParamList>;
 
@@ -139,13 +140,35 @@ const recipes = [
 const RecipeList = () => {
   const navigation = useNavigation<NavigationType>();
 
+  useEffect(() => {
+    const navigateToCreateScreen = () => {
+      navigation.navigate(RecipeScreens.Edit, {recipeId: null});
+    };
+    const navigateToSearchScreen = () => {
+      navigation.navigate(RecipeScreens.Search);
+    };
+
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderRightButtons
+          navigateToCreate={navigateToCreateScreen}
+          navigateToSearch={navigateToSearchScreen}
+        />
+      ),
+    });
+  }, [navigation]);
+
+  const navigateToDetailScreen = () => {
+    navigation.navigate(RecipeScreens.Detail, {recipeId: 'rp1'});
+  };
+
   const keyExtractor = (item: any) => item.id;
   const renderItem = ({item}: {item: any}) => (
     <RecipeCard
       id={item.id}
       name={item.name}
       imageUrl={item.image}
-      onOpen={() => console.log('Open Recipe')}
+      onOpen={navigateToDetailScreen}
     />
   );
   const ListEmpty = () => (
@@ -170,12 +193,6 @@ const RecipeList = () => {
   //  3 Filter button from Product List
   return (
     <View style={s.container}>
-      <View style={s.header}>
-        <StyledText>Animated Search</StyledText>
-        <StyledText>Plus</StyledText>
-        <StyledText>Filter</StyledText>
-      </View>
-
       <FlatList
         // refreshing={refreshing}
         // onRefresh={refreshProducts}

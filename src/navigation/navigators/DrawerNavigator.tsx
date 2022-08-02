@@ -13,7 +13,7 @@ import RecipeNavigator from './RecipeNavigator';
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
 // TODO: Remove later
-const EmptyScreen = () => (
+export const EmptyScreen = () => (
   <View
     style={{
       flex: 1,
