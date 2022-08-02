@@ -7,7 +7,7 @@ import {RecipeStackParamList} from 'src/navigation/types';
 import {StyledText} from 'src/components';
 import s from './styles';
 import RecipeCard from 'src/screens/Recipe/List/components/RecipeCard';
-import {PADDING} from 'src/constants/theme';
+import {BORDER, PADDING} from 'src/constants/theme';
 
 type NavigationType = StackNavigationProp<RecipeStackParamList>;
 
@@ -148,16 +148,34 @@ const RecipeList = () => {
       onOpen={() => console.log('Open Recipe')}
     />
   );
-  const ListSeparator = () => <View style={s.listSeparator} />;
-  // const ListEmpty = () => (
-  //   <View style={s.emptyList}>
-  //     <StyledText>Empty...</StyledText>
-  //   </View>
-  // );
+  const ListEmpty = () => (
+    <View
+      style={{
+        borderLeftWidth: BORDER.WIDTH,
+        borderRightWidth: BORDER.WIDTH,
+        borderColor: BORDER.COLOR,
+        paddingVertical: PADDING.EXTRA_LARGE * 1.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <StyledText>Empty...</StyledText>
+    </View>
+  );
 
+  // TODO: Move Inline components above to global or local components
+  // TODO: Move PlusButton with wrapper to global components and replace it in ProductList too
+  // TODO: Implement the Header:
+  //  1 Search that can open
+  //  2 Plus button to add new recipe
+  //  3 Filter button from Product List
   return (
     <View style={s.container}>
-      <StyledText>Recipe List</StyledText>
+      <View style={s.header}>
+        <StyledText>Animated Search</StyledText>
+        <StyledText>Plus</StyledText>
+        <StyledText>Filter</StyledText>
+      </View>
+
       <FlatList
         // refreshing={refreshing}
         // onRefresh={refreshProducts}
@@ -165,12 +183,7 @@ const RecipeList = () => {
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         numColumns={2}
-        columnWrapperStyle={s.listColumnWrapper}
-        ItemSeparatorComponent={ListSeparator}
-        // ListEmptyComponent={ListEmpty}
-        // ListFooterComponent={() => (
-        //   <View style={{height: ICON_SIZE.EXTRA_LARGE + PADDING.EXTRA_LARGE}} />
-        // )}
+        ListEmptyComponent={ListEmpty}
         showsVerticalScrollIndicator={false}
       />
     </View>

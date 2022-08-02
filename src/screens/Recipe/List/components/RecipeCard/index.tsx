@@ -23,11 +23,14 @@ const RecipeCard = React.memo(({id, name, imageUrl, onOpen}: Props) => {
       style={s.container}
       activeOpacity={0.8}
       onPress={handlePress}>
-      <Image
-        source={imageUrl ? {uri: imageUrl} : require(defaultImagePath)}
-        defaultSource={require(defaultImagePath)}
-        style={s.image}
-      />
+      <View style={s.imageWrapper}>
+        <Image
+          source={imageUrl ? {uri: imageUrl} : require(defaultImagePath)}
+          defaultSource={require(defaultImagePath)}
+          style={s.image}
+        />
+      </View>
+
       <View style={s.textWrapper}>
         <StyledText style={s.text} bold>
           {name}
