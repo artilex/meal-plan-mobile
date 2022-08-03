@@ -21,7 +21,10 @@
     "productList": "Список Продуктов",
     "createProduct": "Новый Продукт",
     "editProduct": "Редактировать Продукт",
-    "recipeList": "Рецепты"
+    "recipeList": "Рецепты",
+    "searchRecipes": "Поиск Рецептов",
+    "createRecipe": "Создать Рецепт",
+    "editRecipe": "Редактировать Рецепт"
   },
   "calendar": {
     "month": {

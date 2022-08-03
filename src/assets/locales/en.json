@@ -21,7 +21,10 @@
     "productList": "Product List",
     "createProduct": "Create Product",
     "editProduct": "Edit Product",
-    "recipeList": "Recipes"
+    "recipeList": "Recipes",
+    "searchRecipes": "Search Recipes",
+    "createRecipe": "Create Recipe",
+    "editRecipe": "Edit Recipe"
   },
   "calendar": {
     "month": {
