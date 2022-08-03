@@ -27,9 +27,11 @@ export default StyleSheet.create({
     height: IMAGE_SIZE,
   },
   textWrapper: {
-    paddingVertical: PADDING.SMALL,
+    flex: 1,
+    padding: PADDING.SMALL,
   },
   text: {
     fontSize: 14,
+    lineHeight: 16,
   },
 });

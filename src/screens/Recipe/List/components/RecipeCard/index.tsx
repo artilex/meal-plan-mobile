@@ -32,7 +32,11 @@ const RecipeCard = React.memo(({id, name, imageUrl, onOpen}: Props) => {
       </View>
 
       <View style={s.textWrapper}>
-        <StyledText style={s.text} bold>
+        <StyledText
+          numberOfLines={2}
+          ellipsizeMode={'tail'}
+          style={s.text}
+          bold>
           {name}
         </StyledText>
       </View>
