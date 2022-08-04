@@ -46,16 +46,7 @@ const RecipeNavigator = () => {
         <Stack.Screen
           name={RecipeScreens.Edit}
           component={RecipeEditScreen}
-          options={props => {
-            const title = props.route.params?.recipeId
-              ? t('screenNames.editRecipe')
-              : t('screenNames.createRecipe');
-
-            return {
-              headerLeft: BackArrowButton,
-              headerTitle: () => <HeaderTitle title={title} />,
-            };
-          }}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name={RecipeScreens.Search}

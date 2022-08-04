@@ -5,7 +5,9 @@
     "apply": "Apply",
     "cancel": "Cancel",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next"
   },
   "product": {
     "nameLabel": "Name",
@@ -23,8 +25,8 @@
     "editProduct": "Edit Product",
     "recipeList": "Recipes",
     "searchRecipes": "Search Recipes",
-    "createRecipe": "Create Recipe",
-    "editRecipe": "Edit Recipe"
+    "editRecipeStep1": "Step 1: Enter the info",
+    "editRecipeStep2": "Step 2: Enter the detail"
   },
   "calendar": {
     "month": {

@@ -8,5 +8,17 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footer: {
+    flexDirection: 'row',
+    padding: PADDING.REGULAR,
+  },
+  buttonWrapper: {
+    flex: 1,
+  },
+  buttonSpace: {
+    width: PADDING.REGULAR,
   },
 });
