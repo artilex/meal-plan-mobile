@@ -77,6 +77,7 @@ const ProductEdit = () => {
     }
   };
 
+  // TODO: Refactor code in return block (check View around category list)
   return (
     <View style={s.container}>
       <View style={s.body}>

@@ -15,6 +15,13 @@
     "categoryLabel": "Категория",
     "imageLabel": "Картинка продукта"
   },
+  "recipe": {
+    "addCoverPhoto": "Добавить обложку",
+    "recipeName": "Название рецепта",
+    "enterRecipeName": "Введите название рецепта",
+    "description": "Описание",
+    "enterDescription": "Введите краткое описание"
+  },
   "screenNames": {
     "DrawerMealPlan": "План Питания",
     "DrawerShopping": "Список Покупок",

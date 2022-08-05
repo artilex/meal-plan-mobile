@@ -1,17 +1,51 @@
 import {StyleSheet} from 'react-native';
-import {BACKGROUND_COLOR, PADDING} from 'src/constants/theme';
+import {
+  BACKGROUND_COLOR,
+  BORDER,
+  COLOR,
+  FONT_FAMILY,
+  FONT_SIZE,
+  PADDING,
+} from 'src/constants/theme';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
+    padding: PADDING.REGULAR,
   },
   body: {
     flex: 1,
+  },
+  imageWrapper: {
+    paddingVertical: PADDING.EXTRA_LARGE * 1.5,
+    borderRadius: BORDER.RADIUS,
+    borderWidth: BORDER.WIDTH,
+    borderColor: BORDER.COLOR,
+    borderStyle: 'dashed',
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
+  },
+  imageText: {
+    marginTop: PADDING.EXTRA_LARGE,
+    fontSize: FONT_SIZE.LARGE,
+  },
+  inputBlock: {
+    paddingTop: PADDING.LARGE,
+  },
+  labelText: {
+    color: COLOR.GRAY2,
+    fontSize: FONT_SIZE.LARGE,
+    fontFamily: FONT_FAMILY.BOLD,
+    paddingBottom: PADDING.SMALL,
+  },
+  // TODO: Create the TextArea component and replace it
+  textArea: {
+    textAlignVertical: 'top',
   },
   footer: {
-    padding: PADDING.REGULAR,
+    paddingHorizontal: PADDING.REGULAR,
+    paddingTop: PADDING.REGULAR,
   },
 });

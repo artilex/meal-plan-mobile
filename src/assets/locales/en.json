@@ -11,9 +11,16 @@
   },
   "product": {
     "nameLabel": "Name",
-    "namePlaceholder": "Enter the product name",
+    "namePlaceholder": "Enter product name",
     "categoryLabel": "Category",
     "imageLabel": "Product Image"
+  },
+  "recipe": {
+    "addCoverPhoto": "Add Cover Photo",
+    "recipeName": "Recipe Name",
+    "enterRecipeName": "Enter recipe name",
+    "description": "Description",
+    "enterDescription": "Enter short description"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",

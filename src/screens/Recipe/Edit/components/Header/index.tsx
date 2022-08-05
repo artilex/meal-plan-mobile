@@ -33,7 +33,7 @@ const Header = React.memo(({step, stepCount, title, onCancel}: Props) => (
     </View>
 
     <View style={s.rightCounter}>
-      <StyledText>{step}</StyledText>
+      <StyledText style={s.counterMainText}>{step}</StyledText>
       <StyledText style={s.counterGrayText}>/{stepCount}</StyledText>
     </View>
   </View>

@@ -24,6 +24,8 @@ const RecipeEdit = () => {
   const route = useRoute<RecipeRouteProp>();
 
   const [step, setStep] = useState(Step.Info);
+  const [recipeName, setRecipeName] = useState('');
+  const [description, setDescription] = useState('');
 
   const headerTitle = useMemo(
     () =>
@@ -46,6 +48,10 @@ const RecipeEdit = () => {
   };
 
   const handleSaveRecipe = () => {
+    console.log('recipeName');
+    console.log(recipeName);
+    console.log('description');
+    console.log(description);
     console.log('IMPLEMENT SAVE RECIPE TO BE');
   };
 
@@ -61,6 +67,10 @@ const RecipeEdit = () => {
       <View style={s.body}>
         {step === Step.Info && (
           <StepInfo
+            recipeName={recipeName}
+            description={description}
+            setRecipeName={setRecipeName}
+            setDescription={setDescription}
             nextText={t('common.next')}
             onNavigateNext={handleNavigateNext}
           />

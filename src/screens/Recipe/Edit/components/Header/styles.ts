@@ -32,6 +32,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: PADDING.SMALL,
   },
+  counterMainText: {
+    fontSize: FONT_SIZE.LARGE,
+  },
   counterGrayText: {
     color: COLOR.GRAY2,
   },
