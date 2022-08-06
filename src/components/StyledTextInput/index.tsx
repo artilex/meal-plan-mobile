@@ -8,7 +8,12 @@ type Props = TextInputProps & {
   RightComponent?: () => JSX.Element;
 };
 
-const StyledTextInput = ({textInputRef, RightComponent, ...props}: Props) => {
+const StyledTextInput = ({
+  textInputRef,
+  RightComponent,
+  style,
+  ...props
+}: Props) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
@@ -23,7 +28,7 @@ const StyledTextInput = ({textInputRef, RightComponent, ...props}: Props) => {
     <View style={s.container}>
       <TextInput
         ref={textInputRef}
-        style={s.textInput}
+        style={[s.textInput, style]}
         onFocus={handleFocus}
         onBlur={handleBlur}
         {...props}

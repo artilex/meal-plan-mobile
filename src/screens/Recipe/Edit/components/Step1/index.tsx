@@ -5,7 +5,12 @@ import {useTranslation} from 'react-i18next';
 import DefaultCoverImage from 'src/assets/images/default-cover-image.svg';
 import {ButtonColor, COLOR} from 'src/constants/theme';
 import {adapt} from 'src/constants/layout';
-import {StyledButton, StyledText, StyledTextInput} from 'src/components';
+import {
+  StyledButton,
+  StyledText,
+  StyledTextInput,
+  TextArea,
+} from 'src/components';
 import s from './styles';
 
 type Props = {
@@ -66,13 +71,11 @@ const Step1 = React.memo(
             <StyledText style={s.labelText}>
               {t('recipe.description')}
             </StyledText>
-            <StyledTextInput
-              placeholder={t('recipe.enterDescription')}
-              value={description}
-              onChangeText={setDescription}
-              style={s.textArea}
+            <TextArea
+              text={description}
               numberOfLines={3}
-              multiline
+              placeholder={t('recipe.enterDescription')}
+              onChangeText={setDescription}
             />
           </View>
         </ScrollView>

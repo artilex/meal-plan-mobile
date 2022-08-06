@@ -40,10 +40,6 @@ export default StyleSheet.create({
     fontFamily: FONT_FAMILY.BOLD,
     paddingBottom: PADDING.SMALL,
   },
-  // TODO: Create the TextArea component and replace it
-  textArea: {
-    textAlignVertical: 'top',
-  },
   footer: {
     paddingHorizontal: PADDING.REGULAR,
     paddingTop: PADDING.REGULAR,

@@ -5,6 +5,7 @@ import SearchInput from './SearchInput';
 import PlusButton from './PlusButton';
 import HorizontalList from './HorizontalList';
 import ProductImage from './ProductImage';
+import TextArea from './TextArea';
 
 export {
   StyledText,
@@ -14,4 +15,5 @@ export {
   PlusButton,
   HorizontalList,
   ProductImage,
+  TextArea,
 };
