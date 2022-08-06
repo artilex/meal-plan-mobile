@@ -43,7 +43,6 @@ export default StyleSheet.create({
     paddingBottom: PADDING.SMALL,
   },
   footer: {
-    paddingHorizontal: PADDING.REGULAR,
     paddingTop: PADDING.REGULAR,
   },
 });

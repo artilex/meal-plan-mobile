@@ -20,7 +20,11 @@
     "recipeName": "Название рецепта",
     "enterRecipeName": "Введите название рецепта",
     "description": "Описание",
-    "enterDescription": "Введите краткое описание"
+    "enterDescription": "Введите краткое описание",
+    "ingredients": "Ингредиенты",
+    "addIngredient": "Добавить ингредиент",
+    "steps": "Шаги",
+    "describeStep": "Опишите шаг"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",

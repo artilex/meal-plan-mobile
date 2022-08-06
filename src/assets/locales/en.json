@@ -20,7 +20,11 @@
     "recipeName": "Recipe Name",
     "enterRecipeName": "Enter recipe name",
     "description": "Description",
-    "enterDescription": "Enter short description"
+    "enterDescription": "Enter short description",
+    "ingredients": "Ingredients",
+    "addIngredient": "Add ingredient",
+    "steps": "Steps",
+    "describeStep": "Describe step"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",

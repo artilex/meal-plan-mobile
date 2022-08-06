@@ -104,12 +104,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  icon: {
-    marginRight: PADDING.SMALL,
-  },
   smallInnerContainer: {
     paddingVertical: PADDING.SMALL,
     paddingHorizontal: PADDING.REGULAR,
+  },
+  icon: {
+    marginRight: PADDING.SMALL,
   },
   text: {
     color: COLOR.GRAY2,

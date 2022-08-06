@@ -14,6 +14,16 @@ export type Product = {
   image: string | null;
 };
 
+export type RecipeIngredient = {
+  id: string;
+  name: string;
+  quantity: {
+    value: number;
+    unit: string;
+  };
+  image: string | null;
+};
+
 export type NewProduct = {
   name: string;
   categoryId: string;

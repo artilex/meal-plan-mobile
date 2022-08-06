@@ -39,6 +39,7 @@ const StyledButton = ({
   const colorStyles = COLOR_STYLES[color];
   const solidWithColor = solid && colorStyles;
   const iconColor = solid ? COLOR.WHITE : TEXT_COLORS[color];
+  const iconSize = small ? ICON_SIZE.EXTRA_SMALL : ICON_SIZE.SMALL;
 
   const containerStyles = ({pressed}: {pressed: boolean}) => [
     styles.borderContainer,
@@ -66,8 +67,8 @@ const StyledButton = ({
           ]}>
           {!!Icon && (
             <Icon
-              width={ICON_SIZE.SMALL}
-              height={ICON_SIZE.SMALL}
+              width={iconSize}
+              height={iconSize}
               fill={iconColor}
               style={styles.icon}
             />

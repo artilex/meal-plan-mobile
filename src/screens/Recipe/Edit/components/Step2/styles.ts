@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {BACKGROUND_COLOR, PADDING} from 'src/constants/theme';
+import {
+  BACKGROUND_COLOR,
+  COLOR,
+  FONT_FAMILY,
+  FONT_SIZE,
+  PADDING,
+} from 'src/constants/theme';
 
 export default StyleSheet.create({
   container: {
@@ -8,8 +14,20 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    justifyContent: 'center',
+    padding: PADDING.REGULAR,
+  },
+  ingredientsBlock: {
+    //
+  },
+  labelText: {
+    color: COLOR.GRAY2,
+    fontSize: FONT_SIZE.LARGE,
+    fontFamily: FONT_FAMILY.BOLD,
+    paddingBottom: PADDING.SMALL,
+  },
+  ingredientButtonWrapper: {
     alignItems: 'center',
+    paddingTop: PADDING.LARGE,
   },
   footer: {
     flexDirection: 'row',
