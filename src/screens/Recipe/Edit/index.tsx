@@ -72,6 +72,8 @@ const RecipeEdit = () => {
             setRecipeName={setRecipeName}
             setDescription={setDescription}
             nextText={t('common.next')}
+            // TODO: Add validation
+            nextButtonDisabled={recipeName.length === 0}
             onNavigateNext={handleNavigateNext}
           />
         )}

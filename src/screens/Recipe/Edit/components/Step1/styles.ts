@@ -13,11 +13,13 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
     padding: PADDING.REGULAR,
+    paddingTop: 0,
   },
   body: {
     flex: 1,
   },
   imageWrapper: {
+    marginTop: PADDING.REGULAR,
     paddingVertical: PADDING.EXTRA_LARGE * 1.5,
     borderRadius: BORDER.RADIUS,
     borderWidth: BORDER.WIDTH,
