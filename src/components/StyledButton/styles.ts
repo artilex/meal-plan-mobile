@@ -96,11 +96,16 @@ export const styles = StyleSheet.create({
     paddingBottom: 0,
   },
   innerContainer: {
+    flexDirection: 'row',
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
     borderRadius: BORDER.RADIUS,
     paddingVertical: PADDING.REGULAR,
     paddingHorizontal: PADDING.EXTRA_LARGE,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  icon: {
+    marginRight: PADDING.SMALL,
   },
   smallInnerContainer: {
     paddingVertical: PADDING.SMALL,

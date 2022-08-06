@@ -9,7 +9,7 @@ import {
   disabledStyles,
 } from './styles';
 import StyledText from '../StyledText';
-import {ButtonColor, COLOR} from 'src/constants/theme';
+import {ButtonColor, COLOR, ICON_SIZE} from 'src/constants/theme';
 import {SvgProps} from 'react-native-svg';
 
 type Props = {
@@ -64,7 +64,14 @@ const StyledButton = ({
             solid && colorStyles && colorStyles.background,
             disabled && disabledStyles.background,
           ]}>
-          {!!Icon && <Icon width={20} height={20} fill={iconColor} />}
+          {!!Icon && (
+            <Icon
+              width={ICON_SIZE.SMALL}
+              height={ICON_SIZE.SMALL}
+              fill={iconColor}
+              style={styles.icon}
+            />
+          )}
 
           {!!text && (
             <StyledText
