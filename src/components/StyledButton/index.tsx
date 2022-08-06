@@ -1,16 +1,18 @@
 import React, {FC} from 'react';
 import {Pressable, View} from 'react-native';
+import {SvgProps} from 'react-native-svg';
 
+import {getButtonHeight} from 'src/components/StyledButton/utils';
+import {ButtonColor, COLOR, ICON_SIZE} from 'src/constants/theme';
+import StyledText from '../StyledText';
 import {
   styles,
   redStyles,
   greenStyles,
   blueStyles,
   disabledStyles,
+  getRootStyles,
 } from './styles';
-import StyledText from '../StyledText';
-import {ButtonColor, COLOR, ICON_SIZE} from 'src/constants/theme';
-import {SvgProps} from 'react-native-svg';
 
 type Props = {
   text?: string;
@@ -39,7 +41,10 @@ const StyledButton = ({
   const colorStyles = COLOR_STYLES[color];
   const solidWithColor = solid && colorStyles;
   const iconColor = solid ? COLOR.WHITE : TEXT_COLORS[color];
+
   const iconSize = small ? ICON_SIZE.EXTRA_SMALL : ICON_SIZE.SMALL;
+  const buttonHeight = getButtonHeight(Boolean(small), Boolean(Icon));
+  const rootStyles = getRootStyles(buttonHeight);
 
   const containerStyles = ({pressed}: {pressed: boolean}) => [
     styles.borderContainer,
@@ -51,14 +56,7 @@ const StyledButton = ({
   ];
 
   return (
-    <View
-      style={[
-        styles.rootContainer,
-        small && styles.smallRootContainer,
-        stretch && styles.stretchedRootContainer,
-        !!Icon && styles.rootContainerWithIcon,
-        !!Icon && small && styles.smallRootContainerWithIcon,
-      ]}>
+    <View style={[rootStyles.container, stretch && rootStyles.stretched]}>
       <Pressable style={containerStyles} onPress={onPress} disabled={disabled}>
         <View
           style={[
