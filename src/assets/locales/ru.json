@@ -24,7 +24,8 @@
     "ingredients": "Ингредиенты",
     "addIngredient": "Добавить ингредиент",
     "steps": "Шаги",
-    "describeStep": "Опишите шаг"
+    "describeStep": "Опишите шаг",
+    "addStep": "Добавить шаг"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",

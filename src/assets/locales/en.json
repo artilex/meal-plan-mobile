@@ -24,7 +24,8 @@
     "ingredients": "Ingredients",
     "addIngredient": "Add ingredient",
     "steps": "Steps",
-    "describeStep": "Describe step"
+    "describeStep": "Describe step",
+    "addStep": "Add another step"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",

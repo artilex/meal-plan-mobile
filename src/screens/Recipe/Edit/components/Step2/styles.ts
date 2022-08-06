@@ -20,23 +20,23 @@ export default StyleSheet.create({
   ingredientsBlock: {
     paddingTop: PADDING.REGULAR,
   },
-  ingredientList: {
+  cardContainer: {
     borderWidth: BORDER.WIDTH,
     borderColor: BORDER.COLOR,
     borderRadius: BORDER.RADIUS,
+    marginBottom: PADDING.LARGE,
   },
   stepsBlock: {
     paddingTop: PADDING.REGULAR,
   },
   labelText: {
     color: COLOR.GRAY2,
-    fontSize: FONT_SIZE.LARGE,
+    fontSize: FONT_SIZE.EXTRA_LARGE,
     fontFamily: FONT_FAMILY.BOLD,
     paddingBottom: PADDING.SMALL,
   },
-  ingredientButtonWrapper: {
+  addButtonWrapper: {
     alignItems: 'center',
-    paddingTop: PADDING.LARGE,
   },
   footer: {
     flexDirection: 'row',
