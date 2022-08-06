@@ -2,7 +2,13 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
 import CloseIcon from 'src/assets/images/circle-close.svg';
-import {COLOR, FONT_SIZE, ICON_SIZE, PADDING} from 'src/constants/theme';
+import {
+  BORDER,
+  COLOR,
+  FONT_SIZE,
+  ICON_SIZE,
+  PADDING,
+} from 'src/constants/theme';
 import {StyledText} from 'src/components';
 
 type Props = {
@@ -10,16 +16,17 @@ type Props = {
   name: string;
   quantity: string;
   onDelete: (id: string) => void;
+  isLast: boolean;
 };
 
 const IngredientCard = React.memo(
-  ({ingredientId, name, quantity, onDelete}: Props) => {
+  ({ingredientId, name, quantity, onDelete, isLast}: Props) => {
     const handleDelete = () => {
       onDelete(ingredientId);
     };
 
     return (
-      <View style={s.container}>
+      <View style={[s.container, isLast && s.lastItemContainer]}>
         <View style={s.content}>
           <StyledText numberOfLines={1} bold>
             {name}
@@ -45,11 +52,13 @@ const IngredientCard = React.memo(
 const s = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingHorizontal: PADDING.EXTRA_LARGE,
+    paddingLeft: PADDING.REGULAR,
+    paddingRight: PADDING.EXTRA_SMALL,
+    borderBottomWidth: BORDER.WIDTH,
+    borderBottomColor: BORDER.COLOR,
   },
-  image: {
-    marginRight: PADDING.REGULAR,
-    justifyContent: 'center',
+  lastItemContainer: {
+    borderBottomWidth: 0,
   },
   content: {
     flex: 1,

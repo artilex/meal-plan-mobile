@@ -56,6 +56,8 @@ const StyledButton = ({
         styles.rootContainer,
         small && styles.smallRootContainer,
         stretch && styles.stretchedRootContainer,
+        !!Icon && styles.rootContainerWithIcon,
+        !!Icon && small && styles.smallRootContainerWithIcon,
       ]}>
       <Pressable style={containerStyles} onPress={onPress} disabled={disabled}>
         <View

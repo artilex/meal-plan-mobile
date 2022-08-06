@@ -5,6 +5,7 @@ import {
   COLOR,
   DISABLED_COLOR,
   FONT_SIZE,
+  ICON_SIZE,
   LINE_HEIGHT,
   PADDING,
 } from 'src/constants/theme';
@@ -61,11 +62,18 @@ export const disabledStyles = StyleSheet.create({
 const BUTTON_SIZE = Object.freeze({
   SMALL:
     BORDER.WIDTH + BORDER.BOTTOM_WIDTH + PADDING.SMALL * 2 + LINE_HEIGHT.SMALL,
+  SMALL_WITH_ICON:
+    BORDER.WIDTH +
+    BORDER.BOTTOM_WIDTH +
+    PADDING.SMALL * 2 +
+    ICON_SIZE.EXTRA_SMALL,
   REGULAR:
     BORDER.WIDTH +
     BORDER.BOTTOM_WIDTH +
     PADDING.REGULAR * 2 +
     LINE_HEIGHT.REGULAR,
+  REGULAR_WITH_ICON:
+    BORDER.WIDTH + BORDER.BOTTOM_WIDTH + PADDING.REGULAR * 2 + ICON_SIZE.SMALL,
 });
 
 export const styles = StyleSheet.create({
@@ -73,8 +81,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     height: BUTTON_SIZE.REGULAR,
   },
+  rootContainerWithIcon: {
+    height: BUTTON_SIZE.REGULAR_WITH_ICON,
+  },
   smallRootContainer: {
     height: BUTTON_SIZE.SMALL,
+  },
+  smallRootContainerWithIcon: {
+    height: BUTTON_SIZE.SMALL_WITH_ICON,
   },
   stretchedRootContainer: {
     width: '100%',

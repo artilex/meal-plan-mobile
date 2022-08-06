@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {
   BACKGROUND_COLOR,
+  BORDER,
   COLOR,
   FONT_FAMILY,
   FONT_SIZE,
@@ -14,10 +15,18 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    padding: PADDING.REGULAR,
+    paddingHorizontal: PADDING.REGULAR,
   },
   ingredientsBlock: {
-    //
+    paddingTop: PADDING.REGULAR,
+  },
+  ingredientList: {
+    borderWidth: BORDER.WIDTH,
+    borderColor: BORDER.COLOR,
+    borderRadius: BORDER.RADIUS,
+  },
+  stepsBlock: {
+    paddingTop: PADDING.REGULAR,
   },
   labelText: {
     color: COLOR.GRAY2,

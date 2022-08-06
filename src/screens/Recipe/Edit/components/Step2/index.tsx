@@ -39,15 +39,18 @@ const Step2 = React.memo(
               {t('recipe.ingredients')}
             </StyledText>
 
-            {recipeIngredients.map(item => (
-              <IngredientCard
-                key={item.id}
-                ingredientId={item.id}
-                name={item.name}
-                quantity={item.quantity.value + ' ' + item.quantity.unit}
-                onDelete={onDeleteIngredient}
-              />
-            ))}
+            <View style={s.ingredientList}>
+              {recipeIngredients.map((item, index) => (
+                <IngredientCard
+                  key={item.id}
+                  ingredientId={item.id}
+                  name={item.name}
+                  quantity={item.quantity.value + ' ' + item.quantity.unit}
+                  onDelete={onDeleteIngredient}
+                  isLast={index === recipeIngredients.length - 1}
+                />
+              ))}
+            </View>
 
             <View style={s.ingredientButtonWrapper}>
               <StyledButton
