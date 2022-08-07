@@ -15,6 +15,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
+  searchWrapper: {
+    flex: 1,
+  },
   addButtonContainer: {
     position: 'absolute',
     zIndex: 10,

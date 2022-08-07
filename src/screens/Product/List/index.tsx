@@ -55,7 +55,9 @@ const ProductList = () => {
       </Modal>
 
       <View style={s.searchContainer}>
-        <SearchInput text={searchText} onSearch={setSearchText} />
+        <View style={s.searchWrapper}>
+          <SearchInput text={searchText} onSearch={setSearchText} />
+        </View>
         <FilterButton
           selectedCategory={selectedCategory}
           onSelect={setSelectedCategory}

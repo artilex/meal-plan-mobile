@@ -46,16 +46,14 @@ const SearchInput = ({text, onSearch}: Props) => {
   );
 
   return (
-    <View style={s.container}>
-      <StyledTextInput
-        textInputRef={textInputRef}
-        value={inputText}
-        onChangeText={setInputText}
-        onSubmitEditing={handleSearch}
-        RightComponent={renderIcons}
-        returnKeyType={'search'}
-      />
-    </View>
+    <StyledTextInput
+      textInputRef={textInputRef}
+      value={inputText}
+      onChangeText={setInputText}
+      onSubmitEditing={handleSearch}
+      RightComponent={renderIcons}
+      returnKeyType={'search'}
+    />
   );
 };
 
