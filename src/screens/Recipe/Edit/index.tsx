@@ -1,13 +1,19 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useReducer, useState} from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
+import {
+  DetailRecipe,
+  RecipeIngredient,
+  RecipeStep,
+} from 'src/services/api/types';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
 import RecipeEditHeader from './components/Header';
 import StepInfo from './components/Step1';
 import StepDetail from './components/Step2';
+import {getRecipeActions, recipeReducer} from './utils';
 import {Step} from './types';
 import s from './styles';
 
@@ -24,9 +30,6 @@ const RecipeEdit = () => {
   const route = useRoute<RecipeRouteProp>();
 
   const [step, setStep] = useState(Step.Info);
-  const [recipeName, setRecipeName] = useState('');
-  const [description, setDescription] = useState('');
-
   const headerTitle = useMemo(
     () =>
       step === Step.Info
@@ -35,11 +38,27 @@ const RecipeEdit = () => {
     [t, step],
   );
 
+  const [recipeName, setRecipeName] = useState('');
+  const [description, setDescription] = useState('');
+  // TODO: After MVP add recipe categories, implement their here on Step 2, before ingredients
+  const [recipe, dispatch] = useReducer(recipeReducer, {
+    id: '0',
+    name: '',
+    description: '',
+    cover: null,
+    ingredients: [],
+    steps: [],
+  });
+  const [recipeSteps, setRecipeSteps] = useState<RecipeStep[] | null>(null);
+
+  const recipeActions = useMemo(() => getRecipeActions(dispatch), [dispatch]);
+
   const handleCancelEdit = () => {
     navigation.navigate(RecipeScreens.List);
   };
 
-  const handleNavigateBack = () => {
+  const handleNavigateBack = (newSteps: RecipeStep[]) => {
+    setRecipeSteps(newSteps);
     setStep(Step.Info);
   };
 
@@ -80,6 +99,10 @@ const RecipeEdit = () => {
 
         {step === Step.Detail && (
           <StepDetail
+            recipeSteps={recipeSteps}
+            recipeIngredients={recipe.ingredients}
+            onAddIngredient={recipeActions.addIngredient}
+            onDeleteIngredient={recipeActions.deleteIngredient}
             backText={t('common.back')}
             saveText={t('common.save')}
             onNavigateBack={handleNavigateBack}
@@ -90,5 +113,53 @@ const RecipeEdit = () => {
     </View>
   );
 };
+
+const ingredients1: RecipeIngredient[] = [
+  {
+    id: 'tt1',
+    name: 'Bread',
+    quantity: {
+      value: 3,
+      unit: 'slices',
+    },
+    image: null,
+  },
+  {
+    id: 'tt2',
+    name: 'Milk',
+    quantity: {
+      value: 1,
+      unit: 'liter',
+    },
+    image: null,
+  },
+  {
+    id: 'tt3',
+    name: 'Tomato',
+    quantity: {
+      value: 0.5,
+      unit: 'kilogram',
+    },
+    image: null,
+  },
+  {
+    id: 'tt4',
+    name: 'Butter',
+    quantity: {
+      value: 50,
+      unit: 'gram',
+    },
+    image: null,
+  },
+  {
+    id: 'tt5',
+    name: 'Oil',
+    quantity: {
+      value: 5,
+      unit: 'gram',
+    },
+    image: null,
+  },
+];
 
 export default RecipeEdit;

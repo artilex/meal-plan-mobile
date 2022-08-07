@@ -27,7 +27,7 @@ export default StyleSheet.create({
     marginBottom: PADDING.LARGE,
   },
   stepsBlock: {
-    paddingTop: PADDING.REGULAR,
+    paddingVertical: PADDING.REGULAR,
   },
   labelText: {
     color: COLOR.GRAY2,
@@ -40,7 +40,8 @@ export default StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
-    padding: PADDING.REGULAR,
+    paddingHorizontal: PADDING.REGULAR,
+    paddingBottom: PADDING.REGULAR,
   },
   buttonWrapper: {
     flex: 1,

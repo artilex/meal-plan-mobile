@@ -1,28 +1,26 @@
-import React, {useReducer} from 'react';
+import React, {useMemo, useReducer} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import AddIcon from 'src/assets/images/circle-plus.svg';
-import {RecipeIngredient} from 'src/services/api/types';
+import {RecipeIngredient, RecipeStep} from 'src/services/api/types';
 import {ButtonColor} from 'src/constants/theme';
 import {StyledButton, StyledText} from 'src/components';
-import {
-  ADD_STEP,
-  CHANGE_STEP_TEXT,
-  DELETE_STEP,
-  initStep,
-  RecipeStep,
-  stepReducer,
-} from './utils';
+import {getStepActions, stepReducer} from './utils';
 import IngredientCard from './IngredientCard';
 import StepCard from './StepCard';
 import s from './styles';
+import {useNavigation} from '@react-navigation/native';
+import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type RecipeNavigation = StackNavigationProp<RecipeStackParamList>;
 
 type Props = {
   recipeIngredients: RecipeIngredient[];
   recipeSteps: RecipeStep[] | null;
   onDeleteIngredient: (id: string) => void;
-  onAddIngredient: () => void;
+  onAddIngredient: (data: RecipeIngredient) => void;
   backText: string;
   saveText: string;
   onNavigateBack: (steps: RecipeStep[]) => void;
@@ -41,22 +39,24 @@ const Step2 = React.memo(
     onSaveRecipe,
   }: Props) => {
     const {t} = useTranslation();
+    const navigation = useNavigation<RecipeNavigation>();
 
     const [steps, dispatch] = useReducer(
       stepReducer,
-      recipeSteps || [{...initStep}], // use {...item} to get copy of object
+      recipeSteps || [
+        {
+          id: 1,
+          orderNumber: 1,
+          text: '',
+          image: '',
+        },
+      ],
     );
 
-    const handleAddStep = () => {
-      dispatch({type: ADD_STEP});
-    };
+    const stepActions = useMemo(() => getStepActions(dispatch), [dispatch]);
 
-    const handleDeleteStep = (id: number) => {
-      dispatch({type: DELETE_STEP, id});
-    };
-
-    const handleChangeText = (id: number, text: string) => {
-      dispatch({type: CHANGE_STEP_TEXT, id, text});
+    const navigateToSearchIngredient = () => {
+      navigation.navigate(RecipeScreens.SearchIngredient);
     };
 
     const handleNavigateBack = () => {
@@ -71,25 +71,27 @@ const Step2 = React.memo(
               {t('recipe.ingredients')}
             </StyledText>
 
-            <View style={s.cardContainer}>
-              {recipeIngredients.map((item, index) => (
-                <IngredientCard
-                  key={item.id}
-                  ingredientId={item.id}
-                  name={item.name}
-                  quantity={item.quantity.value + ' ' + item.quantity.unit}
-                  onDelete={onDeleteIngredient}
-                  isLast={index === recipeIngredients.length - 1}
-                />
-              ))}
-            </View>
+            {recipeIngredients.length > 0 && (
+              <View style={s.cardContainer}>
+                {recipeIngredients.map((item, index) => (
+                  <IngredientCard
+                    key={item.id}
+                    ingredientId={item.id}
+                    name={item.name}
+                    quantity={item.quantity.value + ' ' + item.quantity.unit}
+                    onDelete={onDeleteIngredient}
+                    isLast={index === recipeIngredients.length - 1}
+                  />
+                ))}
+              </View>
+            )}
 
             <View style={s.addButtonWrapper}>
               <StyledButton
                 Icon={AddIcon}
                 text={t('recipe.addIngredient')}
                 color={ButtonColor.Green}
-                onPress={onAddIngredient}
+                onPress={navigateToSearchIngredient}
                 small
               />
             </View>
@@ -107,8 +109,8 @@ const Step2 = React.memo(
                   text={step.text}
                   orderNumber={step.orderNumber}
                   image={step.image ?? ''}
-                  onDelete={handleDeleteStep}
-                  onChangeText={handleChangeText}
+                  onDelete={stepActions.deleteStep}
+                  onChangeText={stepActions.changeText}
                   isLast={index === steps.length - 1}
                 />
               ))}
@@ -118,7 +120,7 @@ const Step2 = React.memo(
                 Icon={AddIcon}
                 text={t('recipe.addStep')}
                 color={ButtonColor.Green}
-                onPress={handleAddStep}
+                onPress={stepActions.addStep}
                 small
               />
             </View>

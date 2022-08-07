@@ -1,23 +1,23 @@
-export type RecipeStep = {
-  id: number;
-  orderNumber: number;
-  text: string;
-  image: string | null;
-};
+import {RecipeStep} from 'src/services/api/types';
+import React from 'react';
 
-export const initStep: RecipeStep = Object.freeze({
-  id: 1,
-  orderNumber: 1,
-  text: '',
-  image: '',
+const ADD_STEP = 'ADD_STEP';
+const DELETE_STEP = 'DELETE_STEP';
+const CHANGE_STEP_TEXT = 'CHANGE_STEP_TEXT';
+const CHANGE_STEP_ORDER_NUMBER = 'CHANGE_STEP_ORDER_NUMBER';
+
+export const getStepActions = (dispatch: React.Dispatch<any>) => ({
+  addStep: () => {
+    dispatch({type: ADD_STEP});
+  },
+  deleteStep: (id: number) => {
+    dispatch({type: DELETE_STEP, id});
+  },
+  changeText: (id: number, text: string) => {
+    dispatch({type: CHANGE_STEP_TEXT, id, text});
+  },
 });
 
-export const ADD_STEP = 'ADD_STEP';
-export const DELETE_STEP = 'DELETE_STEP';
-export const CHANGE_STEP_TEXT = 'CHANGE_STEP_TEXT';
-export const CHANGE_STEP_ORDER_NUMBER = 'CHANGE_STEP_ORDER_NUMBER';
-
-// TODO: Check and refactor this if will be needed
 export const stepReducer = (
   state: RecipeStep[],
   action: {type: string; id?: number; text?: string},
@@ -54,9 +54,9 @@ export const stepReducer = (
     case CHANGE_STEP_TEXT:
       const currentStep = state.find(item => item.id === action.id);
 
-      if (currentStep && action.text) {
+      if (currentStep) {
         const filteredSteps = state.filter(item => item.id !== action.id);
-        currentStep.text = action.text;
+        currentStep.text = action.text ?? '';
 
         return [...filteredSteps, currentStep];
       }
