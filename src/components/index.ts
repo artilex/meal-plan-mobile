@@ -6,6 +6,7 @@ import PlusButton from './PlusButton';
 import HorizontalList from './HorizontalList';
 import ProductImage from './ProductImage';
 import TextArea from './TextArea';
+import BottomSheetModal from './BottomSheetModal';
 
 export {
   StyledText,
@@ -16,4 +17,5 @@ export {
   HorizontalList,
   ProductImage,
   TextArea,
+  BottomSheetModal,
 };
