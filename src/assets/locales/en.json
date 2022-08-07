@@ -25,7 +25,11 @@
     "addIngredient": "Add ingredient",
     "steps": "Steps",
     "describeStep": "Describe step",
-    "addStep": "Add another step"
+    "addStep": "Add another step",
+    "emptyIngredients": "Start searching to see result",
+    "quantity": "Quantity",
+    "enterQuantity": "Enter quantity",
+    "unitOfMeasure": "Unit of measure"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",
@@ -37,6 +41,7 @@
     "editProduct": "Edit Product",
     "recipeList": "Recipes",
     "searchRecipes": "Search Recipes",
+    "searchIngredients": "Search Ingredients",
     "editRecipeStep1": "Step 1: Enter the info",
     "editRecipeStep2": "Step 2: Enter the detail"
   },

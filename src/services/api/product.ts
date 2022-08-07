@@ -1,28 +1,29 @@
 // import {api} from './client';
-import {NewProduct, Product} from './types';
+import {NewProduct, Product, ProductUnit} from './types';
 import {PRODUCT_CATEGORIES} from './category';
+import {sleep} from './utils';
 
-export const PRODUCT_UNITS = [
+export const PRODUCT_UNITS: ProductUnit[] = [
   {
     id: 'pu1',
-    name: 'gram',
-    shortName: 'g',
-    nameRu: 'грамм',
-    shortNameRu: 'г',
+    name: 'грамм',
+    shortName: 'г',
+    nameEn: 'gram',
+    shortNameEn: 'g',
   },
   {
     id: 'pu2',
-    name: '',
-    shortName: '',
-    nameRu: 'штук',
-    shortNameRu: 'шт',
+    name: 'штук',
+    shortName: 'шт',
+    nameEn: '',
+    shortNameEn: '',
   },
   {
     id: 'pu3',
-    name: '',
-    shortName: '',
-    nameRu: 'упаковка',
-    shortNameRu: 'упак',
+    name: 'упаковок',
+    shortName: 'упак',
+    nameEn: '',
+    shortNameEn: '',
   },
 ];
 
@@ -505,10 +506,6 @@ const _getCategoryById = (categoryId: string) => {
   return {id: category.id, name: category.name};
 };
 
-const sleep = (seconds: number) => {
-  return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-};
-
 export const fetchProducts = async (): Promise<Product[]> => {
   await sleep(1);
   // TODO: Remove sort and map when it will be implemented on BE
@@ -575,4 +572,25 @@ export const deleteProduct = async (productId: string): Promise<Product[]> => {
   PRODUCTS = PRODUCTS.filter(item => item.id !== productId);
 
   return fetchProducts();
+};
+
+export const fetchProductUnits = async () => {
+  return PRODUCT_UNITS;
+};
+
+// TODO: After MVP split products on user products and global products
+// TODO: This function will use search for global products
+export const searchProducts = async (text: string): Promise<Product[]> => {
+  await sleep(1);
+  return PRODUCTS.filter(product => {
+    const productName = product.name.toLocaleLowerCase();
+    const search = text.toLocaleLowerCase();
+
+    return productName.includes(search);
+  })
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(product => ({
+      ...product,
+      category: _getCategoryById(product.category),
+    }));
 };
