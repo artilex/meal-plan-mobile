@@ -8,6 +8,7 @@ export enum RequestStatus {
   Failed = 'failed',
 }
 
+// TODO: Delete list or do its optional
 export interface InitialState<T> {
   list: T[];
   status: RequestStatus;
