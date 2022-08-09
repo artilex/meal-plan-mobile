@@ -20,6 +20,7 @@ export type RecipeStackParamList = {
   RecipeEdit: {
     recipeId: string | null;
   };
+  SearchRecipeIngredient: undefined;
   RecipeDetail: {
     recipeId: string;
   };
@@ -55,6 +56,7 @@ export enum RecipeScreens {
   List = 'RecipeList',
   Search = 'RecipeSearch',
   Edit = 'RecipeEdit',
+  SearchIngredient = 'SearchRecipeIngredient',
   Detail = 'RecipeDetail',
 }
 

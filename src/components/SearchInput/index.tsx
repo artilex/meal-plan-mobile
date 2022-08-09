@@ -10,9 +10,10 @@ import s from './styles';
 type Props = {
   text: string;
   onSearch: (text: string) => void;
+  autoFocus?: boolean;
 };
 
-const SearchInput = ({text, onSearch}: Props) => {
+const SearchInput = ({text, onSearch, autoFocus}: Props) => {
   const textInputRef = useRef<TextInput>(null);
   const [inputText, setInputText] = useState(text);
 
@@ -53,6 +54,7 @@ const SearchInput = ({text, onSearch}: Props) => {
       onSubmitEditing={handleSearch}
       RightComponent={renderIcons}
       returnKeyType={'search'}
+      autoFocus={autoFocus}
     />
   );
 };

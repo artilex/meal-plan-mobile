@@ -13,6 +13,7 @@ import {
   RecipeEditScreen,
   RecipeListScreen,
   RecipeSearchScreen,
+  SearchIngredientScreen,
 } from 'src/screens';
 import {DefaultInnerNavigatorOptions} from '../constants';
 import {RecipeScreens, RecipeStackParamList} from '../types';
@@ -47,6 +48,16 @@ const RecipeNavigator = () => {
           name={RecipeScreens.Edit}
           component={RecipeEditScreen}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={RecipeScreens.SearchIngredient}
+          component={SearchIngredientScreen}
+          options={{
+            headerLeft: BackArrowButton,
+            headerTitle: () => (
+              <HeaderTitle title={t('screenNames.searchIngredients')} />
+            ),
+          }}
         />
         <Stack.Screen
           name={RecipeScreens.Search}
