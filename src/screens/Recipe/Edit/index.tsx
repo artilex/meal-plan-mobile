@@ -1,15 +1,18 @@
 import React, {useMemo, useState} from 'react';
+import {useSelector} from 'react-redux';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {RootState} from 'src/store';
 import RecipeEditHeader from './components/Header';
 import StepInfo from './components/Step1';
 import StepDetail from './components/Step2';
 import {Step} from './types';
 import s from './styles';
+// import {createRecipe} from 'src/services/api/recipe';
 
 const STEP_COUNT = 2;
 
@@ -24,9 +27,6 @@ const RecipeEdit = () => {
   const route = useRoute<RecipeRouteProp>();
 
   const [step, setStep] = useState(Step.Info);
-  const [recipeName, setRecipeName] = useState('');
-  const [description, setDescription] = useState('');
-
   const headerTitle = useMemo(
     () =>
       step === Step.Info
@@ -34,6 +34,14 @@ const RecipeEdit = () => {
         : t('screenNames.editRecipeStep2'),
     [t, step],
   );
+
+  // TODO: After MVP add recipe categories, implement their here on Step 2, before ingredients
+  const recipeData = useSelector(
+    (state: RootState) => state.recipe.editableRecipe,
+  );
+
+  console.log('recipeData');
+  console.log(recipeData);
 
   const handleCancelEdit = () => {
     navigation.navigate(RecipeScreens.List);
@@ -47,12 +55,13 @@ const RecipeEdit = () => {
     setStep(Step.Detail);
   };
 
-  const handleSaveRecipe = () => {
-    console.log('recipeName');
-    console.log(recipeName);
-    console.log('description');
-    console.log(description);
-    console.log('IMPLEMENT SAVE RECIPE TO BE');
+  const handleSaveRecipe = async () => {
+    // await createRecipe({
+    //   name: recipeData.name,
+    //   description: recipeData.description,
+    //   ingredients: [],
+    //   steps: [],
+    // });
   };
 
   return (
@@ -67,10 +76,8 @@ const RecipeEdit = () => {
       <View style={s.body}>
         {step === Step.Info && (
           <StepInfo
-            recipeName={recipeName}
-            description={description}
-            setRecipeName={setRecipeName}
-            setDescription={setDescription}
+            name={recipeData.name}
+            description={recipeData.description}
             nextText={t('common.next')}
             // TODO: Add validation
             nextButtonDisabled={recipeName.length === 0}
