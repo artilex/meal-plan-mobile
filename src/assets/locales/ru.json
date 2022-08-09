@@ -25,7 +25,11 @@
     "addIngredient": "Добавить ингредиент",
     "steps": "Шаги",
     "describeStep": "Опишите шаг",
-    "addStep": "Добавить шаг"
+    "addStep": "Добавить шаг",
+    "emptyIngredients": "Ничего нет.",
+    "quantity": "Количество",
+    "enterQuantity": "Введите количество",
+    "unitOfMeasure": "Единица измерения"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",
@@ -37,6 +41,7 @@
     "editProduct": "Редактировать Продукт",
     "recipeList": "Рецепты",
     "searchRecipes": "Поиск Рецептов",
+    "searchIngredients": "Поиск Ингредиентов",
     "editRecipeStep1": "Шаг 1: Введите инфо",
     "editRecipeStep2": "Шаг 2: Введите подробности"
   },
