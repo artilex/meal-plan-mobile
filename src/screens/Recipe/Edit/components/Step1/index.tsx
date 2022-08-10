@@ -61,7 +61,6 @@ const Step1 = React.memo(
       console.log('IMPLEMENT THIS LATER');
     };
 
-    // TODO: Hide Image Loader Block when enter text
     return (
       <View style={s.container}>
         <ScrollView style={s.body} showsVerticalScrollIndicator={false}>

@@ -35,7 +35,7 @@ const recipeSlice = createSlice({
       state.status = RequestStatus.Loading;
       state.error = null;
     },
-    addIngredient(state, action: PayloadAction<NewRecipeIngredient>) {
+    addIngredients(state, action: PayloadAction<NewRecipeIngredient[]>) {
       state.status = RequestStatus.Loading;
       state.error = null;
     },

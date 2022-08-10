@@ -6,6 +6,7 @@ import {
   NewRecipeIngredient,
   NewRecipeStep,
   Recipe,
+  RecipeIngredient,
 } from 'src/services/api/types';
 
 let MOCK_RECIPES: DetailRecipe[] = [
@@ -268,25 +269,25 @@ export const createDraftRecipe = async (
   return MOCK_RECIPES.find(item => item.id === recipeId) as DetailRecipe;
 };
 
-export const addRecipeIngredient = async (
+export const addRecipeIngredients = async (
   recipeId: string,
-  newIngredient: NewRecipeIngredient,
+  newIngredients: NewRecipeIngredient[],
 ): Promise<DetailRecipe> => {
   const recipe = MOCK_RECIPES.find(
     item => item.id === recipeId,
   ) as DetailRecipe;
 
-  const product = PRODUCTS.find(prod => prod.id === newIngredient.productId);
-  const quantityUnit = PRODUCT_UNITS.find(
-    unit => unit.id === newIngredient.unitId,
-  );
+  const newRecipeIngredients = newIngredients.reduce<RecipeIngredient[]>(
+    (result, newIngredient) => {
+      const product = PRODUCTS.find(
+        prod => prod.id === newIngredient.productId,
+      );
+      const quantityUnit = PRODUCT_UNITS.find(
+        unit => unit.id === newIngredient.unitId,
+      );
 
-  if (product && quantityUnit) {
-    const newRecipe = {
-      ...recipe,
-      ingredients: [
-        ...recipe.ingredients,
-        {
+      if (product && quantityUnit) {
+        result.push({
           id: product.id,
           name: product.name,
           image: product.image,
@@ -294,22 +295,28 @@ export const addRecipeIngredient = async (
             value: newIngredient.quantity,
             unit: quantityUnit,
           },
-        },
-      ],
-    };
-
-    MOCK_RECIPES = MOCK_RECIPES.map(item => {
-      if (item.id === newRecipe.id) {
-        return newRecipe;
+        });
       }
 
-      return item;
-    });
+      return result;
+    },
+    [],
+  );
 
-    return newRecipe;
-  }
+  const newRecipe = {
+    ...recipe,
+    ingredients: [...recipe.ingredients, ...newRecipeIngredients],
+  };
 
-  return recipe;
+  MOCK_RECIPES = MOCK_RECIPES.map(item => {
+    if (item.id === newRecipe.id) {
+      return newRecipe;
+    }
+
+    return item;
+  });
+
+  return newRecipe;
 };
 
 export const deleteRecipeIngredient = async (

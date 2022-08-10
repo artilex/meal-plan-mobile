@@ -1,32 +1,43 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
 
 import {searchProducts} from 'src/services/api/product';
-import {Product} from 'src/services/api/types';
-import {COLOR} from 'src/constants/theme';
-import {SearchInput, StyledText} from 'src/components';
+import {NewRecipeIngredient, Product} from 'src/services/api/types';
+import {ButtonColor, COLOR} from 'src/constants/theme';
+import {SearchInput, StyledButton, StyledText} from 'src/components';
 import {recipeActions, RootState} from 'src/store';
 import IngredientQuantityModal from '../components/IngredientQuantityModal';
 import IngredientCard from './components/IngredientCard';
 import s from './styles';
 
-// TODO: Add Save/Ok Button
-// TODO: Maybe, do not add ingredient till press Save button,
-//  if so, then move from api to local utils this logic
 const SearchIngredient = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
-  const [showQuantity, setShowQuantity] = useState(false);
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProductId, setSelectedProductId] = useState<string>('');
+  const [showQuantity, setShowQuantity] = useState(false);
   const [loading, setLoading] = useState(false);
-  const recipeIngredients = useSelector(
+
+  const storedIngredients = useSelector(
     (state: RootState) => state.recipe.editableRecipe.ingredients,
+  );
+  const [recipeIngredients, setRecipeIngredients] = useState<
+    NewRecipeIngredient[]
+  >([]);
+
+  const mergedIngredientIds = useMemo(
+    () => [
+      ...storedIngredients.map(item => item.id),
+      ...recipeIngredients.map(item => item.productId),
+    ],
+    [storedIngredients, recipeIngredients],
   );
 
   useEffect(() => {
@@ -45,18 +56,14 @@ const SearchIngredient = () => {
 
   const handleSelectProduct = useCallback(
     (productId: string) => {
-      const selected = recipeIngredients.some(
-        ingredient => ingredient.id === productId,
-      );
+      const isSelected = mergedIngredientIds.some(id => id === productId);
 
-      if (selected) {
-        dispatch(recipeActions.deleteIngredient(productId));
-      } else {
+      if (!isSelected) {
         setSelectedProductId(productId);
         setShowQuantity(true);
       }
     },
-    [dispatch, recipeIngredients],
+    [mergedIngredientIds],
   );
 
   const handleCloseQuantityModal = () => {
@@ -64,13 +71,19 @@ const SearchIngredient = () => {
   };
 
   const handleSaveQuantity = (quantity: number, unitId: string) => {
-    dispatch(
-      recipeActions.addIngredient({
+    setRecipeIngredients(state => [
+      ...state,
+      {
         productId: selectedProductId,
         quantity,
         unitId,
-      }),
-    );
+      },
+    ]);
+  };
+
+  const handleSaveIngredients = () => {
+    dispatch(recipeActions.addIngredients(recipeIngredients));
+    navigation.goBack();
   };
 
   const keyExtractor = (item: Product) => item.id;
@@ -79,7 +92,7 @@ const SearchIngredient = () => {
       id={item.id}
       name={item.name}
       imageUrl={item.image ?? ''}
-      isActive={recipeIngredients.some(ingredient => ingredient.id === item.id)}
+      isActive={mergedIngredientIds.some(id => id === item.id)}
       onSelect={handleSelectProduct}
     />
   );
@@ -114,6 +127,16 @@ const SearchIngredient = () => {
           ItemSeparatorComponent={ListSeparator}
           ListEmptyComponent={ListEmpty}
           showsVerticalScrollIndicator={false}
+        />
+      </View>
+
+      <View style={s.footer}>
+        <StyledButton
+          text={t('common.save')}
+          onPress={handleSaveIngredients}
+          color={ButtonColor.Green}
+          disabled={recipeIngredients.length === 0}
+          solid
         />
       </View>
     </View>

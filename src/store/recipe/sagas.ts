@@ -2,7 +2,7 @@ import {call, put, select, takeLatest} from 'redux-saga/effects';
 import {recipeActions} from 'src/store/recipe/slice';
 import {PayloadAction} from '@reduxjs/toolkit';
 import {
-  addRecipeIngredient,
+  addRecipeIngredients,
   addRecipeStep,
   createDraftRecipe,
   deleteRecipeIngredient,
@@ -29,13 +29,13 @@ export function* handleCreateDraftRecipe({
   }
 }
 
-export function* handleAddRecipeIngredient({
+export function* handleAddRecipeIngredients({
   payload,
-}: PayloadAction<NewRecipeIngredient>) {
+}: PayloadAction<NewRecipeIngredient[]>) {
   try {
     const recipeId: string = yield select(getRecipeId);
     const recipe: DetailRecipe = yield call(
-      addRecipeIngredient,
+      addRecipeIngredients,
       recipeId,
       payload,
     );
@@ -90,7 +90,10 @@ export function* watchRecipe() {
     recipeActions.createDraftRecipe.type,
     handleCreateDraftRecipe,
   );
-  yield takeLatest(recipeActions.addIngredient.type, handleAddRecipeIngredient);
+  yield takeLatest(
+    recipeActions.addIngredients.type,
+    handleAddRecipeIngredients,
+  );
   yield takeLatest(
     recipeActions.deleteIngredient.type,
     handleDeleteRecipeIngredient,

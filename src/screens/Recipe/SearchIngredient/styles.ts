@@ -8,6 +8,7 @@ export default StyleSheet.create({
   },
   header: {
     padding: PADDING.REGULAR,
+    paddingBottom: PADDING.EXTRA_SMALL,
   },
   body: {
     flex: 1,
@@ -22,5 +23,9 @@ export default StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: BORDER.COLOR,
+  },
+  footer: {
+    paddingHorizontal: PADDING.REGULAR,
+    paddingBottom: PADDING.REGULAR,
   },
 });
