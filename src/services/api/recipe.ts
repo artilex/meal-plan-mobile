@@ -344,13 +344,20 @@ export const addRecipeStep = async (
     item => item.id === recipeId,
   ) as DetailRecipe;
 
+  let orderNumber = 1;
+  recipe.steps.forEach(step => {
+    if (step.orderNumber >= orderNumber) {
+      orderNumber = step.orderNumber + 1;
+    }
+  });
+
   const newRecipe = {
     ...recipe,
     steps: [
       ...recipe.steps,
       {
-        id: recipeId + recipeStep.orderNumber,
-        orderNumber: recipeStep.orderNumber,
+        id: recipeId + orderNumber,
+        orderNumber: orderNumber,
         text: recipeStep.text,
         image: null,
       },

@@ -77,6 +77,6 @@ export type RecipeStep = {
 };
 
 export type NewRecipeStep = {
-  orderNumber: number;
   text: string;
+  image: string | null;
 };

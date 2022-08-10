@@ -9,7 +9,7 @@ type Props = {
   text: string;
   numberOfLines: number;
   placeholder?: string;
-  onChangeText: (value: string) => void;
+  onChangeText?: (value: string) => void;
   onPressDisabled?: () => void;
   disabled?: boolean;
 };

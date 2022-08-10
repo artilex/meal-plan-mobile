@@ -13,6 +13,9 @@ import IngredientQuantityModal from '../components/IngredientQuantityModal';
 import IngredientCard from './components/IngredientCard';
 import s from './styles';
 
+// TODO: Add Save/Ok Button
+// TODO: Maybe, do not add ingredient till press Save button,
+//  if so, then move from api to local utils this logic
 const SearchIngredient = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
