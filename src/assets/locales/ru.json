@@ -29,7 +29,8 @@
     "emptyIngredients": "Ничего нет.",
     "quantity": "Количество",
     "enterQuantity": "Введите количество",
-    "unitOfMeasure": "Единица измерения"
+    "unitOfMeasure": "Единица измерения",
+    "stepDescription": "Описание шага"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",
