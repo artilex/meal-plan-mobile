@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Keyboard, ScrollView, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import DefaultCoverImage from 'src/assets/images/default-cover-image.svg';
 import {ButtonColor, COLOR} from 'src/constants/theme';
 import {adapt} from 'src/constants/layout';
+import {recipeActions} from 'src/store';
 import {
   StyledButton,
   StyledText,
@@ -14,26 +16,19 @@ import {
 import s from './styles';
 
 type Props = {
-  recipeName: string;
+  name: string;
   description: string;
-  setRecipeName: (value: string) => void;
-  setDescription: (value: string) => void;
   nextText: string;
-  nextButtonDisabled: boolean;
   onNavigateNext: () => void;
 };
 
 const Step1 = React.memo(
-  ({
-    recipeName,
-    description,
-    setRecipeName,
-    setDescription,
-    nextText,
-    nextButtonDisabled,
-    onNavigateNext,
-  }: Props) => {
+  ({name, description, nextText, onNavigateNext}: Props) => {
     const {t} = useTranslation();
+    const dispatch = useDispatch();
+
+    const [recipeName, setRecipeName] = useState(name);
+    const [recipeDescription, setRecipeDescription] = useState(description);
     const [isKeyboardShowing, setIsKeyboardShowing] = useState(false);
 
     useEffect(() => {
@@ -49,6 +44,18 @@ const Step1 = React.memo(
         hideSubscription.remove();
       };
     }, []);
+
+    const handleNavigateNext = () => {
+      dispatch(
+        recipeActions.createDraftRecipe({
+          name: recipeName,
+          description: recipeDescription,
+          cover: null,
+        }),
+      );
+
+      onNavigateNext();
+    };
 
     const handleLoadImage = () => {
       console.log('IMPLEMENT THIS LATER');
@@ -91,10 +98,10 @@ const Step1 = React.memo(
               {t('recipe.description')}
             </StyledText>
             <TextArea
-              text={description}
-              numberOfLines={3}
+              text={recipeDescription}
+              onChangeText={setRecipeDescription}
               placeholder={t('recipe.enterDescription')}
-              onChangeText={setDescription}
+              numberOfLines={3}
             />
           </View>
         </ScrollView>
@@ -102,9 +109,10 @@ const Step1 = React.memo(
         <View style={s.footer}>
           <StyledButton
             text={nextText}
-            onPress={onNavigateNext}
+            onPress={handleNavigateNext}
             color={ButtonColor.Green}
-            disabled={nextButtonDisabled}
+            // TODO: Add validation
+            disabled={recipeName.length === 0}
             solid
           />
         </View>

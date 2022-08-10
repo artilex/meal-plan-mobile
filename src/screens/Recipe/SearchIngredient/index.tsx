@@ -1,25 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator, FlatList, View} from 'react-native';
-
-import {Product} from 'src/services/api/types';
-import {SearchInput, StyledText} from 'src/components';
-import s from './styles';
-import {COLOR} from 'src/constants/theme';
-import IngredientCard from 'src/screens/Recipe/SearchIngredient/components/IngredientCard';
-import {useTranslation} from 'react-i18next';
-import {searchProducts} from 'src/services/api/product';
 import Modal from 'react-native-modal';
-import IngredientQuantityModal from 'src/screens/Recipe/components/IngredientQuantityModal';
+import {useTranslation} from 'react-i18next';
 
+import {searchProducts} from 'src/services/api/product';
+import {Product} from 'src/services/api/types';
+import {COLOR} from 'src/constants/theme';
+import {SearchInput, StyledText} from 'src/components';
+import {recipeActions, RootState} from 'src/store';
+import IngredientQuantityModal from '../components/IngredientQuantityModal';
+import IngredientCard from './components/IngredientCard';
+import s from './styles';
+
+// TODO: Add Save/Ok Button
+// TODO: Maybe, do not add ingredient till press Save button,
+//  if so, then move from api to local utils this logic
 const SearchIngredient = () => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
 
   const [showQuantity, setShowQuantity] = useState(false);
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedProductId, setSelectedProductId] = useState<string>('');
   const [loading, setLoading] = useState(false);
-  const [selectedIngredientIds, setSelectedIngredientIds] = useState<string[]>(
-    [],
+  const recipeIngredients = useSelector(
+    (state: RootState) => state.recipe.editableRecipe.ingredients,
   );
 
   useEffect(() => {
@@ -36,26 +43,34 @@ const SearchIngredient = () => {
     }
   }, [search]);
 
-  const handleSelectIngredient = (id: string) => {
-    setSelectedIngredientIds(old => {
-      if (old.includes(id)) {
-        return old.filter(item => item !== id);
-      } else {
-        return [...old, id];
-      }
-    });
-  };
+  const handleSelectProduct = useCallback(
+    (productId: string) => {
+      const selected = recipeIngredients.some(
+        ingredient => ingredient.id === productId,
+      );
 
-  const handleShowQuantityModal = () => {
-    setShowQuantity(true);
-  };
+      if (selected) {
+        dispatch(recipeActions.deleteIngredient(productId));
+      } else {
+        setSelectedProductId(productId);
+        setShowQuantity(true);
+      }
+    },
+    [dispatch, recipeIngredients],
+  );
 
   const handleCloseQuantityModal = () => {
     setShowQuantity(false);
   };
 
   const handleSaveQuantity = (quantity: number, unitId: string) => {
-    //
+    dispatch(
+      recipeActions.addIngredient({
+        productId: selectedProductId,
+        quantity,
+        unitId,
+      }),
+    );
   };
 
   const keyExtractor = (item: Product) => item.id;
@@ -64,9 +79,8 @@ const SearchIngredient = () => {
       id={item.id}
       name={item.name}
       imageUrl={item.image ?? ''}
-      isActive={selectedIngredientIds.includes(item.id)}
-      onSelect={handleShowQuantityModal}
-      // onSelect={handleSelectIngredient}
+      isActive={recipeIngredients.some(ingredient => ingredient.id === item.id)}
+      onSelect={handleSelectProduct}
     />
   );
   const ListEmpty = () => (
@@ -89,7 +103,7 @@ const SearchIngredient = () => {
       />
 
       <View style={s.header}>
-        <SearchInput text={search} onSearch={setSearch} />
+        <SearchInput text={search} onSearch={setSearch} autoFocus />
       </View>
 
       <View style={s.body}>

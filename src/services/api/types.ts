@@ -32,8 +32,27 @@ export type DetailRecipe = Recipe & {
   steps: RecipeStep[];
 };
 
+export type DraftRecipe = {
+  name: string;
+  description: string;
+  cover: string | null;
+};
+
+export type NewRecipe = {
+  name: string;
+  description: string;
+  ingredients: NewRecipeIngredient[];
+  steps: NewRecipeStep[];
+};
+
+export type NewRecipeIngredient = {
+  productId: string;
+  quantity: number;
+  unitId: string;
+};
+
 export type RecipeIngredient = {
-  id: string;
+  id: string; // TODO: productId
   name: string;
   quantity: {
     value: number;
@@ -51,8 +70,13 @@ export type ProductUnit = {
 };
 
 export type RecipeStep = {
-  id: number;
+  id: string;
   orderNumber: number;
+  text: string;
+  image: string | null;
+};
+
+export type NewRecipeStep = {
   text: string;
   image: string | null;
 };

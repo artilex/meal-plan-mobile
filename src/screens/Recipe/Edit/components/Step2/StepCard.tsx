@@ -13,27 +13,27 @@ import {
 import {StyledText, TextArea} from 'src/components';
 
 type Props = {
-  id: number;
+  id: string;
   text: string;
   orderNumber: number;
   image: string;
-  onChangeText: (id: number, text: string) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
+  onChangeStep: () => void;
   isLast: boolean;
 };
 
-// TODO: Maybe open new screen to write step text in full screen text area
 const StepCard = React.memo(
-  ({id, text, orderNumber, image, onChangeText, onDelete, isLast}: Props) => {
-    const handleChangeText = (value: string) => {
-      onChangeText(id, value);
-    };
-
+  ({id, text, orderNumber, image, onDelete, onChangeStep, isLast}: Props) => {
     const handleDelete = () => {
       onDelete(id);
     };
 
+    const handleOpenModal = () => {
+      onChangeStep();
+    };
+
     const handleLoadImage = () => {
+      handleOpenModal();
       console.log('Implement this after MVP');
     };
 
@@ -72,7 +72,8 @@ const StepCard = React.memo(
           <TextArea
             text={text}
             numberOfLines={2}
-            onChangeText={handleChangeText}
+            onPressDisabled={handleOpenModal}
+            disabled
           />
         </View>
       </View>

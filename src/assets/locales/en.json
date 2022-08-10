@@ -29,7 +29,8 @@
     "emptyIngredients": "Start searching to see result",
     "quantity": "Quantity",
     "enterQuantity": "Enter quantity",
-    "unitOfMeasure": "Unit of measure"
+    "unitOfMeasure": "Unit of measure",
+    "stepDescription": "Step description"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",

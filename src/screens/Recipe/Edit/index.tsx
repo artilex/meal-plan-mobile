@@ -1,21 +1,18 @@
-import React, {useMemo, useReducer, useState} from 'react';
+import React, {useMemo, useState} from 'react';
+import {useSelector} from 'react-redux';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {
-  DetailRecipe,
-  RecipeIngredient,
-  RecipeStep,
-} from 'src/services/api/types';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {RootState} from 'src/store';
 import RecipeEditHeader from './components/Header';
 import StepInfo from './components/Step1';
 import StepDetail from './components/Step2';
-import {getRecipeActions, recipeReducer} from './utils';
 import {Step} from './types';
 import s from './styles';
+// import {createRecipe} from 'src/services/api/recipe';
 
 const STEP_COUNT = 2;
 
@@ -38,27 +35,19 @@ const RecipeEdit = () => {
     [t, step],
   );
 
-  const [recipeName, setRecipeName] = useState('');
-  const [description, setDescription] = useState('');
   // TODO: After MVP add recipe categories, implement their here on Step 2, before ingredients
-  const [recipe, dispatch] = useReducer(recipeReducer, {
-    id: '0',
-    name: '',
-    description: '',
-    cover: null,
-    ingredients: [],
-    steps: [],
-  });
-  const [recipeSteps, setRecipeSteps] = useState<RecipeStep[] | null>(null);
+  const recipeData = useSelector(
+    (state: RootState) => state.recipe.editableRecipe,
+  );
 
-  const recipeActions = useMemo(() => getRecipeActions(dispatch), [dispatch]);
+  console.log('recipeData');
+  console.log(recipeData);
 
   const handleCancelEdit = () => {
     navigation.navigate(RecipeScreens.List);
   };
 
-  const handleNavigateBack = (newSteps: RecipeStep[]) => {
-    setRecipeSteps(newSteps);
+  const handleNavigateBack = () => {
     setStep(Step.Info);
   };
 
@@ -66,12 +55,13 @@ const RecipeEdit = () => {
     setStep(Step.Detail);
   };
 
-  const handleSaveRecipe = () => {
-    console.log('recipeName');
-    console.log(recipeName);
-    console.log('description');
-    console.log(description);
-    console.log('IMPLEMENT SAVE RECIPE TO BE');
+  const handleSaveRecipe = async () => {
+    // await createRecipe({
+    //   name: recipeData.name,
+    //   description: recipeData.description,
+    //   ingredients: [],
+    //   steps: [],
+    // });
   };
 
   return (
@@ -86,23 +76,17 @@ const RecipeEdit = () => {
       <View style={s.body}>
         {step === Step.Info && (
           <StepInfo
-            recipeName={recipeName}
-            description={description}
-            setRecipeName={setRecipeName}
-            setDescription={setDescription}
+            name={recipeData.name}
+            description={recipeData.description}
             nextText={t('common.next')}
-            // TODO: Add validation
-            nextButtonDisabled={recipeName.length === 0}
             onNavigateNext={handleNavigateNext}
           />
         )}
 
         {step === Step.Detail && (
           <StepDetail
-            recipeSteps={recipeSteps}
-            recipeIngredients={recipe.ingredients}
-            onAddIngredient={recipeActions.addIngredient}
-            onDeleteIngredient={recipeActions.deleteIngredient}
+            recipeSteps={recipeData.steps}
+            recipeIngredients={recipeData.ingredients}
             backText={t('common.back')}
             saveText={t('common.save')}
             onNavigateBack={handleNavigateBack}
@@ -113,53 +97,5 @@ const RecipeEdit = () => {
     </View>
   );
 };
-
-const ingredients1: RecipeIngredient[] = [
-  {
-    id: 'tt1',
-    name: 'Bread',
-    quantity: {
-      value: 3,
-      unit: 'slices',
-    },
-    image: null,
-  },
-  {
-    id: 'tt2',
-    name: 'Milk',
-    quantity: {
-      value: 1,
-      unit: 'liter',
-    },
-    image: null,
-  },
-  {
-    id: 'tt3',
-    name: 'Tomato',
-    quantity: {
-      value: 0.5,
-      unit: 'kilogram',
-    },
-    image: null,
-  },
-  {
-    id: 'tt4',
-    name: 'Butter',
-    quantity: {
-      value: 50,
-      unit: 'gram',
-    },
-    image: null,
-  },
-  {
-    id: 'tt5',
-    name: 'Oil',
-    quantity: {
-      value: 5,
-      unit: 'gram',
-    },
-    image: null,
-  },
-];
 
 export default RecipeEdit;

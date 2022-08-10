@@ -1,12 +1,11 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
 
 import ActiveCheckMark from 'src/assets/images/active-check-mark.svg';
 import InactiveCheckMark from 'src/assets/images/inactive-check-mark.svg';
+import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import {ProductImage, StyledText} from 'src/components';
 import s from './styles';
-import {COLOR, ICON_SIZE} from 'src/constants/theme';
 
 type Props = {
   id: string;
@@ -18,7 +17,6 @@ type Props = {
 
 const IngredientCard = React.memo(
   ({id, name, imageUrl, isActive, onSelect}: Props) => {
-    const {t} = useTranslation();
     const CheckMarkIcon = isActive ? ActiveCheckMark : InactiveCheckMark;
 
     const handleSelect = () => {

@@ -2,16 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Modal from 'react-native-modal';
 
 import HeaderRightButtons from 'src/navigation/components/HeaderRightButtons';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {Recipe} from 'src/services/api/types';
+import {fetchRecipes} from 'src/services/api/recipe';
 import {BORDER, COLOR, PADDING} from 'src/constants/theme';
 import {StyledText} from 'src/components';
 import RecipeCard from './components/RecipeCard';
 import s from './styles';
-import {Recipe} from 'src/services/api/types';
-import {fetchRecipes} from 'src/services/api/recipe';
-import Modal from 'react-native-modal';
 
 type NavigationType = StackNavigationProp<RecipeStackParamList>;
 
