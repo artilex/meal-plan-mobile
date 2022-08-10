@@ -79,14 +79,14 @@ const RecipeEdit = () => {
             name={recipeData.name}
             description={recipeData.description}
             nextText={t('common.next')}
-            // TODO: Add validation
-            nextButtonDisabled={recipeName.length === 0}
             onNavigateNext={handleNavigateNext}
           />
         )}
 
         {step === Step.Detail && (
           <StepDetail
+            recipeSteps={recipeData.steps}
+            recipeIngredients={recipeData.ingredients}
             backText={t('common.back')}
             saveText={t('common.save')}
             onNavigateBack={handleNavigateBack}
