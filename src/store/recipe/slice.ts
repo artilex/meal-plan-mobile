@@ -3,6 +3,7 @@ import {
   DraftRecipe,
   NewRecipeIngredient,
   NewRecipeStep,
+  RecipeStep,
 } from 'src/services/api/types';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RequestStatus} from 'src/store/types';
@@ -44,6 +45,10 @@ const recipeSlice = createSlice({
       state.error = null;
     },
     addStep(state, action: PayloadAction<NewRecipeStep>) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
+    changeStep(state, action: PayloadAction<RecipeStep>) {
       state.status = RequestStatus.Loading;
       state.error = null;
     },

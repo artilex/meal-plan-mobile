@@ -3,6 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
 import CameraIcon from 'src/assets/images/camera.svg';
 import DeleteIcon from 'src/assets/images/close-x.svg';
+import {RecipeStep} from 'src/services/api/types';
 import {
   BORDER,
   COLOR,
@@ -18,7 +19,7 @@ type Props = {
   orderNumber: number;
   image: string;
   onDelete: (id: string) => void;
-  onChangeStep: () => void;
+  onChangeStep: (step: RecipeStep) => void;
   isLast: boolean;
 };
 
@@ -28,13 +29,13 @@ const StepCard = React.memo(
       onDelete(id);
     };
 
-    const handleOpenModal = () => {
-      onChangeStep();
+    const handleEditStep = () => {
+      onChangeStep({id, text, orderNumber, image});
     };
 
     const handleLoadImage = () => {
-      handleOpenModal();
-      console.log('Implement this after MVP');
+      handleEditStep();
+      console.log('Implement logic with image after MVP');
     };
 
     return (
@@ -72,7 +73,7 @@ const StepCard = React.memo(
           <TextArea
             text={text}
             numberOfLines={2}
-            onPressDisabled={handleOpenModal}
+            onPressDisabled={handleEditStep}
             disabled
           />
         </View>

@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {ScrollView, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
@@ -41,7 +41,7 @@ const Step2 = React.memo(
     const navigation = useNavigation<RecipeNavigation>();
 
     const [showStepModal, setShowStepModal] = useState(false);
-    // TODO: Implement Modal for step editing
+    const [stepForEdit, setStepForEdit] = useState<RecipeStep | null>(null);
     // TODO: Implement Modal for Ingredient editing
     // const [showIngredientModal, setShowIngredientModal] = useState(false);
 
@@ -52,6 +52,12 @@ const Step2 = React.memo(
           .sort((a, b) => (a.orderNumber > b.orderNumber ? 1 : -1)),
       [recipeSteps],
     );
+
+    useEffect(() => {
+      if (stepForEdit) {
+        setShowStepModal(true);
+      }
+    }, [stepForEdit]);
 
     const navigateToSearchIngredient = () => {
       navigation.navigate(RecipeScreens.SearchIngredient);
@@ -65,24 +71,32 @@ const Step2 = React.memo(
       onNavigateBack();
     };
 
+    const handleChangeStep = (currentStep: RecipeStep) => {
+      setStepForEdit(currentStep);
+    };
+
     const handleDeleteStep = (stepId: string) => {
       reduxDispatch(recipeActions.deleteStep(stepId));
     };
 
-    const handleOpenStepModal = () => {
+    const handleCreateStep = () => {
+      setStepForEdit(null);
       setShowStepModal(true);
     };
 
     const handleCloseStepModal = () => {
       setShowStepModal(false);
+      setStepForEdit(null);
     };
 
     return (
       <View style={s.container}>
-        <StepEditModal
-          isVisible={showStepModal}
-          onClose={handleCloseStepModal}
-        />
+        {showStepModal && (
+          <StepEditModal
+            stepData={stepForEdit}
+            onClose={handleCloseStepModal}
+          />
+        )}
 
         <ScrollView style={s.body} showsVerticalScrollIndicator={false}>
           <View style={s.ingredientsBlock}>
@@ -130,7 +144,7 @@ const Step2 = React.memo(
                 orderNumber={index + 1}
                 image={step.image ?? ''}
                 onDelete={handleDeleteStep}
-                onChangeStep={() => null}
+                onChangeStep={handleChangeStep}
                 isLast={index === recipeSteps.length - 1}
               />
             ))}
@@ -140,7 +154,7 @@ const Step2 = React.memo(
                 Icon={AddIcon}
                 text={t('recipe.addStep')}
                 color={ButtonColor.Green}
-                onPress={handleOpenStepModal}
+                onPress={handleCreateStep}
                 small
               />
             </View>

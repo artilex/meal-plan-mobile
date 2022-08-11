@@ -7,6 +7,7 @@ import {
   NewRecipeStep,
   Recipe,
   RecipeIngredient,
+  RecipeStep,
 } from 'src/services/api/types';
 
 let MOCK_RECIPES: DetailRecipe[] = [
@@ -380,6 +381,35 @@ export const addRecipeStep = async (
   });
 
   return newRecipe;
+};
+
+export const changeRecipeStep = async (
+  recipeId: string,
+  recipeStep: RecipeStep,
+): Promise<DetailRecipe> => {
+  const recipe = MOCK_RECIPES.find(
+    item => item.id === recipeId,
+  ) as DetailRecipe;
+
+  const editRecipe = {
+    ...recipe,
+    steps: recipe.steps.map(item => {
+      if (item.id === recipeStep.id) {
+        return recipeStep;
+      }
+      return item;
+    }),
+  };
+
+  MOCK_RECIPES = MOCK_RECIPES.map(item => {
+    if (item.id === editRecipe.id) {
+      return editRecipe;
+    }
+
+    return item;
+  });
+
+  return editRecipe;
 };
 
 export const deleteRecipeStep = async (

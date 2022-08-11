@@ -4,6 +4,7 @@ import {PayloadAction} from '@reduxjs/toolkit';
 import {
   addRecipeIngredients,
   addRecipeStep,
+  changeRecipeStep,
   createDraftRecipe,
   deleteRecipeIngredient,
   deleteRecipeStep,
@@ -13,6 +14,7 @@ import {
   DraftRecipe,
   NewRecipeIngredient,
   NewRecipeStep,
+  RecipeStep,
 } from 'src/services/api/types';
 import {RootState} from 'src/store';
 
@@ -71,6 +73,20 @@ export function* handleAddRecipeStep({payload}: PayloadAction<NewRecipeStep>) {
   }
 }
 
+export function* handleChangeRecipeStep({payload}: PayloadAction<RecipeStep>) {
+  try {
+    const recipeId: string = yield select(getRecipeId);
+    const recipe: DetailRecipe = yield call(
+      changeRecipeStep,
+      recipeId,
+      payload,
+    );
+    yield put(recipeActions.loaded(recipe));
+  } catch ({message}) {
+    yield put(recipeActions.failed(message));
+  }
+}
+
 export function* handleDeleteRecipeStep({payload}: PayloadAction<string>) {
   try {
     const recipeId: string = yield select(getRecipeId);
@@ -99,5 +115,6 @@ export function* watchRecipe() {
     handleDeleteRecipeIngredient,
   );
   yield takeLatest(recipeActions.addStep.type, handleAddRecipeStep);
+  yield takeLatest(recipeActions.changeStep.type, handleChangeRecipeStep);
   yield takeLatest(recipeActions.deleteStep.type, handleDeleteRecipeStep);
 }

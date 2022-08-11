@@ -4,6 +4,7 @@ import {ScrollView, TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 import CameraIcon from 'src/assets/images/camera.svg';
+import {RecipeStep} from 'src/services/api/types';
 import {ButtonColor, COLOR, ICON_SIZE} from 'src/constants/theme';
 import {recipeActions} from 'src/store';
 import {
@@ -15,16 +16,16 @@ import {
 import s from './styles';
 
 type Props = {
-  isVisible: boolean;
+  stepData: RecipeStep | null;
   onClose: () => void;
 };
 
-const StepEditModal = React.memo(({isVisible, onClose}: Props) => {
+const StepEditModal = React.memo(({stepData, onClose}: Props) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
-  const [image, setImage] = useState('');
-  const [text, setText] = useState<string>('');
+  const [image, setImage] = useState(stepData?.image ?? '');
+  const [text, setText] = useState<string>(stepData?.text ?? '');
 
   // TODO: Add validation
   const buttonDisabled = !text || text.length === 0;
@@ -36,22 +37,33 @@ const StepEditModal = React.memo(({isVisible, onClose}: Props) => {
   };
 
   const handleSave = () => {
-    handleClose();
+    if (stepData?.id) {
+      dispatch(
+        recipeActions.changeStep({
+          ...stepData,
+          text,
+          image,
+        }),
+      );
+    } else {
+      dispatch(
+        recipeActions.addStep({
+          text,
+          image,
+        }),
+      );
+    }
 
-    dispatch(
-      recipeActions.addStep({
-        text,
-        image,
-      }),
-    );
+    handleClose();
   };
 
   const handleLoadImage = () => {
     console.log('IMPLEMENT ME');
   };
 
+  // isVisible = true in order to unmount component on close
   return (
-    <BottomSheetModal isVisible={isVisible} onClose={handleClose}>
+    <BottomSheetModal isVisible={true} onClose={handleClose}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <TouchableOpacity
           activeOpacity={0.7}
