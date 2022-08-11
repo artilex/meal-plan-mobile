@@ -30,7 +30,8 @@
     "quantity": "Quantity",
     "enterQuantity": "Enter quantity",
     "unitOfMeasure": "Unit of measure",
-    "stepDescription": "Step description"
+    "stepDescription": "Step description",
+    "saveItems": "Save {{count}} items"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",

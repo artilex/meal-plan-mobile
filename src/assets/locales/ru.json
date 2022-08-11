@@ -30,7 +30,8 @@
     "quantity": "Количество",
     "enterQuantity": "Введите количество",
     "unitOfMeasure": "Единица измерения",
-    "stepDescription": "Описание шага"
+    "stepDescription": "Описание шага",
+    "saveItems": "Сохранить {{count}} шт."
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",

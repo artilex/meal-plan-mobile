@@ -40,6 +40,14 @@ const SearchIngredient = () => {
     [storedIngredients, recipeIngredients],
   );
 
+  const buttonText = useMemo(
+    () =>
+      recipeIngredients.length > 1
+        ? t('recipe.saveItems', {count: recipeIngredients.length})
+        : t('common.save'),
+    [recipeIngredients, t],
+  );
+
   useEffect(() => {
     if (search) {
       setLoading(true);
@@ -132,7 +140,7 @@ const SearchIngredient = () => {
 
       <View style={s.footer}>
         <StyledButton
-          text={t('common.save')}
+          text={buttonText}
           onPress={handleSaveIngredients}
           color={ButtonColor.Green}
           disabled={recipeIngredients.length === 0}
