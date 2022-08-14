@@ -1,38 +1,34 @@
 import React, {useMemo, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
-import {RootState} from 'src/store';
+import {recipeActions, RootState} from 'src/store';
 import RecipeEditHeader from './components/Header';
-import StepInfo from './components/Step1';
-import StepDetail from './components/Step2';
-import {Step} from './types';
+import StepInfo from './components/FirstScreen';
+import StepDetail from './components/SecondScreen';
+import {Screen} from './types';
 import s from './styles';
-// import {createRecipe} from 'src/services/api/recipe';
 
 const STEP_COUNT = 2;
 
 type RecipeNavigationProp = StackNavigationProp<RecipeStackParamList>;
-type RecipeRouteProp = RouteProp<RecipeStackParamList>;
 
 const RecipeEdit = () => {
   const {t} = useTranslation();
   const navigation = useNavigation<RecipeNavigationProp>();
-  // Use it to get Recipe Id
-  // route.params?.recipeId
-  const route = useRoute<RecipeRouteProp>();
+  const dispatch = useDispatch();
 
-  const [step, setStep] = useState(Step.Info);
+  const [screen, setScreen] = useState(Screen.Info);
   const headerTitle = useMemo(
     () =>
-      step === Step.Info
+      screen === Screen.Info
         ? t('screenNames.editRecipeStep1')
         : t('screenNames.editRecipeStep2'),
-    [t, step],
+    [t, screen],
   );
 
   // TODO: After MVP add recipe categories, implement their here on Step 2, before ingredients
@@ -40,55 +36,45 @@ const RecipeEdit = () => {
     (state: RootState) => state.recipe.editableRecipe,
   );
 
-  console.log('recipeData');
+  console.log('recipeData:');
   console.log(recipeData);
 
   const handleCancelEdit = () => {
     navigation.navigate(RecipeScreens.List);
+    dispatch(recipeActions.clearRecipe());
   };
 
   const handleNavigateBack = () => {
-    setStep(Step.Info);
+    setScreen(Screen.Info);
   };
 
   const handleNavigateNext = () => {
-    setStep(Step.Detail);
+    setScreen(Screen.Detail);
   };
 
   const handleSaveRecipe = async () => {
-    // await createRecipe({
-    //   name: recipeData.name,
-    //   description: recipeData.description,
-    //   ingredients: [],
-    //   steps: [],
-    // });
+    navigation.navigate(RecipeScreens.List);
+    dispatch(recipeActions.saveRecipe());
   };
 
   return (
     <View style={s.container}>
       <RecipeEditHeader
-        step={Number(step)}
+        step={Number(screen)}
         stepCount={STEP_COUNT}
         title={headerTitle}
         onCancel={handleCancelEdit}
       />
 
       <View style={s.body}>
-        {step === Step.Info && (
-          <StepInfo
-            name={recipeData.name}
-            description={recipeData.description}
-            nextText={t('common.next')}
-            onNavigateNext={handleNavigateNext}
-          />
+        {screen === Screen.Info && (
+          <StepInfo onNavigateNext={handleNavigateNext} />
         )}
 
-        {step === Step.Detail && (
+        {screen === Screen.Detail && (
           <StepDetail
             recipeSteps={recipeData.steps}
             recipeIngredients={recipeData.ingredients}
-            backText={t('common.back')}
-            saveText={t('common.save')}
             onNavigateBack={handleNavigateBack}
             onSaveRecipe={handleSaveRecipe}
           />
