@@ -4,6 +4,8 @@ import {PayloadAction} from '@reduxjs/toolkit';
 import {
   addRecipeIngredients,
   addRecipeStep,
+  changeRecipeInfo,
+  changeRecipeIngredient,
   changeRecipeStep,
   createDraftRecipe,
   deleteRecipeIngredient,
@@ -31,6 +33,17 @@ export function* handleCreateDraftRecipe({
   }
 }
 
+export function* handleChangeRecipeInfo({
+  payload,
+}: PayloadAction<DetailRecipe>) {
+  try {
+    const recipe: DetailRecipe = yield call(changeRecipeInfo, payload);
+    yield put(recipeActions.loaded(recipe));
+  } catch ({message}) {
+    yield put(recipeActions.failed(message));
+  }
+}
+
 export function* handleAddRecipeIngredients({
   payload,
 }: PayloadAction<NewRecipeIngredient[]>) {
@@ -38,6 +51,22 @@ export function* handleAddRecipeIngredients({
     const recipeId: string = yield select(getRecipeId);
     const recipe: DetailRecipe = yield call(
       addRecipeIngredients,
+      recipeId,
+      payload,
+    );
+    yield put(recipeActions.loaded(recipe));
+  } catch ({message}) {
+    yield put(recipeActions.failed(message));
+  }
+}
+
+export function* handleChangeRecipeIngredient({
+  payload,
+}: PayloadAction<NewRecipeIngredient>) {
+  try {
+    const recipeId: string = yield select(getRecipeId);
+    const recipe: DetailRecipe = yield call(
+      changeRecipeIngredient,
       recipeId,
       payload,
     );
@@ -106,9 +135,14 @@ export function* watchRecipe() {
     recipeActions.createDraftRecipe.type,
     handleCreateDraftRecipe,
   );
+  yield takeLatest(recipeActions.changeRecipeInfo.type, handleChangeRecipeInfo);
   yield takeLatest(
     recipeActions.addIngredients.type,
     handleAddRecipeIngredients,
+  );
+  yield takeLatest(
+    recipeActions.changeIngredient.type,
+    handleChangeRecipeIngredient,
   );
   yield takeLatest(
     recipeActions.deleteIngredient.type,

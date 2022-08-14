@@ -270,6 +270,19 @@ export const createDraftRecipe = async (
   return MOCK_RECIPES.find(item => item.id === recipeId) as DetailRecipe;
 };
 
+export const changeRecipeInfo = async (
+  recipe: DetailRecipe,
+): Promise<DetailRecipe> => {
+  MOCK_RECIPES = MOCK_RECIPES.map(item => {
+    if (item.id === recipe.id) {
+      return recipe;
+    }
+    return item;
+  });
+
+  return recipe;
+};
+
 export const addRecipeIngredients = async (
   recipeId: string,
   newIngredients: NewRecipeIngredient[],
@@ -318,6 +331,47 @@ export const addRecipeIngredients = async (
   });
 
   return newRecipe;
+};
+
+export const changeRecipeIngredient = async (
+  recipeId: string,
+  ingredient: NewRecipeIngredient,
+) => {
+  const recipe = MOCK_RECIPES.find(
+    item => item.id === recipeId,
+  ) as DetailRecipe;
+
+  const editRecipe: DetailRecipe = {
+    ...recipe,
+    ingredients: recipe.ingredients.map(item => {
+      if (item.id === ingredient.productId) {
+        const quantityUnit = PRODUCT_UNITS.find(
+          unit => unit.id === ingredient.unitId,
+        );
+
+        if (quantityUnit) {
+          return {
+            ...item,
+            quantity: {
+              value: ingredient.quantity,
+              unit: quantityUnit,
+            },
+          };
+        }
+      }
+      return item;
+    }),
+  };
+
+  MOCK_RECIPES = MOCK_RECIPES.map(item => {
+    if (item.id === editRecipe.id) {
+      return editRecipe;
+    }
+
+    return item;
+  });
+
+  return editRecipe;
 };
 
 export const deleteRecipeIngredient = async (

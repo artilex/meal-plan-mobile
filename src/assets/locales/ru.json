@@ -1,5 +1,6 @@
 {
   "common": {
+    "add": "Добавить",
     "save": "Сохранить",
     "done": "Готово",
     "apply": "Применить",
@@ -31,7 +32,9 @@
     "enterQuantity": "Введите количество",
     "unitOfMeasure": "Единица измерения",
     "stepDescription": "Описание шага",
-    "saveItems": "Сохранить {{count}} шт."
+    "addItems": "Добавить {{count}} шт.",
+    "emptyIngredientList": "Вы еще не добавили ингредиенты",
+    "emptyStepList": "Вы еще не добавили шаги"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",

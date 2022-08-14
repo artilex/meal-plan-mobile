@@ -14,6 +14,8 @@ type InitialState = {
   error: string | null;
 };
 
+// TODO: ?Maybe? change this logic to use only redux till save all two steps
+//  Store only changes in Redux (addArray, deleteArray, etc.) and request API only on Save once
 const initialState: InitialState = {
   editableRecipe: {
     id: '',
@@ -36,7 +38,15 @@ const recipeSlice = createSlice({
       state.status = RequestStatus.Loading;
       state.error = null;
     },
+    changeRecipeInfo(state, action: PayloadAction<DetailRecipe>) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
     addIngredients(state, action: PayloadAction<NewRecipeIngredient[]>) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
+    changeIngredient(state, action: PayloadAction<NewRecipeIngredient>) {
       state.status = RequestStatus.Loading;
       state.error = null;
     },
@@ -55,6 +65,26 @@ const recipeSlice = createSlice({
     deleteStep(state, action: PayloadAction<string>) {
       state.status = RequestStatus.Loading;
       state.error = null;
+    },
+    clearRecipe(state) {
+      state.editableRecipe = {
+        id: '',
+        name: '',
+        description: '',
+        ingredients: [],
+        steps: [],
+        cover: null,
+      };
+    },
+    saveRecipe(state) {
+      state.editableRecipe = {
+        id: '',
+        name: '',
+        description: '',
+        ingredients: [],
+        steps: [],
+        cover: null,
+      };
     },
     loaded(state, action: PayloadAction<DetailRecipe>) {
       state.status = RequestStatus.Succeeded;

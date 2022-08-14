@@ -15,22 +15,28 @@ import {
 import s from './styles';
 
 type Props = {
-  isVisible: boolean;
+  initQuantity?: string;
+  initUnitId?: string;
   onSave: (quantity: number, unitId: string) => void;
   onClose: () => void;
 };
 
-const IngredientQuantityModal = ({isVisible, onSave, onClose}: Props) => {
+const IngredientQuantityModal = ({
+  initQuantity = '1',
+  initUnitId = '',
+  onSave,
+  onClose,
+}: Props) => {
   const {t} = useTranslation();
 
-  const [quantity, setQuantity] = useState<string>('1');
-  const [unitId, setUnitId] = useState('');
+  const [quantity, setQuantity] = useState<string>(initQuantity);
+  const [unitId, setUnitId] = useState(initUnitId);
   const [units, setUnits] = useState<ProductUnit[]>([]);
 
   // TODO: Add validation
   const buttonDisabled = !quantity || quantity === '0' || !unitId;
 
-  // TODO: Replace with Redux
+  // TODO: Replace it to fetch from Redux
   useEffect(() => {
     fetchProductUnits()
       .then(setUnits)
@@ -40,20 +46,13 @@ const IngredientQuantityModal = ({isVisible, onSave, onClose}: Props) => {
       });
   }, []);
 
-  const handleClose = () => {
-    setQuantity('1');
-    setUnitId('');
-    onClose();
-  };
-
   const handleSave = () => {
-    handleClose();
-
     onSave(Number(quantity), unitId);
   };
 
+  // isVisible = true in order to unmount component on close
   return (
-    <BottomSheetModal isVisible={isVisible} onClose={handleClose}>
+    <BottomSheetModal isVisible={true} onClose={onClose}>
       <View style={s.row}>
         <StyledText style={s.label}>{t('recipe.quantity')}</StyledText>
         <StyledTextInput

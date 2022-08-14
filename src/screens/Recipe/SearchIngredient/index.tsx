@@ -43,8 +43,8 @@ const SearchIngredient = () => {
   const buttonText = useMemo(
     () =>
       recipeIngredients.length > 1
-        ? t('recipe.saveItems', {count: recipeIngredients.length})
-        : t('common.save'),
+        ? t('recipe.addItems', {count: recipeIngredients.length})
+        : t('common.add'),
     [recipeIngredients, t],
   );
 
@@ -87,6 +87,7 @@ const SearchIngredient = () => {
         unitId,
       },
     ]);
+    setShowQuantity(false);
   };
 
   const handleSaveIngredients = () => {
@@ -117,11 +118,12 @@ const SearchIngredient = () => {
         <ActivityIndicator size={'large'} color={COLOR.WHITE} />
       </Modal>
 
-      <IngredientQuantityModal
-        isVisible={showQuantity}
-        onSave={handleSaveQuantity}
-        onClose={handleCloseQuantityModal}
-      />
+      {showQuantity && (
+        <IngredientQuantityModal
+          onSave={handleSaveQuantity}
+          onClose={handleCloseQuantityModal}
+        />
+      )}
 
       <View style={s.header}>
         <SearchInput text={search} onSearch={setSearch} autoFocus />
