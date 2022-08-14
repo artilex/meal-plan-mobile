@@ -44,8 +44,105 @@ let MOCK_RECIPES: DetailRecipe[] = [
     cover:
       'https://sun2-9.userapi.com/impg/P1fP70PDYaRcr3HJ5zGn3CCDA_b9ZuNWAfArEg/5s_WenZrQGw.jpg?size=1280x1280&quality=95&sign=1658e82d2d49344bc3f301e205567a0e&type=album',
     description: '',
-    ingredients: [],
-    steps: [],
+    ingredients: [
+      {
+        id: 'p15',
+        image: null,
+        name: 'Творог 5%',
+        quantity: {
+          value: 100,
+          unit: {
+            id: 'pu1',
+            name: 'грамм',
+            shortName: 'г',
+            nameEn: 'gram',
+            shortNameEn: 'g',
+          },
+        },
+      },
+      {
+        id: 'p16',
+        image: null,
+        name: 'Сыр 45%',
+        quantity: {
+          value: 50,
+          unit: {
+            id: 'pu1',
+            name: 'грамм',
+            shortName: 'г',
+            nameEn: 'gram',
+            shortNameEn: 'g',
+          },
+        },
+      },
+      {
+        id: 'p25',
+        image: null,
+        name: 'Яйца',
+        quantity: {
+          value: 1,
+          unit: {
+            id: 'pu2',
+            name: 'штук',
+            shortName: 'шт',
+            nameEn: '',
+            shortNameEn: '',
+          },
+        },
+      },
+      {
+        id: 'p27',
+        image: null,
+        name: 'Рисовая мука',
+        quantity: {
+          value: 45,
+          unit: {
+            id: 'pu1',
+            name: 'грамм',
+            shortName: 'г',
+            nameEn: 'gram',
+            shortNameEn: 'g',
+          },
+        },
+      },
+    ],
+    steps: [
+      {
+        id: 'step1',
+        orderNumber: 1,
+        text: 'First',
+        image:
+          'https://sun2-11.userapi.com/impg/sMvJwk1dA28R2ce1YVodBFuGY918queWZJpJWw/MkzJ0sGZlgI.jpg?size=1624x1624&quality=95&sign=ee17e3435650d638962109ef6a05b7c4&type=album',
+      },
+      {
+        id: 'step2',
+        orderNumber: 2,
+        text: 'Second',
+        image:
+          'https://sun2-9.userapi.com/impg/RnP3459VfxcWHAEkc0L6rrlt5jDp3TXcFcIXWQ/3Qxm6oO8cSk.jpg?size=1624x1624&quality=95&sign=a6d02ed732b45a5b5ef927240ef684c7&type=album',
+      },
+      {
+        id: 'step3',
+        orderNumber: 3,
+        text: 'Third',
+        image:
+          'https://sun2-10.userapi.com/impg/WCMC21f9XPuZJiuWTqWmYUKhDuo_OsxZklDGcA/wjCyMYYy_dI.jpg?size=1624x1624&quality=95&sign=b2ba7121923efc930d1febba1b3efc92&type=album',
+      },
+      {
+        id: 'step4',
+        orderNumber: 4,
+        text: 'Fourth',
+        image:
+          'https://sun2-12.userapi.com/impg/PLDAC9rWgzu9_5VGoU3sq_-D6upJaAbLgND_Fg/UDMASBmm_3g.jpg?size=1624x1624&quality=95&sign=93bc9894e6a26d56e10a8cdbe3113c86&type=album',
+      },
+      {
+        id: 'step5',
+        orderNumber: 5,
+        text: 'Fifth',
+        image:
+          'https://sun2-11.userapi.com/impg/JPAB9kPt_yZfNR4_KE6Yz1FYAFG5nxLuioW5UQ/rXy0hHg36VU.jpg?size=1624x1624&quality=95&sign=91fba3f7baf47d891d766af21e366ec9&type=album',
+      },
+    ],
   },
   {
     id: 'rp4',
@@ -490,15 +587,11 @@ export const deleteRecipeStep = async (
   return newRecipe;
 };
 
-const steps = {
-  first:
-    'https://sun2-11.userapi.com/impg/sMvJwk1dA28R2ce1YVodBFuGY918queWZJpJWw/MkzJ0sGZlgI.jpg?size=1624x1624&quality=95&sign=ee17e3435650d638962109ef6a05b7c4&type=album',
-  second:
-    'https://sun2-9.userapi.com/impg/RnP3459VfxcWHAEkc0L6rrlt5jDp3TXcFcIXWQ/3Qxm6oO8cSk.jpg?size=1624x1624&quality=95&sign=a6d02ed732b45a5b5ef927240ef684c7&type=album',
-  third:
-    'https://sun2-10.userapi.com/impg/WCMC21f9XPuZJiuWTqWmYUKhDuo_OsxZklDGcA/wjCyMYYy_dI.jpg?size=1624x1624&quality=95&sign=b2ba7121923efc930d1febba1b3efc92&type=album',
-  fourth:
-    'https://sun2-12.userapi.com/impg/PLDAC9rWgzu9_5VGoU3sq_-D6upJaAbLgND_Fg/UDMASBmm_3g.jpg?size=1624x1624&quality=95&sign=93bc9894e6a26d56e10a8cdbe3113c86&type=album',
-  fifth:
-    'https://sun2-11.userapi.com/impg/JPAB9kPt_yZfNR4_KE6Yz1FYAFG5nxLuioW5UQ/rXy0hHg36VU.jpg?size=1624x1624&quality=95&sign=91fba3f7baf47d891d766af21e366ec9&type=album',
+export const getRecipeById = async (
+  recipeId?: string | null,
+): Promise<DetailRecipe | null> => {
+  if (recipeId) {
+    return MOCK_RECIPES.find(item => item.id === recipeId) ?? null;
+  }
+  return null;
 };

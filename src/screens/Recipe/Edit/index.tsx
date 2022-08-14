@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {RequestStatus} from 'src/store/types';
 import {recipeActions, RootState} from 'src/store';
 import RecipeEditHeader from './components/Header';
 import StepInfo from './components/FirstScreen';
@@ -23,6 +24,7 @@ const RecipeEdit = () => {
   const dispatch = useDispatch();
 
   const [screen, setScreen] = useState(Screen.Info);
+
   const headerTitle = useMemo(
     () =>
       screen === Screen.Info
@@ -35,9 +37,7 @@ const RecipeEdit = () => {
   const recipeData = useSelector(
     (state: RootState) => state.recipe.editableRecipe,
   );
-
-  console.log('recipeData:');
-  console.log(recipeData);
+  const requestStatus = useSelector((state: RootState) => state.recipe.status);
 
   const handleCancelEdit = () => {
     navigation.navigate(RecipeScreens.List);
@@ -56,6 +56,11 @@ const RecipeEdit = () => {
     navigation.navigate(RecipeScreens.List);
     dispatch(recipeActions.saveRecipe());
   };
+
+  // TODO: Create Loading screen with cool animation and replace it
+  if (requestStatus === RequestStatus.Loading) {
+    return null;
+  }
 
   return (
     <View style={s.container}>

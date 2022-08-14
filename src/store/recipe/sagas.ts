@@ -10,6 +10,7 @@ import {
   createDraftRecipe,
   deleteRecipeIngredient,
   deleteRecipeStep,
+  getRecipeById,
 } from 'src/services/api/recipe';
 import {
   DetailRecipe,
@@ -22,9 +23,7 @@ import {RootState} from 'src/store';
 
 const getRecipeId = (state: RootState) => state.recipe.editableRecipe.id;
 
-export function* handleCreateDraftRecipe({
-  payload,
-}: PayloadAction<DraftRecipe>) {
+function* handleCreateDraftRecipe({payload}: PayloadAction<DraftRecipe>) {
   try {
     const recipe: DetailRecipe = yield call(createDraftRecipe, payload);
     yield put(recipeActions.loaded(recipe));
@@ -33,9 +32,7 @@ export function* handleCreateDraftRecipe({
   }
 }
 
-export function* handleChangeRecipeInfo({
-  payload,
-}: PayloadAction<DetailRecipe>) {
+function* handleChangeRecipeInfo({payload}: PayloadAction<DetailRecipe>) {
   try {
     const recipe: DetailRecipe = yield call(changeRecipeInfo, payload);
     yield put(recipeActions.loaded(recipe));
@@ -44,7 +41,7 @@ export function* handleChangeRecipeInfo({
   }
 }
 
-export function* handleAddRecipeIngredients({
+function* handleAddRecipeIngredients({
   payload,
 }: PayloadAction<NewRecipeIngredient[]>) {
   try {
@@ -60,7 +57,7 @@ export function* handleAddRecipeIngredients({
   }
 }
 
-export function* handleChangeRecipeIngredient({
+function* handleChangeRecipeIngredient({
   payload,
 }: PayloadAction<NewRecipeIngredient>) {
   try {
@@ -76,9 +73,7 @@ export function* handleChangeRecipeIngredient({
   }
 }
 
-export function* handleDeleteRecipeIngredient({
-  payload,
-}: PayloadAction<string>) {
+function* handleDeleteRecipeIngredient({payload}: PayloadAction<string>) {
   try {
     const recipeId: string = yield select(getRecipeId);
     const recipe: DetailRecipe = yield call(
@@ -92,7 +87,7 @@ export function* handleDeleteRecipeIngredient({
   }
 }
 
-export function* handleAddRecipeStep({payload}: PayloadAction<NewRecipeStep>) {
+function* handleAddRecipeStep({payload}: PayloadAction<NewRecipeStep>) {
   try {
     const recipeId: string = yield select(getRecipeId);
     const recipe: DetailRecipe = yield call(addRecipeStep, recipeId, payload);
@@ -102,7 +97,7 @@ export function* handleAddRecipeStep({payload}: PayloadAction<NewRecipeStep>) {
   }
 }
 
-export function* handleChangeRecipeStep({payload}: PayloadAction<RecipeStep>) {
+function* handleChangeRecipeStep({payload}: PayloadAction<RecipeStep>) {
   try {
     const recipeId: string = yield select(getRecipeId);
     const recipe: DetailRecipe = yield call(
@@ -116,7 +111,7 @@ export function* handleChangeRecipeStep({payload}: PayloadAction<RecipeStep>) {
   }
 }
 
-export function* handleDeleteRecipeStep({payload}: PayloadAction<string>) {
+function* handleDeleteRecipeStep({payload}: PayloadAction<string>) {
   try {
     const recipeId: string = yield select(getRecipeId);
     const recipe: DetailRecipe = yield call(
@@ -124,6 +119,15 @@ export function* handleDeleteRecipeStep({payload}: PayloadAction<string>) {
       recipeId,
       payload,
     );
+    yield put(recipeActions.loaded(recipe));
+  } catch ({message}) {
+    yield put(recipeActions.failed(message));
+  }
+}
+
+function* handleGetRecipeById({payload}: PayloadAction<string>) {
+  try {
+    const recipe: DetailRecipe = yield call(getRecipeById, payload);
     yield put(recipeActions.loaded(recipe));
   } catch ({message}) {
     yield put(recipeActions.failed(message));
@@ -151,4 +155,5 @@ export function* watchRecipe() {
   yield takeLatest(recipeActions.addStep.type, handleAddRecipeStep);
   yield takeLatest(recipeActions.changeStep.type, handleChangeRecipeStep);
   yield takeLatest(recipeActions.deleteStep.type, handleDeleteRecipeStep);
+  yield takeLatest(recipeActions.getRecipeById.type, handleGetRecipeById);
 }

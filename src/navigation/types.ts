@@ -17,9 +17,7 @@ export type DrawerParamList = {
 export type RecipeStackParamList = {
   RecipeList: undefined;
   RecipeSearch: undefined;
-  RecipeEdit: {
-    recipeId: string | null;
-  };
+  RecipeEdit: undefined;
   SearchRecipeIngredient: undefined;
   RecipeDetail: {
     recipeId: string;

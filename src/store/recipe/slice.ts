@@ -86,6 +86,10 @@ const recipeSlice = createSlice({
         cover: null,
       };
     },
+    getRecipeById(state, action: PayloadAction<string | null>) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
     loaded(state, action: PayloadAction<DetailRecipe>) {
       state.status = RequestStatus.Succeeded;
       state.editableRecipe = action.payload;
