@@ -39,10 +39,7 @@ const RecipeNavigator = () => {
         <Stack.Screen
           name={RecipeScreens.Detail}
           component={RecipeDetailScreen}
-          options={{
-            headerLeft: BackArrowButton,
-            headerTitle: () => <HeaderTitle title={'Recipe Detail'} />,
-          }}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name={RecipeScreens.Edit}

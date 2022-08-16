@@ -6,4 +6,9 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
   },
+  image: {
+    aspectRatio: 1,
+    height: undefined,
+    width: '100%',
+  },
 });

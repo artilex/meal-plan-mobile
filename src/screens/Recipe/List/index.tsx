@@ -48,11 +48,7 @@ const RecipeList = () => {
   }, [navigation]);
 
   const navigateToDetailScreen = (recipeId: string) => {
-    // TODO: Replace it back, start fetching and setting editableRecipe in Redux here
-    //  but now do it on edit screen and pass only recipeId
-    // navigation.navigate(RecipeScreens.Detail, {recipeId: 'rp1'});
-    dispatch(recipeActions.getRecipeById(recipeId ?? null));
-    navigation.navigate(RecipeScreens.Edit);
+    navigation.navigate(RecipeScreens.Detail, {recipeId});
   };
 
   const keyExtractor = (item: Recipe) => item.id;

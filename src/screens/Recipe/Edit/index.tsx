@@ -39,6 +39,7 @@ const RecipeEdit = () => {
   );
   const requestStatus = useSelector((state: RootState) => state.recipe.status);
 
+  // TODO: Implement deleting this recipe if it canceled
   const handleCancelEdit = () => {
     navigation.navigate(RecipeScreens.List);
     dispatch(recipeActions.clearRecipe());
