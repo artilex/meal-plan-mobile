@@ -10,6 +10,7 @@ import {RequestStatus} from 'src/store/types';
 
 type InitialState = {
   editableRecipe: DetailRecipe;
+  list: DetailRecipe[];
   status: RequestStatus;
   error: string | null;
 };
@@ -25,6 +26,7 @@ const initialState: InitialState = {
     steps: [],
     cover: null,
   },
+  list: [],
   status: RequestStatus.Idle,
   error: null,
 };
@@ -34,6 +36,10 @@ const recipeSlice = createSlice({
   initialState,
   reducers: {
     // TODO: Investigate action never used, because I need action type, maybe I should use custom reducers
+    fetchRecipes(state) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
     createDraftRecipe(state, action: PayloadAction<DraftRecipe>) {
       state.status = RequestStatus.Loading;
       state.error = null;
@@ -95,6 +101,14 @@ const recipeSlice = createSlice({
       state.editableRecipe = action.payload;
     },
     failed(state, action) {
+      state.status = RequestStatus.Failed;
+      state.error = action.payload;
+    },
+    listLoaded(state, action: PayloadAction<DetailRecipe[]>) {
+      state.status = RequestStatus.Succeeded;
+      state.list = action.payload;
+    },
+    listFailed(state, action) {
       state.status = RequestStatus.Failed;
       state.error = action.payload;
     },

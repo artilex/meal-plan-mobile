@@ -5,7 +5,6 @@ import {
   DraftRecipe,
   NewRecipeIngredient,
   NewRecipeStep,
-  Recipe,
   RecipeIngredient,
   RecipeStep,
 } from 'src/services/api/types';
@@ -346,7 +345,7 @@ let MOCK_RECIPES: DetailRecipe[] = [
   },
 ];
 
-export const fetchRecipes = async (): Promise<Recipe[]> => {
+export const fetchRecipes = async (): Promise<DetailRecipe[]> => {
   await sleep(1);
 
   return MOCK_RECIPES;
@@ -357,12 +356,15 @@ export const createDraftRecipe = async (
 ): Promise<DetailRecipe> => {
   const recipeId = 'rp' + (MOCK_RECIPES.length + 1);
 
-  MOCK_RECIPES.push({
-    ...draftRecipe,
-    id: recipeId,
-    ingredients: [],
-    steps: [],
-  });
+  MOCK_RECIPES = [
+    ...MOCK_RECIPES,
+    {
+      ...draftRecipe,
+      id: recipeId,
+      ingredients: [],
+      steps: [],
+    },
+  ];
 
   return MOCK_RECIPES.find(item => item.id === recipeId) as DetailRecipe;
 };

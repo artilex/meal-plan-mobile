@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useEffect, useMemo} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -8,12 +8,12 @@ import Modal from 'react-native-modal';
 import HeaderRightButtons from 'src/navigation/components/HeaderRightButtons';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
 import {Recipe} from 'src/services/api/types';
-import {fetchRecipes} from 'src/services/api/recipe';
 import {COLOR} from 'src/constants/theme';
-import {recipeActions} from 'src/store';
+import {recipeActions, RootState} from 'src/store';
 import {StyledText} from 'src/components';
 import RecipeCard from './components/RecipeCard';
 import s from './styles';
+import {RequestStatus} from 'src/store/types';
 
 type NavigationType = StackNavigationProp<RecipeStackParamList>;
 
@@ -21,20 +21,13 @@ const RecipeList = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation<NavigationType>();
 
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(false);
+  const recipes = useSelector((state: RootState) => state.recipe.list);
+  const status = useSelector((state: RootState) => state.recipe.status);
+  const loading = useMemo(() => status === RequestStatus.Loading, [status]);
 
   useEffect(() => {
-    setLoading(true);
-
-    fetchRecipes()
-      .then(setRecipes)
-      .catch(error => {
-        console.log('fetchRecipes error');
-        console.log(error);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    dispatch(recipeActions.fetchRecipes());
+  }, [dispatch]);
 
   useEffect(() => {
     const navigateToCreateScreen = () => {

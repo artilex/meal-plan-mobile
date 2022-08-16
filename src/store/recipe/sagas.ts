@@ -10,6 +10,7 @@ import {
   createDraftRecipe,
   deleteRecipeIngredient,
   deleteRecipeStep,
+  fetchRecipes,
   getRecipeById,
 } from 'src/services/api/recipe';
 import {
@@ -22,6 +23,15 @@ import {
 import {RootState} from 'src/store';
 
 const getRecipeId = (state: RootState) => state.recipe.editableRecipe.id;
+
+function* handleFetchRecipes() {
+  try {
+    const recipes: DetailRecipe[] = yield call(fetchRecipes);
+    yield put(recipeActions.listLoaded(recipes));
+  } catch ({message}) {
+    yield put(recipeActions.listFailed(message));
+  }
+}
 
 function* handleCreateDraftRecipe({payload}: PayloadAction<DraftRecipe>) {
   try {
@@ -135,6 +145,7 @@ function* handleGetRecipeById({payload}: PayloadAction<string>) {
 }
 
 export function* watchRecipe() {
+  yield takeLatest(recipeActions.fetchRecipes.type, handleFetchRecipes);
   yield takeLatest(
     recipeActions.createDraftRecipe.type,
     handleCreateDraftRecipe,

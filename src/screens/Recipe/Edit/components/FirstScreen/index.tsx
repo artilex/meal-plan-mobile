@@ -49,7 +49,7 @@ const FirstScreen = React.memo(({onNavigateNext}: Props) => {
 
   const handleNavigateNext = () => {
     // TODO: Maybe change more suitable condition
-    if (!recipeData.name) {
+    if (!recipeData.id) {
       dispatch(
         recipeActions.createDraftRecipe({
           name: recipeName,

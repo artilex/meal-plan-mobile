@@ -54,7 +54,9 @@ const RecipeEdit = () => {
 
   const handleSaveRecipe = async () => {
     navigation.navigate(RecipeScreens.List);
+    // TODO: Merge these later
     dispatch(recipeActions.saveRecipe());
+    dispatch(recipeActions.fetchRecipes());
   };
 
   // TODO: Create Loading screen with cool animation and replace it
