@@ -8,7 +8,7 @@
     "edit": "Редактировать",
     "delete": "Удалить",
     "back": "Назад",
-    "next": "Вперед"
+    "next": "Далее"
   },
   "product": {
     "nameLabel": "Название",
@@ -23,7 +23,7 @@
     "description": "Описание",
     "enterDescription": "Введите краткое описание",
     "ingredients": "Ингредиенты",
-    "addIngredient": "Добавить ингредиент",
+    "addIngredients": "Добавить ингредиенты",
     "steps": "Шаги",
     "describeStep": "Опишите шаг",
     "addStep": "Добавить шаг",
@@ -33,8 +33,8 @@
     "unitOfMeasure": "Единица измерения",
     "stepDescription": "Описание шага",
     "addItems": "Добавить {{count}} шт.",
-    "emptyIngredientList": "Вы еще не добавили ингредиенты",
-    "emptyStepList": "Вы еще не добавили шаги"
+    "emptyIngredientList": "Вы еще не добавили ни одного ингредиента",
+    "emptyStepList": "Вы еще не добавили ни одного шага"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",

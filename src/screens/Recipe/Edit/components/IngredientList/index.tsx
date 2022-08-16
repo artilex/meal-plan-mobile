@@ -89,7 +89,7 @@ const IngredientList = React.memo(({recipeIngredients}: Props) => {
 
       <ListLayout
         title={t('recipe.ingredients')}
-        addItemText={t('recipe.addIngredient')}
+        addItemText={t('recipe.addIngredients')}
         onAddItem={navigateToSearchIngredient}>
         {recipeIngredients.length > 0 ? (
           <View style={s.container}>{recipeIngredients.map(renderCard)}</View>

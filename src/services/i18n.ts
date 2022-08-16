@@ -16,7 +16,7 @@ const languageDetector: DetectorModule = {
   async: true,
   detect: async cb => {
     // TODO: Implement this detector with Async Storage
-    const locale = 'en';
+    const locale = 'ru';
     cb(locale);
   },
   init: () => {},
