@@ -7,10 +7,19 @@ import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import {DynamicStackNavigationProp} from '../../types';
 import s from './styles';
 
-const BackArrowButton = () => {
+type Props = {
+  iconColor?: string;
+  onBack?: () => void;
+};
+
+const BackArrowButton = ({iconColor = COLOR.GRAY2, onBack}: Props) => {
   const navigation = useNavigation<DynamicStackNavigationProp>();
 
   const handleGoBack = () => {
+    if (onBack) {
+      onBack();
+    }
+
     navigation.goBack();
   };
 
@@ -22,7 +31,7 @@ const BackArrowButton = () => {
       <BackArrowIcon
         width={ICON_SIZE.EXTRA_SMALL}
         height={ICON_SIZE.EXTRA_SMALL}
-        fill={COLOR.GRAY2}
+        fill={iconColor}
       />
     </TouchableOpacity>
   );

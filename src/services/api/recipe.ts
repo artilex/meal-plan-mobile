@@ -42,7 +42,8 @@ let MOCK_RECIPES: DetailRecipe[] = [
     name: 'ПП-хачапури',
     cover:
       'https://sun2-9.userapi.com/impg/P1fP70PDYaRcr3HJ5zGn3CCDA_b9ZuNWAfArEg/5s_WenZrQGw.jpg?size=1280x1280&quality=95&sign=1658e82d2d49344bc3f301e205567a0e&type=album',
-    description: '',
+    description:
+      'Тянущийся сыр, жидкий желток и лёгкое тесто на основе творога. Такое хачапури будет не менее вкусным, чем оригинал.',
     ingredients: [
       {
         id: 'p15',
@@ -109,7 +110,7 @@ let MOCK_RECIPES: DetailRecipe[] = [
       {
         id: 'step1',
         orderNumber: 1,
-        text: 'First',
+        text: 'Белок отделяем от желтка, смешиваем его с творогом и рисовой мукой. Добавляем соль и специи.',
         image:
           'https://sun2-11.userapi.com/impg/sMvJwk1dA28R2ce1YVodBFuGY918queWZJpJWw/MkzJ0sGZlgI.jpg?size=1624x1624&quality=95&sign=ee17e3435650d638962109ef6a05b7c4&type=album',
       },
@@ -592,6 +593,8 @@ export const deleteRecipeStep = async (
 export const getRecipeById = async (
   recipeId?: string | null,
 ): Promise<DetailRecipe | null> => {
+  await sleep(0.5);
+
   if (recipeId) {
     return MOCK_RECIPES.find(item => item.id === recipeId) ?? null;
   }
