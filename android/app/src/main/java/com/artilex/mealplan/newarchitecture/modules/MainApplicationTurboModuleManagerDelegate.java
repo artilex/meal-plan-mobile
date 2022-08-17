@@ -1,4 +1,4 @@
-package com.mealplanmobile.newarchitecture.modules;
+package com.artilex.mealplan.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

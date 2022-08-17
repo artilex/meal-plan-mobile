@@ -1,4 +1,4 @@
-package com.mealplanmobile.newarchitecture;
+package com.artilex.mealplan.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.mealplanmobile.BuildConfig;
-import com.mealplanmobile.newarchitecture.components.MainComponentsRegistry;
-import com.mealplanmobile.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.artilex.mealplan.BuildConfig;
+import com.artilex.mealplan.newarchitecture.components.MainComponentsRegistry;
+import com.artilex.mealplan.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
