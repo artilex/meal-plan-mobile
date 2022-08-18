@@ -3,25 +3,19 @@ import {
   ActivityIndicator,
   ImageBackground,
   ScrollView,
-  TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  NavigationProp,
-  RouteProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 import Modal from 'react-native-modal';
 import {useDispatch, useSelector} from 'react-redux';
 
-import BackArrowButton from 'src/navigation/components/BackArrowButton';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
-import {COLOR, PADDING} from 'src/constants/theme';
+import {COLOR} from 'src/constants/theme';
 import {recipeActions, RootState} from 'src/store';
 import {RequestStatus} from 'src/store/types';
 import {StyledText} from 'src/components';
+import RecipeDetailHeader from './components/RecipeDetailHeader';
 import IngredientCard from './components/IngredientCard';
 import StepCard from './components/StepCard';
 import s from './styles';
@@ -29,12 +23,10 @@ import s from './styles';
 const defaultImagePath = '../../../assets/images/covered-dish.png';
 
 type RouteProps = RouteProp<RecipeStackParamList, RecipeScreens.Detail>;
-type NavigationProps = NavigationProp<RecipeStackParamList>;
 
 const RecipeDetail = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const navigation = useNavigation<NavigationProps>();
   const route = useRoute<RouteProps>();
 
   const recipeData = useSelector(
@@ -50,40 +42,20 @@ const RecipeDetail = () => {
     dispatch(recipeActions.getRecipeById(route.params?.recipeId ?? null));
   }, [dispatch, route.params?.recipeId]);
 
-  const handleNavigateToEdit = () => {
-    navigation.navigate(RecipeScreens.Edit);
-  };
-
-  const handleGoBack = () => {
-    dispatch(recipeActions.clearRecipe());
-  };
-
   // TODO: Replace with Loading Screen?
   if (loading) {
     return (
-      <Modal isVisible={loading}>
-        <ActivityIndicator size={'large'} color={COLOR.WHITE} />
-      </Modal>
+      <View style={s.container}>
+        <Modal isVisible={loading}>
+          <ActivityIndicator size={'large'} color={COLOR.WHITE} />
+        </Modal>
+      </View>
     );
   }
 
   return (
     <>
-      <View style={s.headerContainer}>
-        <BackArrowButton iconColor={COLOR.WHITE} onBack={handleGoBack} />
-
-        <TouchableOpacity activeOpacity={0.7} onPress={handleNavigateToEdit}>
-          <View
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 36,
-              backgroundColor: COLOR.GREEN1,
-              marginRight: PADDING.REGULAR,
-            }}
-          />
-        </TouchableOpacity>
-      </View>
+      <RecipeDetailHeader recipeId={recipeData.id} />
 
       <ScrollView style={s.container} showsVerticalScrollIndicator={false}>
         <ImageBackground

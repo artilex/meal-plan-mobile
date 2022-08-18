@@ -590,6 +590,16 @@ export const deleteRecipeStep = async (
   return newRecipe;
 };
 
+export const deleteRecipe = async (
+  recipeId: string,
+): Promise<DetailRecipe[]> => {
+  await sleep(0.5);
+
+  MOCK_RECIPES = MOCK_RECIPES.filter(item => item.id !== recipeId);
+
+  return MOCK_RECIPES;
+};
+
 export const getRecipeById = async (
   recipeId?: string | null,
 ): Promise<DetailRecipe | null> => {

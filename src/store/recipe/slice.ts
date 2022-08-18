@@ -72,6 +72,10 @@ const recipeSlice = createSlice({
       state.status = RequestStatus.Loading;
       state.error = null;
     },
+    deleteRecipe(state, action: PayloadAction<string>) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
     clearRecipe(state) {
       state.editableRecipe = {
         id: '',

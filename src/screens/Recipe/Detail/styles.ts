@@ -13,17 +13,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: BACKGROUND_COLOR.PRIMARY,
   },
-  headerContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: COLOR.GRAY1 + '44', // 44 is opacity
-    paddingVertical: PADDING.REGULAR,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    zIndex: 10,
-  },
+
   imageBackground: {
     aspectRatio: 1,
     height: undefined,

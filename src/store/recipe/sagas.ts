@@ -8,6 +8,7 @@ import {
   changeRecipeIngredient,
   changeRecipeStep,
   createDraftRecipe,
+  deleteRecipe,
   deleteRecipeIngredient,
   deleteRecipeStep,
   fetchRecipes,
@@ -135,6 +136,15 @@ function* handleDeleteRecipeStep({payload}: PayloadAction<string>) {
   }
 }
 
+function* handleDeleteRecipe({payload}: PayloadAction<string>) {
+  try {
+    const recipe: DetailRecipe[] = yield call(deleteRecipe, payload);
+    yield put(recipeActions.listLoaded(recipe));
+  } catch ({message}) {
+    yield put(recipeActions.listFailed(message));
+  }
+}
+
 function* handleGetRecipeById({payload}: PayloadAction<string>) {
   try {
     const recipe: DetailRecipe = yield call(getRecipeById, payload);
@@ -166,5 +176,6 @@ export function* watchRecipe() {
   yield takeLatest(recipeActions.addStep.type, handleAddRecipeStep);
   yield takeLatest(recipeActions.changeStep.type, handleChangeRecipeStep);
   yield takeLatest(recipeActions.deleteStep.type, handleDeleteRecipeStep);
+  yield takeLatest(recipeActions.deleteRecipe.type, handleDeleteRecipe);
   yield takeLatest(recipeActions.getRecipeById.type, handleGetRecipeById);
 }
