@@ -28,6 +28,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginRight: PADDING.REGULAR,
   },
+  orderNumberText: {
+    color: COLOR.WHITE,
+  },
   textWrapper: {
     flex: 1,
   },
