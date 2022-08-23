@@ -3,9 +3,11 @@ import {useDispatch} from 'react-redux';
 import {TouchableOpacity, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 
+import EditIcon from 'src/assets/images/edit-icon.svg';
+import DeleteIcon from 'src/assets/images/delete-icon.svg';
 import BackArrowButton from 'src/navigation/components/BackArrowButton';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
-import {COLOR} from 'src/constants/theme';
+import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import {recipeActions} from 'src/store';
 import s from './styles';
 
@@ -23,15 +25,12 @@ const RecipeDetailHeader = React.memo(({recipeId}: Props) => {
     dispatch(recipeActions.clearRecipe());
   };
 
-  const handleShareRecipe = () => {
-    //
-  };
-
   const handleNavigateToEdit = () => {
     navigation.navigate(RecipeScreens.Edit);
   };
 
   const handleDeleteRecipe = () => {
+    // TODO: Add Modal with question about deletion
     dispatch(recipeActions.deleteRecipe(recipeId));
     dispatch(recipeActions.clearRecipe());
     navigation.goBack();
@@ -44,23 +43,24 @@ const RecipeDetailHeader = React.memo(({recipeId}: Props) => {
       <View style={s.rightSide}>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={handleShareRecipe}
-          style={s.buttonWrapper}>
-          <View style={s.tempButton} />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.7}
           onPress={handleNavigateToEdit}
           style={s.buttonWrapper}>
-          <View style={s.tempButton} />
+          <EditIcon
+            width={ICON_SIZE.SMALL}
+            height={ICON_SIZE.SMALL}
+            fill={COLOR.WHITE}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={handleDeleteRecipe}
           style={s.buttonWrapper}>
-          <View style={s.tempButton} />
+          <DeleteIcon
+            width={ICON_SIZE.SMALL}
+            height={ICON_SIZE.SMALL}
+            fill={COLOR.WHITE}
+          />
         </TouchableOpacity>
       </View>
     </View>

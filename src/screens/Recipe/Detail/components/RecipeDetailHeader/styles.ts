@@ -7,7 +7,8 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: COLOR.GRAY1 + '44', // 44 is opacity
+    // TODO: Implement dynamic opacity by scroll, from 44 to CC
+    backgroundColor: COLOR.GRAY1 + '88', // 88 is opacity
     paddingVertical: PADDING.REGULAR,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -18,11 +19,5 @@ export default StyleSheet.create({
   },
   buttonWrapper: {
     paddingHorizontal: PADDING.REGULAR,
-  },
-  tempButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 36,
-    backgroundColor: COLOR.GREEN1,
   },
 });

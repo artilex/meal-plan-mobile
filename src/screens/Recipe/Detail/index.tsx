@@ -56,10 +56,12 @@ const RecipeDetail = () => {
   }
 
   const handleAddRecipeToPlan = () => {
+    // TODO
     console.log('IMPLEMENT ADDING');
   };
 
   const handleShareRecipe = () => {
+    // TODO
     console.log('IMPLEMENT SHARING');
   };
 
@@ -91,6 +93,7 @@ const RecipeDetail = () => {
                 Icon={CalendarAddIcon}
                 onPress={handleAddRecipeToPlan}
                 color={ButtonColor.Green}
+                small
               />
             </View>
             <View style={s.buttonSpace} />
@@ -98,6 +101,7 @@ const RecipeDetail = () => {
               Icon={ShareIcon}
               onPress={handleShareRecipe}
               color={ButtonColor.Green}
+              small
             />
           </View>
 
