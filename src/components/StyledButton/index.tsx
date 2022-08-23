@@ -70,7 +70,7 @@ const StyledButton = ({
               width={iconSize}
               height={iconSize}
               fill={iconColor}
-              style={styles.icon}
+              style={[!!text && styles.icon]}
             />
           )}
 

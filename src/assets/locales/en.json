@@ -34,7 +34,8 @@
     "stepDescription": "Step description",
     "addItems": "Add {{count}} items",
     "emptyIngredientList": "You have not added ingredients yet",
-    "emptyStepList": "You have not added steps yet"
+    "emptyStepList": "You have not added steps yet",
+    "addRecipeToPlan": "To plan"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",

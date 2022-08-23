@@ -34,7 +34,8 @@
     "stepDescription": "Описание шага",
     "addItems": "Добавить {{count}} шт.",
     "emptyIngredientList": "Вы еще не добавили ни одного ингредиента",
-    "emptyStepList": "Вы еще не добавили ни одного шага"
+    "emptyStepList": "Вы еще не добавили ни одного шага",
+    "addRecipeToPlan": "В план"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",

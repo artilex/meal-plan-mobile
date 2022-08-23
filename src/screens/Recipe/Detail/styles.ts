@@ -34,6 +34,15 @@ export default StyleSheet.create({
     fontSize: FONT_SIZE.EXTRA_LARGE,
     fontFamily: FONT_FAMILY.BOLD,
   },
+  buttons: {
+    flexDirection: 'row',
+  },
+  firstButton: {
+    flex: 1,
+  },
+  buttonSpace: {
+    width: PADDING.REGULAR,
+  },
   descriptionText: {
     color: COLOR.GRAY1,
   },

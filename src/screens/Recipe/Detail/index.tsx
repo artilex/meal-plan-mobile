@@ -10,11 +10,13 @@ import {useTranslation} from 'react-i18next';
 import Modal from 'react-native-modal';
 import {useDispatch, useSelector} from 'react-redux';
 
+import CalendarAddIcon from 'src/assets/images/calendar-add.svg';
+import ShareIcon from 'src/assets/images/share.svg';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
-import {COLOR} from 'src/constants/theme';
+import {ButtonColor, COLOR} from 'src/constants/theme';
 import {recipeActions, RootState} from 'src/store';
 import {RequestStatus} from 'src/store/types';
-import {StyledText} from 'src/components';
+import {StyledButton, StyledText} from 'src/components';
 import RecipeDetailHeader from './components/RecipeDetailHeader';
 import IngredientCard from './components/IngredientCard';
 import StepCard from './components/StepCard';
@@ -53,6 +55,14 @@ const RecipeDetail = () => {
     );
   }
 
+  const handleAddRecipeToPlan = () => {
+    console.log('IMPLEMENT ADDING');
+  };
+
+  const handleShareRecipe = () => {
+    console.log('IMPLEMENT SHARING');
+  };
+
   return (
     <>
       <RecipeDetailHeader recipeId={recipeData.id} />
@@ -72,6 +82,24 @@ const RecipeDetail = () => {
 
         <View key={'content'} style={s.content}>
           <StyledText style={s.titleText}>{recipeData.name}</StyledText>
+
+          <View style={s.horizontalLine} />
+          <View style={s.buttons}>
+            <View style={s.firstButton}>
+              <StyledButton
+                text={t('recipe.addRecipeToPlan')}
+                Icon={CalendarAddIcon}
+                onPress={handleAddRecipeToPlan}
+                color={ButtonColor.Green}
+              />
+            </View>
+            <View style={s.buttonSpace} />
+            <StyledButton
+              Icon={ShareIcon}
+              onPress={handleShareRecipe}
+              color={ButtonColor.Green}
+            />
+          </View>
 
           {!!recipeData.description && (
             <>
