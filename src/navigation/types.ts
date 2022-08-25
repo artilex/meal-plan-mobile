@@ -31,9 +31,13 @@ export type ProductStackParamList = {
   };
 };
 
+export type MealPlanParamList = {
+  WeekPlan: undefined;
+};
+
 // Types for useNavigation
 export type DynamicStackNavigationProp = StackNavigationProp<
-  ProductStackParamList | RecipeStackParamList
+  ProductStackParamList | RecipeStackParamList | MealPlanParamList
 >;
 
 // Screen Names
@@ -61,4 +65,8 @@ export enum RecipeScreens {
 export enum ProductScreens {
   List = 'ProductList',
   Edit = 'ProductEdit',
+}
+
+export enum MealPlanScreens {
+  WeekPlan = 'WeekPlan',
 }

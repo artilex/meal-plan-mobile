@@ -7,6 +7,8 @@ import SearchIngredientScreen from './Recipe/SearchIngredient';
 import RecipeListScreen from './Recipe/List';
 import RecipeSearchScreen from './Recipe/Search';
 
+import WeekPlanScreen from './MealPlan/WeekPlan';
+
 export {
   ProductListScreen,
   ProductEditScreen,
@@ -15,4 +17,5 @@ export {
   SearchIngredientScreen,
   RecipeListScreen,
   RecipeSearchScreen,
+  WeekPlanScreen,
 };

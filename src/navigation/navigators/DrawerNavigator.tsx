@@ -9,6 +9,7 @@ import {DrawerNavigatorOptions} from '../constants';
 import {DrawerParamList, DrawerScreens} from '../types';
 import ProductNavigator from './ProductNavigator';
 import RecipeNavigator from './RecipeNavigator';
+import MealPlanNavigator from './MealPlanNavigator';
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
@@ -81,7 +82,10 @@ const DrawerNavigator = () => {
       drawerContent={props => <SideMenu {...props} />}
       screenOptions={DrawerNavigatorOptions}
       useLegacyImplementation>
-      <Drawer.Screen name={DrawerScreens.MealPlan} component={EmptyScreen} />
+      <Drawer.Screen
+        name={DrawerScreens.MealPlan}
+        component={MealPlanNavigator}
+      />
       <Drawer.Screen name={DrawerScreens.Shopping} component={EmptyScreen} />
       <Drawer.Screen name={DrawerScreens.Recipe} component={RecipeNavigator} />
       <Drawer.Screen
