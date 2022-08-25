@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -7,12 +6,12 @@ import {useTranslation} from 'react-i18next';
 
 import BackArrowButton from 'src/navigation/components/BackArrowButton';
 import HeaderTitle from 'src/navigation/components/HeaderTitle';
-import {BACKGROUND_COLOR} from 'src/constants/theme';
 import {ProductEditScreen, ProductListScreen} from 'src/screens';
 import {categoryActions, productActions} from 'src/store';
 import {ProductStackParamList, ProductScreens} from '../types';
 import {DefaultInnerNavigatorOptions} from '../constants';
 import {getRootInnerNavigatorOptions} from '../utils';
+import s from './styles';
 
 const Stack = createStackNavigator<ProductStackParamList>();
 
@@ -42,7 +41,7 @@ const ProductNavigator = () => {
               : t('screenNames.createProduct');
 
             return {
-              headerLeft: BackArrowButton,
+              headerLeft: () => <BackArrowButton />,
               headerTitle: () => <HeaderTitle title={title} />,
             };
           }}
@@ -51,12 +50,5 @@ const ProductNavigator = () => {
     </SafeAreaView>
   );
 };
-
-const s = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: BACKGROUND_COLOR.PRIMARY,
-  },
-});
 
 export default ProductNavigator;
