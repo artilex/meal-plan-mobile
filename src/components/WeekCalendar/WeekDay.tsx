@@ -1,8 +1,8 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 
-import s from './styles';
-import {StyledText} from 'src/components';
+import StyledText from '../StyledText';
+import {weekDayStyles as s} from './styles';
 
 type Props = {
   day: number;
@@ -14,7 +14,7 @@ type Props = {
 
 const WeekDay = React.memo(
   ({day, isToday, isSelected, isDisabled, onSelectDay}: Props) => (
-    <View style={s.dayContainer}>
+    <View style={s.container}>
       <TouchableOpacity
         activeOpacity={1}
         onPress={onSelectDay}

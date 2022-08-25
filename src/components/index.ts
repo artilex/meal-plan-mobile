@@ -7,6 +7,7 @@ import HorizontalList from './HorizontalList';
 import ProductImage from './ProductImage';
 import TextArea from './TextArea';
 import BottomSheetModal from './BottomSheetModal';
+import WeekCalendar from './WeekCalendar';
 
 export {
   StyledText,
@@ -18,4 +19,5 @@ export {
   ProductImage,
   TextArea,
   BottomSheetModal,
+  WeekCalendar,
 };

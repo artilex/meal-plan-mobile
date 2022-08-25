@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import Modal from 'react-native-modal';
 
 import {COLOR} from 'src/constants/theme';
-import {StyledText} from 'src/components';
+import {WeekCalendar} from 'src/components';
 import s from './styles';
-import WeekCalendar from 'src/components/WeekCalendar';
 
 // type NavigationType = StackNavigationProp<RecipeStackParamList>;
 
 const WeekPlan = () => {
+  const [selectedDay, setSelectedDay] = useState(new Date());
+
+  const handleSelectDay = (date: Date) => {
+    setSelectedDay(date);
+  };
   // const dispatch = useDispatch();
   // const navigation = useNavigation<NavigationType>();
 
@@ -27,55 +31,9 @@ const WeekPlan = () => {
         <ActivityIndicator size={'large'} color={COLOR.WHITE} />
       </Modal>
 
-      <StyledText>Hey</StyledText>
-
-      <WeekCalendar
-        weekDays={[
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-          {
-            date: new Date(),
-            isToday: false,
-            isSelected: false,
-            isCurrent: false,
-          },
-        ]}
-        onSelectDay={() => null}
-      />
+      <View style={s.calendarWrapper}>
+        <WeekCalendar selectedDay={selectedDay} onSelectDay={handleSelectDay} />
+      </View>
 
       <FlatList
         // refreshing={refreshing}

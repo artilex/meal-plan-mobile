@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 import {
   BORDER,
+  BRAND_COLOR,
   COLOR,
   FONT_FAMILY,
   FONT_SIZE,
@@ -9,43 +10,20 @@ import {
   TEXT_COLOR,
 } from 'src/constants/theme';
 
-export default StyleSheet.create({
-  // container: {
-  //   marginHorizontal: PADDINGS.regular,
-  // },
-  // calendarHeaderContainer: {
-  //   flexDirection: 'row',
-  //   marginVertical: PADDINGS.regular,
-  // },
-  // calendarHeaderTitle: {
-  //   flex: 1,
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-between',
-  //   alignItems: 'center',
-  // },
-  // calendarHeaderTitleWrapper: {
-  //   flex: 1,
-  // },
-  // titleText: {
-  //   fontSize: FONT_SIZES.regular,
-  //   fontFamily: FONT_FAMILY.extraBold,
-  // },
+export const weekDayNameStyles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
   },
-  // weekDayNamesContainer: {
-  //   flexDirection: 'row',
-  // },
-  // weekDayNameContainer: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  // },
-  // weekDayNameText: {
-  //   fontFamily: FONT_FAMILY.extraBold,
-  //   fontSize: FONT_SIZES.small,
-  //   color: COLORS.graySecondary,
-  // },
-  dayContainer: {
+  text: {
+    fontFamily: FONT_FAMILY.BOLD,
+    fontSize: FONT_SIZE.SMALL,
+    color: COLOR.GRAY2,
+  },
+});
+
+export const weekDayStyles = StyleSheet.create({
+  container: {
     flex: 1,
     padding: PADDING.EXTRA_SMALL,
   },
@@ -57,18 +35,18 @@ export default StyleSheet.create({
   },
   daySelected: {
     borderWidth: BORDER.WIDTH,
-    borderColor: BORDER.COLOR,
+    borderColor: BRAND_COLOR.PRIMARY,
   },
   daySelectedToday: {
-    backgroundColor: COLOR.BLUE1,
+    backgroundColor: BRAND_COLOR.PRIMARY,
   },
   dayText: {
     fontFamily: FONT_FAMILY.BOLD,
-    color: TEXT_COLOR.PRIMARY,
+    color: TEXT_COLOR.SECONDARY,
     fontSize: FONT_SIZE.REGULAR,
   },
   dayTodayText: {
-    color: COLOR.BLUE1,
+    color: BRAND_COLOR.PRIMARY,
   },
   dayTodaySelectedText: {
     color: COLOR.WHITE,
@@ -76,7 +54,10 @@ export default StyleSheet.create({
   dayDisabledText: {
     color: COLOR.GRAY1,
   },
-  // horizontalSplitter: {
-  //   width: PADDINGS.regular,
-  // },
+});
+
+export default StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
 });
