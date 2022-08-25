@@ -5,6 +5,7 @@ import Modal from 'react-native-modal';
 import {COLOR} from 'src/constants/theme';
 import {StyledText} from 'src/components';
 import s from './styles';
+import WeekCalendar from 'src/components/WeekCalendar';
 
 // type NavigationType = StackNavigationProp<RecipeStackParamList>;
 
@@ -27,6 +28,54 @@ const WeekPlan = () => {
       </Modal>
 
       <StyledText>Hey</StyledText>
+
+      <WeekCalendar
+        weekDays={[
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+          {
+            date: new Date(),
+            isToday: false,
+            isSelected: false,
+            isCurrent: false,
+          },
+        ]}
+        onSelectDay={() => null}
+      />
 
       <FlatList
         // refreshing={refreshing}
