@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-
 import Modal from 'react-native-modal';
+
 import HeaderRightButtons from 'src/navigation/components/HeaderRightButtons';
 import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
 import {Recipe} from 'src/services/api/types';
@@ -66,12 +66,6 @@ const RecipeList = () => {
     </View>
   );
 
-  // TODO: Move Inline components above to global or local components
-  // TODO: Move PlusButton with wrapper to global components and replace it in ProductList too
-  // TODO: Implement the Header:
-  //  1 Search that can open
-  //  2 Plus button to add new recipe
-  //  3 Filter button from Product List
   return (
     <View style={s.container}>
       <Modal isVisible={loading}>

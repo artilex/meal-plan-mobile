@@ -42,6 +42,15 @@ const App = () => (
 // _TODO_: Create the Recipe Item Card
 // _TODO_: Implement creating the new Recipe Item
 // TODO: Implement Meal Plan Stack
-// TODO: Add Splash Screen and logo
+// TODO: Add Splash Screen and logo (Use package different from package in Courier DelivApp)
+// TODO: Change folder structure, try to use feature first approach (!After MVP!):
+//  1 App have feature? folder and another folders in root, All folder except feature considered COMMON
+//  but, I don't think that I need common folder
+//  2 Store, Navigation, API queries, Types, utils, services, utils, specific for feature should place in this feature folder
+//  only ASSETS can place in root folder
+//  3 But in root should place all common and shared logic for things from point 2,
+//  it will help in the future, just copy CORE folders (Maybe store them in core or common folder?)
+//  to another project without changes and maybe create from it a ?package?
+//  Also, I'll be able to move a feature from one project to another without changes, or as a package
 
 export default App;
