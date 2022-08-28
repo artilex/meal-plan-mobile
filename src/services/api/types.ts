@@ -4,14 +4,17 @@ export type Category = {
   nameEn: string;
 };
 
-export type Product = {
+export type SimpleProduct = {
   id: string;
   name: string;
+  image: string | null;
+};
+
+export type Product = SimpleProduct & {
   category: {
     id: string;
     name: string;
   };
-  image: string | null;
 };
 
 export type NewProduct = {
@@ -79,4 +82,33 @@ export type RecipeStep = {
 export type NewRecipeStep = {
   text: string;
   image: string | null;
+};
+
+export type MealType = {
+  id: number;
+  name: string;
+};
+
+export type MealPlan = {
+  id: number;
+  recipes: MealPlanRecipe[];
+  products: MealPlanProduct[];
+  day: string;
+};
+
+export type MealPlanRecipe = {
+  id: number;
+  mealType: MealType;
+  recipe: Recipe;
+  servingCount: number;
+};
+
+export type MealPlanProduct = {
+  id: number;
+  mealType: MealType;
+  product: SimpleProduct;
+  quantity: {
+    value: number;
+    unit: ProductUnit;
+  };
 };

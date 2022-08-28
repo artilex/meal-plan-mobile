@@ -11,4 +11,11 @@ export default StyleSheet.create({
     borderBottomWidth: BORDER.WIDTH,
     borderColor: BORDER.COLOR,
   },
+  scrollView: {
+    paddingHorizontal: PADDING.REGULAR,
+    paddingTop: PADDING.REGULAR,
+  },
+  cardWrapper: {
+    paddingBottom: PADDING.REGULAR,
+  },
 });

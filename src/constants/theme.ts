@@ -65,6 +65,7 @@ export const BORDER = Object.freeze({
   COLOR: COLOR.GRAY3,
   WIDTH: 2,
   BOTTOM_WIDTH: 4,
+  INNER_WIDTH: 1,
   RADIUS: 16,
 });
 

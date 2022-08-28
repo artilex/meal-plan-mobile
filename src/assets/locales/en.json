@@ -37,6 +37,10 @@
     "emptyStepList": "You have not added steps yet",
     "addRecipeToPlan": "To plan"
   },
+  "mealPlan": {
+    "serving": "serving",
+    "servings": "servings"
+  },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",
     "DrawerShopping": "Shopping List",

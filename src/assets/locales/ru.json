@@ -37,6 +37,10 @@
     "emptyStepList": "Вы еще не добавили ни одного шага",
     "addRecipeToPlan": "В план"
   },
+  "mealPlan": {
+    "serving": "порция",
+    "servings": "порции"
+  },
   "screenNames": {
     "DrawerMealPlan": "План Питания",
     "DrawerShopping": "Список Покупок",
