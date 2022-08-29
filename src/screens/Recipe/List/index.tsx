@@ -6,7 +6,12 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import Modal from 'react-native-modal';
 
 import HeaderRightButtons from 'src/navigation/components/HeaderRightButtons';
-import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {
+  CommonParamList,
+  CommonScreens,
+  RecipeScreens,
+  RecipeStackParamList,
+} from 'src/navigation/types';
 import {Recipe} from 'src/services/api/types';
 import {COLOR} from 'src/constants/theme';
 import {recipeActions, RootState} from 'src/store';
@@ -15,7 +20,9 @@ import RecipeCard from './components/RecipeCard';
 import s from './styles';
 import {RequestStatus} from 'src/store/types';
 
-type NavigationType = StackNavigationProp<RecipeStackParamList>;
+type NavigationType = StackNavigationProp<
+  RecipeStackParamList & CommonParamList
+>;
 
 const RecipeList = () => {
   const dispatch = useDispatch();
@@ -31,7 +38,7 @@ const RecipeList = () => {
 
   useEffect(() => {
     const navigateToCreateScreen = () => {
-      navigation.navigate(RecipeScreens.Edit);
+      navigation.navigate(CommonScreens.RecipeEdit);
     };
     const navigateToSearchScreen = () => {
       navigation.navigate(RecipeScreens.Search);
@@ -48,7 +55,7 @@ const RecipeList = () => {
   }, [navigation]);
 
   const navigateToDetailScreen = (recipeId: string) => {
-    navigation.navigate(RecipeScreens.Detail, {recipeId});
+    navigation.navigate(CommonScreens.RecipeDetail, {recipeId});
   };
 
   const keyExtractor = (item: Recipe) => item.id;

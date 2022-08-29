@@ -6,12 +6,16 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import EditIcon from 'src/assets/images/edit-icon.svg';
 import DeleteIcon from 'src/assets/images/delete-icon.svg';
 import BackArrowButton from 'src/navigation/components/BackArrowButton';
-import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {
+  CommonParamList,
+  CommonScreens,
+  MealPlanParamList,
+} from 'src/navigation/types';
 import {COLOR, ICON_SIZE} from 'src/constants/theme';
 import {recipeActions} from 'src/store';
 import s from './styles';
 
-type NavigationProps = NavigationProp<RecipeStackParamList>;
+type NavigationProps = NavigationProp<CommonParamList & MealPlanParamList>;
 
 type Props = {
   recipeId: string;
@@ -26,7 +30,7 @@ const RecipeDetailHeader = React.memo(({recipeId}: Props) => {
   };
 
   const handleNavigateToEdit = () => {
-    navigation.navigate(RecipeScreens.Edit);
+    navigation.navigate(CommonScreens.RecipeEdit);
   };
 
   const handleDeleteRecipe = () => {

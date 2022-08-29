@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import CalendarAddIcon from 'src/assets/images/calendar-add.svg';
 import ShareIcon from 'src/assets/images/share.svg';
-import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {CommonParamList, CommonScreens} from 'src/navigation/types';
 import {ButtonColor, COLOR} from 'src/constants/theme';
 import {recipeActions, RootState} from 'src/store';
 import {RequestStatus} from 'src/store/types';
@@ -24,7 +24,7 @@ import s from './styles';
 
 const defaultImagePath = '../../../assets/images/covered-dish.png';
 
-type RouteProps = RouteProp<RecipeStackParamList, RecipeScreens.Detail>;
+type RouteProps = RouteProp<CommonParamList, CommonScreens.RecipeDetail>;
 
 const RecipeDetail = () => {
   const {t} = useTranslation();
@@ -41,6 +41,7 @@ const RecipeDetail = () => {
   );
 
   useEffect(() => {
+    // TODO: If not found then navigate to NotFoundScreen or not navigated at all
     dispatch(recipeActions.getRecipeById(route.params?.recipeId ?? null));
   }, [dispatch, route.params?.recipeId]);
 
@@ -125,7 +126,7 @@ const RecipeDetail = () => {
                 key={item.id}
                 name={item.name}
                 quantityValue={item.quantity.value}
-                quantityUnit={item.quantity.unit.name}
+                quantityUnit={item.quantity.unit.shortName}
               />
             ))}
 

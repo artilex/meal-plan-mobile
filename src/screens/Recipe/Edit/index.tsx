@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {RecipeStackParamList} from 'src/navigation/types';
 import {RequestStatus} from 'src/store/types';
 import {recipeActions, RootState} from 'src/store';
 import RecipeEditHeader from './components/Header';
@@ -16,11 +16,11 @@ import s from './styles';
 
 const STEP_COUNT = 2;
 
-type RecipeNavigationProp = StackNavigationProp<RecipeStackParamList>;
+type NavigationProp = StackNavigationProp<RecipeStackParamList>;
 
 const RecipeEdit = () => {
   const {t} = useTranslation();
-  const navigation = useNavigation<RecipeNavigationProp>();
+  const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
 
   const [screen, setScreen] = useState(Screen.Info);
@@ -41,7 +41,7 @@ const RecipeEdit = () => {
 
   // TODO: Implement deleting this recipe if it canceled
   const handleCancelEdit = () => {
-    navigation.navigate(RecipeScreens.List);
+    navigation.pop(2);
     dispatch(recipeActions.clearRecipe());
   };
 
@@ -54,7 +54,7 @@ const RecipeEdit = () => {
   };
 
   const handleSaveRecipe = async () => {
-    navigation.navigate(RecipeScreens.List);
+    navigation.goBack();
     // TODO: Merge these later
     dispatch(recipeActions.saveRecipe());
     dispatch(recipeActions.fetchRecipes());

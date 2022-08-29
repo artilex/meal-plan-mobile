@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import IngredientQuantityModal from '../../../components/IngredientQuantityModal';
-import {RecipeScreens, RecipeStackParamList} from 'src/navigation/types';
+import {CommonParamList, CommonScreens} from 'src/navigation/types';
 import {RecipeIngredient} from 'src/services/api/types';
 import {recipeActions} from 'src/store';
 import {StyledText} from 'src/components';
@@ -14,7 +14,7 @@ import ListLayout from '../ListLayout';
 import IngredientCard from './IngredientCard';
 import {listStyles as s} from './styles';
 
-type RecipeNavigation = StackNavigationProp<RecipeStackParamList>;
+type CommonNavigation = StackNavigationProp<CommonParamList>;
 
 type Props = {
   recipeIngredients: RecipeIngredient[];
@@ -23,7 +23,7 @@ type Props = {
 const IngredientList = React.memo(({recipeIngredients}: Props) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
-  const navigation = useNavigation<RecipeNavigation>();
+  const navigation = useNavigation<CommonNavigation>();
 
   const [showIngredientModal, setShowIngredientModal] = useState(false);
   const [ingredientForEdit, setIngredientForEdit] =
@@ -61,7 +61,7 @@ const IngredientList = React.memo(({recipeIngredients}: Props) => {
   };
 
   const navigateToSearchIngredient = () => {
-    navigation.navigate(RecipeScreens.SearchIngredient);
+    navigation.navigate(CommonScreens.SearchIngredient);
   };
 
   const renderCard = (item: RecipeIngredient, index: number) => (

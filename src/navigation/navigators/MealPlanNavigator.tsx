@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {WeekPlanScreen} from 'src/screens';
 import {MealPlanParamList, MealPlanScreens} from '../types';
 import {DefaultInnerNavigatorOptions} from '../constants';
-import {getRootInnerNavigatorOptions} from '../utils';
+import {getCommonScreens, getRootInnerNavigatorOptions} from '../utils';
 import s from './styles';
 
 const Stack = createStackNavigator<MealPlanParamList>();
@@ -22,6 +22,8 @@ const MealPlanNavigator = () => {
           component={WeekPlanScreen}
           options={getRootInnerNavigatorOptions(t('screenNames.mealPlan'))}
         />
+
+        {getCommonScreens(Stack)}
       </Stack.Navigator>
     </SafeAreaView>
   );

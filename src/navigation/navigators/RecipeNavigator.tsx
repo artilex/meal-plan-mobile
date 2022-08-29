@@ -6,13 +6,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import BurgerMenuButton from 'src/navigation/components/BurgerMenuButton';
 import BackArrowButton from 'src/navigation/components/BackArrowButton';
 import HeaderTitle from 'src/navigation/components/HeaderTitle';
-import {
-  RecipeDetailScreen,
-  RecipeEditScreen,
-  RecipeListScreen,
-  RecipeSearchScreen,
-  SearchIngredientScreen,
-} from 'src/screens';
+import {getCommonScreens} from 'src/navigation/utils';
+import {RecipeListScreen, RecipeSearchScreen} from 'src/screens';
 import {DefaultInnerNavigatorOptions} from '../constants';
 import {RecipeScreens, RecipeStackParamList} from '../types';
 import s from './styles';
@@ -36,26 +31,6 @@ const RecipeNavigator = () => {
           }}
         />
         <Stack.Screen
-          name={RecipeScreens.Detail}
-          component={RecipeDetailScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name={RecipeScreens.Edit}
-          component={RecipeEditScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name={RecipeScreens.SearchIngredient}
-          component={SearchIngredientScreen}
-          options={{
-            headerLeft: () => <BackArrowButton />,
-            headerTitle: () => (
-              <HeaderTitle title={t('screenNames.searchIngredients')} />
-            ),
-          }}
-        />
-        <Stack.Screen
           name={RecipeScreens.Search}
           component={RecipeSearchScreen}
           options={{
@@ -65,6 +40,8 @@ const RecipeNavigator = () => {
             ),
           }}
         />
+
+        {getCommonScreens(Stack)}
       </Stack.Navigator>
     </SafeAreaView>
   );

@@ -12,6 +12,15 @@ import {
 import {StyledText} from 'src/components';
 import MealCard from '../MealCard';
 import s from './styles';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {
+  CommonParamList,
+  CommonScreens,
+  MealPlanParamList,
+} from 'src/navigation/types';
+import {useNavigation} from '@react-navigation/native';
+
+type NavigationType = StackNavigationProp<MealPlanParamList & CommonParamList>;
 
 type Props = MealType & {
   recipes: MealPlanRecipe[];
@@ -20,6 +29,7 @@ type Props = MealType & {
 
 const MealTypeCard = React.memo(({id, name, recipes, products}: Props) => {
   const {t} = useTranslation();
+  const navigation = useNavigation<NavigationType>();
   const hasRecipes = recipes && recipes.length > 0;
   const hasProducts = products && products.length > 0;
   const hasItems = hasRecipes || hasProducts;
@@ -42,9 +52,9 @@ const MealTypeCard = React.memo(({id, name, recipes, products}: Props) => {
         item.servingCount > 1
           ? `${item.servingCount} ${t('mealPlan.servings')}`
           : `${item.servingCount} ${t('mealPlan.serving')}`;
+
       const handleOpenRecipe = () => {
-        console.log('open recipe');
-        console.log(recipe.id);
+        navigation.navigate(CommonScreens.RecipeDetail, {recipeId: recipe.id});
       };
 
       const handleDeleteRecipe = () => {
@@ -67,7 +77,7 @@ const MealTypeCard = React.memo(({id, name, recipes, products}: Props) => {
         </View>
       );
     },
-    [t, recipes.length, products.length],
+    [products.length, recipes.length, t, navigation],
   );
 
   const renderProduct = useCallback(

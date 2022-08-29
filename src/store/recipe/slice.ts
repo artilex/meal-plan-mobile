@@ -86,15 +86,15 @@ const recipeSlice = createSlice({
         cover: null,
       };
     },
-    saveRecipe(state) {
-      state.editableRecipe = {
-        id: '',
-        name: '',
-        description: '',
-        ingredients: [],
-        steps: [],
-        cover: null,
-      };
+    saveRecipe() {
+      // state.editableRecipe = {
+      //   id: '',
+      //   name: '',
+      //   description: '',
+      //   ingredients: [],
+      //   steps: [],
+      //   cover: null,
+      // };
     },
     getRecipeById(state, action: PayloadAction<string | null>) {
       state.status = RequestStatus.Loading;

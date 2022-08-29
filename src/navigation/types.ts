@@ -17,11 +17,6 @@ export type DrawerParamList = {
 export type RecipeStackParamList = {
   RecipeList: undefined;
   RecipeSearch: undefined;
-  RecipeEdit: undefined;
-  SearchRecipeIngredient: undefined;
-  RecipeDetail: {
-    recipeId: string;
-  };
 };
 
 export type ProductStackParamList = {
@@ -33,6 +28,14 @@ export type ProductStackParamList = {
 
 export type MealPlanParamList = {
   WeekPlan: undefined;
+};
+
+export type CommonParamList = {
+  CommonRecipeDetail: {
+    recipeId: string;
+  };
+  CommonRecipeEdit: undefined;
+  CommonSearchIngredient: undefined;
 };
 
 // Types for useNavigation
@@ -57,9 +60,6 @@ export enum DrawerScreens {
 export enum RecipeScreens {
   List = 'RecipeList',
   Search = 'RecipeSearch',
-  Edit = 'RecipeEdit',
-  SearchIngredient = 'SearchRecipeIngredient',
-  Detail = 'RecipeDetail',
 }
 
 export enum ProductScreens {
@@ -69,4 +69,10 @@ export enum ProductScreens {
 
 export enum MealPlanScreens {
   WeekPlan = 'WeekPlan',
+}
+
+export enum CommonScreens {
+  RecipeDetail = 'CommonRecipeDetail',
+  RecipeEdit = 'CommonRecipeEdit',
+  SearchIngredient = 'CommonSearchIngredient',
 }
