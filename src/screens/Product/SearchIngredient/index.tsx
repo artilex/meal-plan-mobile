@@ -10,7 +10,7 @@ import {NewRecipeIngredient, Product} from 'src/services/api/types';
 import {ButtonColor, COLOR} from 'src/constants/theme';
 import {SearchInput, StyledButton, StyledText} from 'src/components';
 import {recipeActions, RootState} from 'src/store';
-import IngredientQuantityModal from '../components/IngredientQuantityModal';
+import IngredientQuantityModal from '../../Recipe/components/IngredientQuantityModal';
 import IngredientCard from './components/IngredientCard';
 import s from './styles';
 
