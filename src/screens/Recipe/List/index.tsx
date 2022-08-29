@@ -38,7 +38,9 @@ const RecipeList = () => {
 
   useEffect(() => {
     const navigateToCreateScreen = () => {
-      navigation.navigate(CommonScreens.RecipeEdit);
+      navigation.navigate(CommonScreens.RecipeEdit, {
+        fromDetail: false,
+      });
     };
     const navigateToSearchScreen = () => {
       navigation.navigate(RecipeScreens.Search);

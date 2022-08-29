@@ -30,7 +30,9 @@ const RecipeDetailHeader = React.memo(({recipeId}: Props) => {
   };
 
   const handleNavigateToEdit = () => {
-    navigation.navigate(CommonScreens.RecipeEdit);
+    navigation.navigate(CommonScreens.RecipeEdit, {
+      fromDetail: true,
+    });
   };
 
   const handleDeleteRecipe = () => {

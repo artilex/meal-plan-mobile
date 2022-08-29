@@ -42,10 +42,11 @@ const s = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: COLOR.GRAY3,
     paddingVertical: PADDING.SMALL,
+    paddingLeft: PADDING.REGULAR,
   },
   buttonWrapper: {
     flex: 1,
-    paddingHorizontal: PADDING.REGULAR,
+    paddingRight: PADDING.REGULAR,
   },
 });
 

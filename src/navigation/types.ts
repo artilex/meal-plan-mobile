@@ -34,7 +34,9 @@ export type CommonParamList = {
   CommonRecipeDetail: {
     recipeId: string;
   };
-  CommonRecipeEdit: undefined;
+  CommonRecipeEdit: {
+    fromDetail: boolean;
+  };
   CommonSearchIngredient: undefined;
 };
 

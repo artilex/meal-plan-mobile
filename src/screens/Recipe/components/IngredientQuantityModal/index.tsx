@@ -21,6 +21,7 @@ type Props = {
   onClose: () => void;
 };
 
+// TODO: Move it to root components
 const IngredientQuantityModal = ({
   initQuantity = '1',
   initUnitId = '',

@@ -2,10 +2,14 @@ import React, {useMemo, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
-import {RecipeStackParamList} from 'src/navigation/types';
+import {
+  CommonParamList,
+  CommonScreens,
+  RecipeStackParamList,
+} from 'src/navigation/types';
 import {RequestStatus} from 'src/store/types';
 import {recipeActions, RootState} from 'src/store';
 import RecipeEditHeader from './components/Header';
@@ -17,11 +21,13 @@ import s from './styles';
 const STEP_COUNT = 2;
 
 type NavigationProp = StackNavigationProp<RecipeStackParamList>;
+type CommonRouteProp = RouteProp<CommonParamList, CommonScreens.RecipeEdit>;
 
 const RecipeEdit = () => {
   const {t} = useTranslation();
-  const navigation = useNavigation<NavigationProp>();
   const dispatch = useDispatch();
+  const navigation = useNavigation<NavigationProp>();
+  const route = useRoute<CommonRouteProp>();
 
   const [screen, setScreen] = useState(Screen.Info);
 
@@ -54,6 +60,10 @@ const RecipeEdit = () => {
   };
 
   const handleSaveRecipe = async () => {
+    if (!route.params.fromDetail) {
+      dispatch(recipeActions.clearRecipe());
+    }
+
     navigation.goBack();
     // TODO: Merge these later
     dispatch(recipeActions.saveRecipe());
