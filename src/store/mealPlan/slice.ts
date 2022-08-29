@@ -38,7 +38,7 @@ const mealPlanSlice = createSlice({
     },
     loaded(state, action: PayloadAction<MealPlan>) {
       state.status = RequestStatus.Succeeded;
-      state.selectedMealPlan = action.payload;
+      state.selectedMealPlan = action.payload ?? initialState.selectedMealPlan;
     },
     failed(state, action) {
       state.status = RequestStatus.Failed;

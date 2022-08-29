@@ -53,17 +53,13 @@ const WeekPlan = () => {
         {mealTypes &&
           mealTypes.length > 0 &&
           mealTypes.map(mealType => {
-            if (!selectedMealPlan) {
-              return null;
-            }
-
             const recipes =
-              selectedMealPlan.recipes?.filter(
+              selectedMealPlan.recipes.filter(
                 recipe => recipe.mealType.id === mealType.id,
               ) ?? [];
 
             const products =
-              selectedMealPlan.products?.filter(
+              selectedMealPlan.products.filter(
                 product => product.mealType.id === mealType.id,
               ) ?? [];
 
