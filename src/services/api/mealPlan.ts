@@ -22,7 +22,7 @@ export const MOCK_MEAL_TYPES: MealType[] = [
   },
 ];
 
-export const MOCK_MEAL_PLAN: MealPlan[] = [
+let MOCK_MEAL_PLAN: MealPlan[] = [
   {
     id: 1,
     recipes: [
@@ -127,4 +127,46 @@ export const fetchMealPlanByDay = async (
   await sleep(0.5);
 
   return MOCK_MEAL_PLAN.find(item => sameDays(new Date(item.day), day));
+};
+
+export const deleteMealPlanRecipe = async (
+  mealPlanId: number,
+  mealPlanRecipeId: number,
+): Promise<MealPlan> => {
+  await sleep(0.5);
+
+  MOCK_MEAL_PLAN = MOCK_MEAL_PLAN.map(mealPlan => {
+    if (mealPlan.id === mealPlanId) {
+      return {
+        ...mealPlan,
+        recipes: mealPlan.recipes.filter(item => item.id !== mealPlanRecipeId),
+      };
+    }
+
+    return mealPlan;
+  });
+
+  return MOCK_MEAL_PLAN.find(item => item.id === mealPlanId) as MealPlan;
+};
+
+export const deleteMealPlanProduct = async (
+  mealPlanId: number,
+  mealPlanProductId: number,
+): Promise<MealPlan> => {
+  await sleep(0.5);
+
+  MOCK_MEAL_PLAN = MOCK_MEAL_PLAN.map(mealPlan => {
+    if (mealPlan.id === mealPlanId) {
+      return {
+        ...mealPlan,
+        products: mealPlan.products.filter(
+          item => item.id !== mealPlanProductId,
+        ),
+      };
+    }
+
+    return mealPlan;
+  });
+
+  return MOCK_MEAL_PLAN.find(item => item.id === mealPlanId) as MealPlan;
 };

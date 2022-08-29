@@ -1,14 +1,13 @@
 import React, {useCallback} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 
 import PlusIcon from 'src/assets/images/bold-plus.svg';
 import {BRAND_COLOR, ICON_SIZE} from 'src/constants/theme';
-import {
-  MealPlanProduct,
-  MealPlanRecipe,
-  MealType,
-} from 'src/services/api/types';
+import {MealPlanProduct, MealPlanRecipe} from 'src/services/api/types';
+import {mealPlanActions} from 'src/store';
 import {StyledText} from 'src/components';
 import MealCard from '../MealCard';
 import s from './styles';
@@ -18,129 +17,145 @@ import {
   CommonScreens,
   MealPlanParamList,
 } from 'src/navigation/types';
-import {useNavigation} from '@react-navigation/native';
 
 type NavigationType = StackNavigationProp<MealPlanParamList & CommonParamList>;
 
-type Props = MealType & {
+type Props = {
+  mealPlanId: number;
+  mealTypeName: string;
   recipes: MealPlanRecipe[];
   products: MealPlanProduct[];
 };
 
-const MealTypeCard = React.memo(({id, name, recipes, products}: Props) => {
-  const {t} = useTranslation();
-  const navigation = useNavigation<NavigationType>();
-  const hasRecipes = recipes && recipes.length > 0;
-  const hasProducts = products && products.length > 0;
-  const hasItems = hasRecipes || hasProducts;
+const MealTypeCard = React.memo(
+  ({mealPlanId, mealTypeName, recipes, products}: Props) => {
+    const {t} = useTranslation();
+    const dispatch = useDispatch();
+    const navigation = useNavigation<NavigationType>();
 
-  const handleAddMeal = () => {
-    console.log('Add new meal...');
-  };
+    // TODO: ?Use Memo?
+    const hasRecipes = recipes && recipes.length > 0;
+    const hasProducts = products && products.length > 0;
+    const hasItems = hasRecipes || hasProducts;
 
-  const renderRecipe = useCallback(
-    (item, index) => {
-      if (!item) {
-        return null;
-      }
+    const handleAddMeal = () => {
+      console.log('Add new meal...');
+    };
 
-      // TODO: Check for existence and set safe default value in redux when fetch from API
-      const {recipe} = item;
-      const key = `recipe_${item.id}`;
-      const showLine = products.length > 0 || recipes.length - 1 !== index;
-      const description =
-        item.servingCount > 1
-          ? `${item.servingCount} ${t('mealPlan.servings')}`
-          : `${item.servingCount} ${t('mealPlan.serving')}`;
+    const renderRecipe = useCallback(
+      (item, index) => {
+        if (!item) {
+          return null;
+        }
 
-      const handleOpenRecipe = () => {
-        navigation.navigate(CommonScreens.RecipeDetail, {recipeId: recipe.id});
-      };
+        // TODO: Check for existence and set safe default value in redux when fetch from API
+        const {recipe} = item;
+        const key = `recipe_${item.id}`;
+        const showLine = products.length > 0 || recipes.length - 1 !== index;
+        const description =
+          item.servingCount > 1
+            ? `${item.servingCount} ${t('mealPlan.servings')}`
+            : `${item.servingCount} ${t('mealPlan.serving')}`;
 
-      const handleDeleteRecipe = () => {
-        console.log('delete recipe');
-        console.log(recipe.id);
-      };
+        const handleOpenRecipe = () => {
+          navigation.navigate(CommonScreens.RecipeDetail, {
+            recipeId: recipe.id,
+          });
+        };
 
-      return (
-        <View key={key}>
-          <MealCard
-            itemId={recipe.id}
-            itemName={recipe.name}
-            itemImage={recipe.cover}
-            itemDescription={description}
-            onPress={handleOpenRecipe}
-            onDelete={handleDeleteRecipe}
-            isRecipe
+        const handleDeleteRecipe = () => {
+          dispatch(
+            mealPlanActions.deleteRecipe({mealPlanId, mealPlanItemId: item.id}),
+          );
+        };
+
+        return (
+          <View key={key}>
+            <MealCard
+              itemId={recipe.id}
+              itemName={recipe.name}
+              itemImage={recipe.cover}
+              itemDescription={description}
+              onPress={handleOpenRecipe}
+              onDelete={handleDeleteRecipe}
+              isRecipe
+            />
+            {showLine && <View style={s.cardSpace} />}
+          </View>
+        );
+      },
+      [products.length, recipes.length, t, navigation, dispatch, mealPlanId],
+    );
+
+    const renderProduct = useCallback(
+      (item, index) => {
+        if (!item) {
+          return null;
+        }
+
+        // TODO: Check for existence and set safe default value in redux when fetch from API
+        const {product, quantity} = item;
+        const key = `product_${item.id}`;
+        const description = `${quantity.value} ${quantity.unit.shortName}`;
+        const showLine = index !== products.length - 1;
+
+        const handleOpenProduct = () => {
+          console.log(
+            'open product, There is no View Product at this moment and do not need it',
+          );
+        };
+
+        const handleDeleteProduct = () => {
+          dispatch(
+            mealPlanActions.deleteProduct({
+              mealPlanId,
+              mealPlanItemId: item.id,
+            }),
+          );
+        };
+
+        return (
+          <View key={key}>
+            <MealCard
+              itemId={product.id}
+              itemName={product.name}
+              itemImage={product.image}
+              itemDescription={description}
+              onPress={handleOpenProduct}
+              onDelete={handleDeleteProduct}
+            />
+            {showLine && <View style={s.cardSpace} />}
+          </View>
+        );
+      },
+      [dispatch, mealPlanId, products.length],
+    );
+
+    return (
+      <View style={s.container}>
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={handleAddMeal}
+          style={[s.header, hasItems && s.withBorder]}>
+          <StyledText style={s.titleText}>{mealTypeName}</StyledText>
+
+          <PlusIcon
+            width={ICON_SIZE.SMALL}
+            height={ICON_SIZE.SMALL}
+            fill={BRAND_COLOR.PRIMARY}
           />
-          {showLine && <View style={s.cardSpace} />}
-        </View>
-      );
-    },
-    [products.length, recipes.length, t, navigation],
-  );
+        </TouchableOpacity>
 
-  const renderProduct = useCallback(
-    (item, index) => {
-      if (!item) {
-        return null;
-      }
+        {hasItems && (
+          <View style={s.content}>
+            {hasRecipes && recipes.map(renderRecipe)}
 
-      // TODO: Check for existence and set safe default value in redux when fetch from API
-      const {product, quantity} = item;
-      const key = `product_${item.id}`;
-      const description = `${quantity.value} ${quantity.unit.shortName}`;
-      const showLine = index !== products.length - 1;
-
-      const handleOpenProduct = () => {
-        console.log('open product');
-      };
-
-      const handleDeleteProduct = () => {
-        console.log('delete product');
-      };
-
-      return (
-        <View key={key}>
-          <MealCard
-            itemId={product.id}
-            itemName={product.name}
-            itemImage={product.image}
-            itemDescription={description}
-            onPress={handleOpenProduct}
-            onDelete={handleDeleteProduct}
-          />
-          {showLine && <View style={s.cardSpace} />}
-        </View>
-      );
-    },
-    [products.length],
-  );
-
-  return (
-    <View style={s.container}>
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={handleAddMeal}
-        style={[s.header, hasItems && s.withBorder]}>
-        <StyledText style={s.titleText}>{name}</StyledText>
-
-        <PlusIcon
-          width={ICON_SIZE.SMALL}
-          height={ICON_SIZE.SMALL}
-          fill={BRAND_COLOR.PRIMARY}
-        />
-      </TouchableOpacity>
-
-      {hasItems && (
-        <View style={s.content}>
-          {hasRecipes && recipes.map(renderRecipe)}
-
-          {hasProducts && products.map(renderProduct)}
-        </View>
-      )}
-    </View>
-  );
-});
+            {hasProducts && products.map(renderProduct)}
+          </View>
+        )}
+      </View>
+    );
+  },
+);
 
 export default MealTypeCard;

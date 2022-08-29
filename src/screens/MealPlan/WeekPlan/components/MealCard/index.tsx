@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
@@ -31,14 +31,25 @@ const MealCard = React.memo(
     onDelete,
     isRecipe,
   }: Props) => {
+    const [wasDeleted, setWasDeleted] = useState(false);
+
     const hasImage = Boolean(itemImage);
     const defaultSource = isRecipe
       ? require(defaultRecipeImagePath)
       : require(defaultProductImagePath);
 
+    const handleDelete = () => {
+      setWasDeleted(true);
+      onDelete();
+    };
+
+    if (wasDeleted) {
+      return null;
+    }
+
     return (
       <Swipeable
-        onSwipeableOpen={onDelete}
+        onSwipeableOpen={handleDelete}
         renderRightActions={() => (
           <View style={s.deleteContainer}>
             <View>

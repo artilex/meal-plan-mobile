@@ -6,8 +6,10 @@ import {watchCategory} from './category/sagas';
 import {categoryActions, categoryReducer} from './category/slice';
 import {watchProduct} from './product/sagas';
 import {productActions, productReducer} from './product/slice';
-import {recipeActions, recipeReducer} from 'src/store/recipe/slice';
-import {watchRecipe} from 'src/store/recipe/sagas';
+import {watchRecipe} from './recipe/sagas';
+import {recipeActions, recipeReducer} from './recipe/slice';
+import {watchMealPlan} from './mealPlan/sagas';
+import {mealPlanActions, mealPlanReducer} from './mealPlan/slice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +17,7 @@ const rootReducer = combineReducers({
   category: categoryReducer,
   product: productReducer,
   recipe: recipeReducer,
+  mealPlan: mealPlanReducer,
 });
 
 const store = configureStore({
@@ -23,11 +26,11 @@ const store = configureStore({
 });
 
 export function* watchAll() {
-  yield all([watchCategory(), watchProduct(), watchRecipe()]);
+  yield all([watchCategory(), watchProduct(), watchRecipe(), watchMealPlan()]);
 }
 sagaMiddleware.run(watchAll);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export {store, categoryActions, productActions, recipeActions};
+export {store, categoryActions, productActions, recipeActions, mealPlanActions};

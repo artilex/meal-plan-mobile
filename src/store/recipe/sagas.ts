@@ -1,5 +1,4 @@
 import {call, put, select, takeLatest} from 'redux-saga/effects';
-import {recipeActions} from 'src/store/recipe/slice';
 import {PayloadAction} from '@reduxjs/toolkit';
 import {
   addRecipeIngredients,
@@ -22,6 +21,7 @@ import {
   RecipeStep,
 } from 'src/services/api/types';
 import {RootState} from 'src/store';
+import {recipeActions} from './slice';
 
 const getRecipeId = (state: RootState) => state.recipe.editableRecipe.id;
 

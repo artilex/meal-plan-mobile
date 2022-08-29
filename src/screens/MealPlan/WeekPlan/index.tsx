@@ -1,20 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator, ScrollView, View} from 'react-native';
 import Modal from 'react-native-modal';
 
-import {fetchMealPlanByDay, MOCK_MEAL_TYPES} from 'src/services/api/mealPlan';
-import {MealPlan} from 'src/services/api/types';
+import {MOCK_MEAL_TYPES} from 'src/services/api/mealPlan';
 import {COLOR} from 'src/constants/theme';
 import {WeekCalendar} from 'src/components';
 import MealTypeCard from './components/MealTypeCard';
 import s from './styles';
+import {mealPlanActions, RootState} from 'src/store';
+import {RequestStatus} from 'src/store/types';
 
 const WeekPlan = () => {
-  const [selectedDay, setSelectedDay] = useState(new Date());
-  const [selectedMealPlan, setSelectedMealPlan] = useState<MealPlan>();
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
   // TODO: Get from Redux, fetch from API
   const mealTypes = MOCK_MEAL_TYPES;
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  const selectedMealPlan = useSelector(
+    (state: RootState) => state.mealPlan.selectedMealPlan,
+  );
+  const requestStatus = useSelector(
+    (state: RootState) => state.mealPlan.status,
+  );
+
+  const loading = useMemo(
+    () => requestStatus === RequestStatus.Loading,
+    [requestStatus],
+  );
 
   const handleSelectDay = (date: Date) => {
     setSelectedDay(date);
@@ -22,15 +35,9 @@ const WeekPlan = () => {
 
   useEffect(() => {
     if (selectedDay) {
-      setLoading(true);
-
-      fetchMealPlanByDay(selectedDay)
-        .then(setSelectedMealPlan)
-        .finally(() => {
-          setLoading(false);
-        });
+      dispatch(mealPlanActions.fetchMealPlanByDay(selectedDay));
     }
-  }, [selectedDay]);
+  }, [dispatch, selectedDay]);
 
   return (
     <View style={s.container}>
@@ -63,7 +70,8 @@ const WeekPlan = () => {
             return (
               <View key={mealType.id} style={s.cardWrapper}>
                 <MealTypeCard
-                  {...mealType}
+                  mealPlanId={selectedMealPlan.id}
+                  mealTypeName={mealType.name}
                   recipes={recipes}
                   products={products}
                 />

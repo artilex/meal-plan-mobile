@@ -84,6 +84,11 @@ export type NewRecipeStep = {
   image: string | null;
 };
 
+export type DeleteMealPlanItem = {
+  mealPlanId: number;
+  mealPlanItemId: number;
+};
+
 export type MealType = {
   id: number;
   name: string;
