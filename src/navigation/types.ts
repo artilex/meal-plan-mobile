@@ -38,6 +38,10 @@ export type CommonParamList = {
     fromDetail: boolean;
   };
   CommonSearchIngredient: undefined;
+  CommonTakeRecipe: {
+    mealTypeId: number;
+    day: string;
+  };
 };
 
 // Types for useNavigation
@@ -77,4 +81,5 @@ export enum CommonScreens {
   RecipeDetail = 'CommonRecipeDetail',
   RecipeEdit = 'CommonRecipeEdit',
   SearchIngredient = 'CommonSearchIngredient',
+  TakeRecipe = 'CommonTakeRecipe',
 }

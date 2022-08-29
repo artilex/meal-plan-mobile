@@ -6,6 +6,7 @@ import RecipeDetailScreen from './Recipe/Detail';
 import RecipeEditScreen from './Recipe/Edit';
 import RecipeListScreen from './Recipe/List';
 import RecipeSearchScreen from './Recipe/Search';
+import TakeRecipeScreen from './Recipe/TakeRecipe';
 
 import WeekPlanScreen from './MealPlan/WeekPlan';
 
@@ -17,5 +18,6 @@ export {
   SearchIngredientScreen,
   RecipeListScreen,
   RecipeSearchScreen,
+  TakeRecipeScreen,
   WeekPlanScreen,
 };

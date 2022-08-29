@@ -29,15 +29,15 @@ const WeekPlan = () => {
     [requestStatus],
   );
 
-  const handleSelectDay = (date: Date) => {
-    setSelectedDay(date);
-  };
-
   useEffect(() => {
     if (selectedDay) {
       dispatch(mealPlanActions.fetchMealPlanByDay(selectedDay));
     }
   }, [dispatch, selectedDay]);
+
+  const handleSelectDay = (date: Date) => {
+    setSelectedDay(date);
+  };
 
   return (
     <View style={s.container}>
@@ -67,7 +67,9 @@ const WeekPlan = () => {
               <View key={mealType.id} style={s.cardWrapper}>
                 <MealTypeCard
                   mealPlanId={selectedMealPlan.id}
+                  mealTypeId={mealType.id}
                   mealTypeName={mealType.name}
+                  selectedDay={selectedDay.toISOString()}
                   recipes={recipes}
                   products={products}
                 />

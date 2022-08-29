@@ -39,7 +39,9 @@
   },
   "mealPlan": {
     "serving": "порция",
-    "servings": "порции"
+    "servings": "порции",
+    "recipe": "Рецепт",
+    "product": "Продукт"
   },
   "screenNames": {
     "DrawerMealPlan": "План Питания",
@@ -54,7 +56,8 @@
     "searchIngredients": "Поиск Ингредиентов",
     "editRecipeStep1": "Шаг 1: Введите инфо",
     "editRecipeStep2": "Шаг 2: Введите подробности",
-    "mealPlan": "План Питания"
+    "mealPlan": "План Питания",
+    "selectRecipes": "Выберите Рецепты"
   },
   "calendar": {
     "month": {

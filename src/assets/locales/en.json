@@ -39,7 +39,9 @@
   },
   "mealPlan": {
     "serving": "serving",
-    "servings": "servings"
+    "servings": "servings",
+    "recipe": "Recipe",
+    "product": "Product"
   },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",
@@ -54,7 +56,8 @@
     "searchIngredients": "Search Ingredients",
     "editRecipeStep1": "Step 1: Enter the info",
     "editRecipeStep2": "Step 2: Enter the detail",
-    "mealPlan": "Meal Plan"
+    "mealPlan": "Meal Plan",
+    "selectRecipes": "Select Recipes"
   },
   "calendar": {
     "month": {

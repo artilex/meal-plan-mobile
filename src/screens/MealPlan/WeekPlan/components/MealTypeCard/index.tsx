@@ -1,45 +1,60 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {useDispatch} from 'react-redux';
 
 import PlusIcon from 'src/assets/images/bold-plus.svg';
 import {BRAND_COLOR, ICON_SIZE} from 'src/constants/theme';
 import {MealPlanProduct, MealPlanRecipe} from 'src/services/api/types';
-import {mealPlanActions} from 'src/store';
-import {StyledText} from 'src/components';
-import MealCard from '../MealCard';
-import s from './styles';
-import {StackNavigationProp} from '@react-navigation/stack';
 import {
   CommonParamList,
   CommonScreens,
   MealPlanParamList,
 } from 'src/navigation/types';
+import {mealPlanActions} from 'src/store';
+import {StyledText} from 'src/components';
+import WayAdditionChooser from '../WayAdditionChooser';
+import MealCard from '../MealCard';
+import s from './styles';
 
 type NavigationType = StackNavigationProp<MealPlanParamList & CommonParamList>;
 
 type Props = {
   mealPlanId: number;
+  mealTypeId: number;
   mealTypeName: string;
+  selectedDay: string;
   recipes: MealPlanRecipe[];
   products: MealPlanProduct[];
 };
 
 const MealTypeCard = React.memo(
-  ({mealPlanId, mealTypeName, recipes, products}: Props) => {
+  ({
+    mealPlanId,
+    mealTypeId,
+    mealTypeName,
+    selectedDay,
+    recipes,
+    products,
+  }: Props) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const navigation = useNavigation<NavigationType>();
+    const [showModal, setShowModal] = useState(false);
 
     // TODO: ?Use Memo?
     const hasRecipes = recipes && recipes.length > 0;
     const hasProducts = products && products.length > 0;
     const hasItems = hasRecipes || hasProducts;
 
-    const handleAddMeal = () => {
-      console.log('Add new meal...');
+    const handleShowModal = () => {
+      setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+      setShowModal(false);
     };
 
     const renderRecipe = useCallback(
@@ -133,9 +148,16 @@ const MealTypeCard = React.memo(
 
     return (
       <View style={s.container}>
+        <WayAdditionChooser
+          typeId={mealTypeId}
+          day={selectedDay}
+          isVisible={showModal}
+          onClose={handleCloseModal}
+        />
+
         <TouchableOpacity
           activeOpacity={1}
-          onPress={handleAddMeal}
+          onPress={handleShowModal}
           style={[s.header, hasItems && s.withBorder]}>
           <StyledText style={s.titleText}>{mealTypeName}</StyledText>
 

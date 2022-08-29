@@ -1,6 +1,12 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
-import {BACKGROUND_COLOR, BORDER, PADDING} from 'src/constants/theme';
+import {
+  BACKGROUND_COLOR,
+  BORDER,
+  BRAND_COLOR,
+  COLOR,
+  PADDING,
+} from 'src/constants/theme';
 import {adapt} from 'src/constants/layout';
 
 const SPACE_COUNT = 3;
@@ -21,6 +27,20 @@ export default StyleSheet.create({
     borderColor: BORDER.COLOR,
     borderRadius: BORDER.RADIUS,
     overflow: 'hidden',
+  },
+  selectedImageWrapper: {
+    borderColor: BRAND_COLOR.PRIMARY,
+  },
+  imageFilter: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: COLOR.WHITE + 'CC',
+    zIndex: 10,
   },
   image: {
     width: IMAGE_SIZE,

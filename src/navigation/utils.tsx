@@ -8,6 +8,7 @@ import {
   RecipeDetailScreen,
   RecipeEditScreen,
   SearchIngredientScreen,
+  TakeRecipeScreen,
 } from 'src/screens';
 import BurgerMenuButton from './components/BurgerMenuButton';
 import BackArrowButton from './components/BackArrowButton';
@@ -46,6 +47,17 @@ export const getCommonScreens = (
       headerLeft: () => <BackArrowButton />,
       headerTitle: () => (
         <HeaderTitle title={i18n.t('screenNames.searchIngredients')} />
+      ),
+    }}
+  />,
+  <Stack.Screen
+    key={CommonScreens.TakeRecipe}
+    name={CommonScreens.TakeRecipe}
+    component={TakeRecipeScreen}
+    options={{
+      headerLeft: () => <BackArrowButton />,
+      headerTitle: () => (
+        <HeaderTitle title={i18n.t('screenNames.selectRecipes')} />
       ),
     }}
   />,

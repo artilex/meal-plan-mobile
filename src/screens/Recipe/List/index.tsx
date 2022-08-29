@@ -16,7 +16,7 @@ import {Recipe} from 'src/services/api/types';
 import {COLOR} from 'src/constants/theme';
 import {recipeActions, RootState} from 'src/store';
 import {StyledText} from 'src/components';
-import RecipeCard from './components/RecipeCard';
+import RecipeCard from '../components/RecipeCard';
 import s from './styles';
 import {RequestStatus} from 'src/store/types';
 
@@ -66,7 +66,7 @@ const RecipeList = () => {
       id={item.id}
       name={item.name}
       imageUrl={item.cover ?? ''}
-      onOpen={navigateToDetailScreen}
+      onPress={navigateToDetailScreen}
     />
   );
   const ListEmpty = () => (
