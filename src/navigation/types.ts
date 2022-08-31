@@ -30,6 +30,10 @@ export type MealPlanParamList = {
   WeekPlan: undefined;
 };
 
+export type ShoppingParamList = {
+  ShoppingList: undefined;
+};
+
 export type CommonParamList = {
   CommonRecipeDetail: {
     recipeId: string;
@@ -75,6 +79,10 @@ export enum ProductScreens {
 
 export enum MealPlanScreens {
   WeekPlan = 'WeekPlan',
+}
+
+export enum ShoppingScreens {
+  List = 'ShoppingList',
 }
 
 export enum CommonScreens {

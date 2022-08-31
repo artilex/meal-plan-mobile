@@ -10,6 +10,8 @@ import TakeRecipeScreen from './Recipe/TakeRecipe';
 
 import WeekPlanScreen from './MealPlan/WeekPlan';
 
+import ShoppingListScreen from './Shopping/List';
+
 export {
   ProductListScreen,
   ProductEditScreen,
@@ -20,4 +22,5 @@ export {
   RecipeSearchScreen,
   TakeRecipeScreen,
   WeekPlanScreen,
+  ShoppingListScreen,
 };

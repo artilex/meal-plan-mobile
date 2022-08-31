@@ -57,7 +57,8 @@
     "editRecipeStep1": "Шаг 1: Введите инфо",
     "editRecipeStep2": "Шаг 2: Введите подробности",
     "mealPlan": "План Питания",
-    "selectRecipes": "Выберите Рецепты"
+    "selectRecipes": "Выберите Рецепты",
+    "shoppingList": "Список Покупок"
   },
   "calendar": {
     "month": {
