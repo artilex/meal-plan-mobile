@@ -89,6 +89,12 @@ export type DeleteMealPlanItem = {
   mealPlanItemId: number;
 };
 
+export type AddMealPlanItem = {
+  mealTypeId: number;
+  day: string;
+  recipeIds: string[];
+};
+
 export type MealType = {
   id: number;
   name: string;

@@ -66,6 +66,13 @@ const RecipeDetail = () => {
     console.log('IMPLEMENT SHARING');
   };
 
+  if (
+    (!recipeData || !recipeData.id) &&
+    requestStatus === RequestStatus.Succeeded
+  ) {
+    return null;
+  }
+
   return (
     <>
       <RecipeDetailHeader recipeId={recipeData.id} />

@@ -1,5 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {DeleteMealPlanItem, MealPlan} from 'src/services/api/types';
+import {
+  AddMealPlanItem,
+  DeleteMealPlanItem,
+  MealPlan,
+} from 'src/services/api/types';
 import {RequestStatus} from 'src/store/types';
 
 type InitialState = {
@@ -23,7 +27,10 @@ const mealPlanSlice = createSlice({
   name: 'mealPlan',
   initialState,
   reducers: {
-    // TODO: Fix styles bellow
+    addRecipe(state, action: PayloadAction<AddMealPlanItem>) {
+      state.status = RequestStatus.Loading;
+      state.error = null;
+    },
     deleteRecipe(state, action: PayloadAction<DeleteMealPlanItem>) {
       state.status = RequestStatus.Loading;
       state.error = null;

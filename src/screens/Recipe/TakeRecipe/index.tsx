@@ -1,22 +1,37 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {ActivityIndicator, FlatList, View} from 'react-native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {useTranslation} from 'react-i18next';
 import Modal from 'react-native-modal';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Recipe} from 'src/services/api/types';
 import {ButtonColor, COLOR} from 'src/constants/theme';
-import {recipeActions, RootState} from 'src/store';
+import {
+  CommonParamList,
+  CommonScreens,
+  MealPlanParamList,
+  MealPlanScreens,
+} from 'src/navigation/types';
+import {RequestStatus} from 'src/store/types';
+import {mealPlanActions, recipeActions, RootState} from 'src/store';
 import {StyledButton, StyledText} from 'src/components';
 import RecipeCard from '../components/RecipeCard';
 import s from './styles';
 
-import {RequestStatus} from 'src/store/types';
+type NavigationProp = StackNavigationProp<MealPlanParamList>;
+type CommonRoute = RouteProp<CommonParamList, CommonScreens.TakeRecipe>;
 
 const TakeRecipe = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
+  const navigation = useNavigation<NavigationProp>();
+  const route = useRoute<CommonRoute>();
 
+  const [canNavigate, setCanNavigate] = useState(false);
+
+  // TODO: Fix multiple adding, instead of [] use initIds from outside
   const [selectedRecipeIds, setSelectedRecipeIds] = useState<string[]>([]);
   const recipes = useSelector((state: RootState) => state.recipe.list);
   const status = useSelector((state: RootState) => state.recipe.status);
@@ -33,6 +48,13 @@ const TakeRecipe = () => {
   useEffect(() => {
     dispatch(recipeActions.fetchRecipes());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (canNavigate && status === RequestStatus.Succeeded) {
+      setCanNavigate(false);
+      navigation.navigate(MealPlanScreens.WeekPlan);
+    }
+  }, [canNavigate, navigation, status]);
 
   const handleChooseRecipe = (recipeId: string) => {
     if (selectedRecipeIds.includes(recipeId)) {
@@ -59,7 +81,17 @@ const TakeRecipe = () => {
   );
 
   const handleSaveRecipes = () => {
-    // TODO: Implement this!
+    const {mealTypeId, day} = route.params ?? {};
+
+    dispatch(
+      mealPlanActions.addRecipe({
+        mealTypeId,
+        day,
+        recipeIds: selectedRecipeIds,
+      }),
+    );
+
+    setCanNavigate(true);
   };
 
   return (

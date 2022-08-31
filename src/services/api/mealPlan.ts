@@ -1,7 +1,8 @@
 // TODO: Fetch this and all reference data in one request at the run of app and put them all to redux (After MVP)
-import {MealPlan, MealType} from './types';
+import {MealPlan, MealType, Recipe} from './types';
 import {sleep} from 'src/services/api/utils';
 import {sameDays} from 'src/utils/dateUtils';
+import {getRecipeById} from 'src/services/api/recipe';
 
 export const MOCK_MEAL_TYPES: MealType[] = [
   {
@@ -169,4 +170,65 @@ export const deleteMealPlanProduct = async (
   });
 
   return MOCK_MEAL_PLAN.find(item => item.id === mealPlanId) as MealPlan;
+};
+
+export const addRecipeToMealPlan = async (
+  mealTypeId: number,
+  day: string,
+  recipeIds: string[],
+): Promise<MealPlan | void> => {
+  const mealType = MOCK_MEAL_TYPES.find(item => item.id === mealTypeId);
+  const recipes = await Promise.all(
+    recipeIds.map(recipeId => getRecipeById(recipeId)),
+  );
+
+  if (recipes && recipes.length > 0 && mealType) {
+    let mealPlan = MOCK_MEAL_PLAN.find(item =>
+      sameDays(new Date(day), new Date(item.day)),
+    );
+
+    if (mealPlan && mealPlan.id) {
+      MOCK_MEAL_PLAN = MOCK_MEAL_PLAN.map(item => {
+        if (item.id === mealPlan?.id) {
+          return {
+            ...item,
+            recipes: [
+              ...item.recipes,
+              ...recipes.map((recipe, index) => ({
+                id: item.recipes.length + index + 1,
+                mealType,
+                // TODO: DO I NEED NESTED RECIPE???
+                recipe: recipe as Recipe,
+                // TODO: Implement it after MVP
+                servingCount: 1,
+              })),
+            ],
+          };
+        }
+
+        return item;
+      });
+    } else {
+      MOCK_MEAL_PLAN = [
+        ...MOCK_MEAL_PLAN,
+        {
+          id: MOCK_MEAL_PLAN.length + 1,
+          recipes: recipes.map((item, index) => ({
+            id: index + 1,
+            mealType,
+            // TODO: DO I NEED NESTED RECIPE???
+            recipe: item as Recipe,
+            // TODO: Implement it after MVP
+            servingCount: 1,
+          })),
+          products: [],
+          day,
+        },
+      ];
+    }
+  }
+
+  return MOCK_MEAL_PLAN.find(item =>
+    sameDays(new Date(item.day), new Date(day)),
+  );
 };
