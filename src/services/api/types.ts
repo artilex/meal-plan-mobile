@@ -17,6 +17,17 @@ export type Product = SimpleProduct & {
   };
 };
 
+export type ShoppingProduct = SimpleProduct & {
+  category: {
+    id: string;
+    name: string;
+  };
+  quantity: {
+    value: number;
+    unit: ProductUnit;
+  };
+};
+
 export type NewProduct = {
   name: string;
   categoryId: string;

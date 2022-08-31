@@ -20,6 +20,7 @@ type Props = {
   recipeIngredients: RecipeIngredient[];
 };
 
+// TODO: Check ShoppingProductList component and this, if it the same then move it to root component and for both the one component
 const IngredientList = React.memo(({recipeIngredients}: Props) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
