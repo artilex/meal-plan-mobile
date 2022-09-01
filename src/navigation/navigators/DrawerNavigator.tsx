@@ -24,6 +24,7 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name={DrawerScreens.Shopping}
         component={ShoppingNavigator}
+        options={{unmountOnBlur: true}}
       />
       <Drawer.Screen name={DrawerScreens.Recipe} component={RecipeNavigator} />
       <Drawer.Screen

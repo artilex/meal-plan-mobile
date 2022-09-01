@@ -23,7 +23,7 @@ export const MOCK_MEAL_TYPES: MealType[] = [
   },
 ];
 
-let MOCK_MEAL_PLAN: MealPlan[] = [
+export let MOCK_MEAL_PLAN: MealPlan[] = [
   {
     id: 1,
     recipes: [
@@ -201,6 +201,8 @@ export const addRecipeToMealPlan = async (
                 recipe: recipe as Recipe,
                 // TODO: Implement it after MVP
                 servingCount: 1,
+                // TODO: Handle serving count for ingredients in shopping list screen
+                ingredients: recipe?.ingredients ?? [],
               })),
             ],
           };

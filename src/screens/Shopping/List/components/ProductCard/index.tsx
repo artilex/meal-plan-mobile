@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 
 import ActiveIcon from 'src/assets/images/active-check-mark.svg';
@@ -22,13 +22,12 @@ type Props = {
 
 const ProductCard = React.memo(
   ({id, name, quantity, isActive, onCheck, isLast}: Props) => {
-    const Icon = useMemo(
-      () => (isActive ? ActiveIcon : InactiveIcon),
-      [isActive],
-    );
+    const [status, setStatus] = useState(isActive);
+    const Icon = useMemo(() => (status ? ActiveIcon : InactiveIcon), [status]);
 
     const handleCheck = () => {
-      onCheck(id, !isActive);
+      setStatus(oldState => !oldState);
+      onCheck(id, !status);
     };
 
     return (

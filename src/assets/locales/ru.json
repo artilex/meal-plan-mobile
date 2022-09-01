@@ -43,6 +43,10 @@
     "recipe": "Рецепт",
     "product": "Продукт"
   },
+  "shoppingList": {
+    "inCart": "В корзине",
+    "products": "Продукты"
+  },
   "screenNames": {
     "DrawerMealPlan": "План Питания",
     "DrawerShopping": "Список Покупок",

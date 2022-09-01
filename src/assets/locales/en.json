@@ -43,6 +43,10 @@
     "recipe": "Recipe",
     "product": "Product"
   },
+  "shoppingList": {
+    "inCart": "In Cart",
+    "products": "Products"
+  },
   "screenNames": {
     "DrawerMealPlan": "Meal Plan",
     "DrawerShopping": "Shopping List",
