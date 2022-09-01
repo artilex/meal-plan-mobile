@@ -18,14 +18,16 @@ export type Product = SimpleProduct & {
 };
 
 export type ShoppingProduct = SimpleProduct & {
-  category: {
-    id: string;
-    name: string;
-  };
   quantity: {
     value: number;
     unit: ProductUnit;
   };
+  isActive: boolean;
+};
+
+export type ShoppingProductSection = {
+  name: string;
+  products: ShoppingProduct[];
 };
 
 export type NewProduct = {

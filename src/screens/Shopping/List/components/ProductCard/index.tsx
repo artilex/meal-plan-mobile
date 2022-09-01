@@ -4,9 +4,9 @@ import {TouchableOpacity, View} from 'react-native';
 import ActiveIcon from 'src/assets/images/active-check-mark.svg';
 import InactiveIcon from 'src/assets/images/inactive-check-mark.svg';
 import {ProductUnit} from 'src/services/api/types';
-import {COLOR, ICON_SIZE} from 'src/constants/theme';
-import {StyledText} from 'src/components';
-import {cardStyles as s} from './styles';
+import {BRAND_COLOR, ICON_SIZE} from 'src/constants/theme';
+import {ProductImage, StyledText} from 'src/components';
+import s from './styles';
 
 type Props = {
   id: string;
@@ -16,7 +16,7 @@ type Props = {
     unit: ProductUnit;
   };
   isActive: boolean;
-  onCheck: (id: string) => void;
+  onCheck: (id: string, status: boolean) => void;
   isLast: boolean;
 };
 
@@ -28,31 +28,34 @@ const ProductCard = React.memo(
     );
 
     const handleCheck = () => {
-      onCheck(id);
+      onCheck(id, !isActive);
     };
 
     return (
-      <View style={[s.container, isLast && s.lastItemContainer]}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={handleCheck}
-          style={s.content}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={handleCheck}
+        style={[s.container, isLast && s.lastItemContainer]}>
+        <ProductImage image={''} disabled />
+
+        <View style={s.content}>
           <StyledText numberOfLines={1} bold>
             {name}
           </StyledText>
+
           <StyledText style={s.quantityText}>
             {quantity.value + ' ' + quantity.unit.name}
           </StyledText>
-        </TouchableOpacity>
+        </View>
 
         <View style={s.rightWrapper}>
           <Icon
             width={ICON_SIZE.SMALL}
             height={ICON_SIZE.SMALL}
-            fill={COLOR.RED2}
+            fill={BRAND_COLOR.PRIMARY}
           />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   },
 );

@@ -1,74 +1,51 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 
 import {StyledText} from 'src/components';
+import ProductCard from './components/ProductCard';
 import s from './styles';
-import ShoppingProductList from 'src/screens/Shopping/List/components/ShoppingProductList';
-import {ShoppingProduct} from 'src/services/api/types';
+import {ShoppingProductSection} from 'src/services/api/types';
 
 const ShoppingList = () => {
-  const Pp: ShoppingProduct = {
-    category: {id: '1', name: 'Category Name'},
-    id: '1',
-    image: null,
-    name: 'Product Name',
-    quantity: {
-      unit: {
-        id: '1',
-        name: 'Tttt',
-        shortName: 'Tt',
-      },
-      value: 1,
-    },
+  const productSections: ShoppingProductSection[] = [];
+
+  const handleCheckProduct = (productId: string, status: boolean) => {
+    //
   };
+
   return (
     <View style={s.container}>
-      <ShoppingProductList
-        products={[
-          {
-            category: {id: '1', name: 'Category Name'},
-            id: '1',
-            image: null,
-            name: 'Product Name 1',
-            quantity: {
-              unit: {
-                id: '1',
-                name: 'Tttt',
-                shortName: 'Tt',
-              },
-              value: 1,
-            },
-          },
-          {
-            category: {id: '1', name: 'Category Name'},
-            id: '2',
-            image: null,
-            name: 'Product Name 2',
-            quantity: {
-              unit: {
-                id: '1',
-                name: 'Tttt',
-                shortName: 'Tt',
-              },
-              value: 1,
-            },
-          },
-          {
-            category: {id: '1', name: 'Category Name'},
-            id: '3',
-            image: null,
-            name: 'Product Name 3',
-            quantity: {
-              unit: {
-                id: '1',
-                name: 'Tttt',
-                shortName: 'Tt',
-              },
-              value: 1,
-            },
-          },
-        ]}
-      />
+      <ScrollView
+        contentContainerStyle={s.scrollView}
+        showsVerticalScrollIndicator={false}>
+        {productSections && productSections.length > 0 ? (
+          productSections.map(section =>
+            section.products && section.products.length > 0 ? (
+              <View key={section.name}>
+                <StyledText style={s.titleText}>{section.name}</StyledText>
+
+                <View style={s.listWrapper}>
+                  {section.products.map((product, index) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      quantity={product.quantity}
+                      isActive={product.isActive}
+                      onCheck={handleCheckProduct}
+                      isLast={section.products.length - 1 === index}
+                    />
+                  ))}
+                </View>
+              </View>
+            ) : null,
+          )
+        ) : (
+          <View style={s.emptyList}>
+            <StyledText>Empty...</StyledText>
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 };

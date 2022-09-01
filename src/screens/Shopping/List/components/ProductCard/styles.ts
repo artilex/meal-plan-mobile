@@ -1,27 +1,12 @@
 import {StyleSheet} from 'react-native';
 import {BORDER, COLOR, FONT_SIZE, PADDING} from 'src/constants/theme';
 
-export const listStyles = StyleSheet.create({
-  scrollView: {
-    padding: PADDING.REGULAR,
-  },
-  container: {
-    borderWidth: BORDER.WIDTH,
-    borderColor: BORDER.COLOR,
-    borderRadius: BORDER.RADIUS,
-    paddingBottom: PADDING.EXTRA_SMALL,
-  },
-  emptyList: {
-    alignItems: 'center',
-    paddingVertical: PADDING.EXTRA_SMALL,
-  },
-});
-
-export const cardStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingLeft: PADDING.REGULAR,
     paddingRight: PADDING.EXTRA_SMALL,
+    paddingVertical: PADDING.SMALL,
     borderBottomWidth: BORDER.WIDTH,
     borderBottomColor: BORDER.COLOR,
   },
@@ -31,6 +16,7 @@ export const cardStyles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
+    paddingLeft: PADDING.REGULAR,
   },
   quantityText: {
     color: COLOR.GRAY2,
