@@ -14,7 +14,7 @@ let MOCK_RECIPES: DetailRecipe[] = [
     id: 'rp1',
     name: 'Классические оладушки',
     cover:
-      'https://www.clementoni.com/media/prod/no/35058/paradise-beach-500-pcs-high-quality-collection_LkQCtwj.jpg',
+      'https://sun9-43.userapi.com/impg/X7BbDhzZaFt_D6Sf2s9ZcwcbRzaMjySzCg26VA/gJsGcvFllXc.jpg?size=1624x1624&quality=95&sign=94eacb0895c5467d56bb1754dc246743&type=album',
     description: '',
     ingredients: [],
     steps: [],
@@ -22,8 +22,7 @@ let MOCK_RECIPES: DetailRecipe[] = [
   {
     id: 'rp2',
     name: 'Паста с курицей в сливочном соусе',
-    cover:
-      'https://res.cloudinary.com/rebelwalls/image/upload/b_black,c_fit,f_auto,fl_progressive,q_auto,w_1333/v1428564372/article/R10391_image1',
+    cover: null,
     description: '',
     ingredients: [],
     steps: [],
@@ -32,7 +31,7 @@ let MOCK_RECIPES: DetailRecipe[] = [
     id: 'rp3',
     name: 'Салат "Цезарь"',
     cover:
-      'https://assets.entrepreneur.com/content/3x2/2000/20150225224437-computer.jpeg',
+      'https://sun9-26.userapi.com/impg/-gdrklZ-e7DNkd6bo4WA1R2HTFKGoeRrOo16uQ/MpEBEPhcIBE.jpg?size=1280x1280&quality=95&sign=d9939b502f622b8f9d33ff1ade1e1bbc&type=album',
     description: '',
     ingredients: [],
     steps: [],
