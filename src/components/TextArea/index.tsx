@@ -34,6 +34,7 @@ const TextArea = React.memo(
       );
     }
 
+    // TODO: The height for text inside and placeholder is different, fix it.
     return (
       <StyledTextInput
         value={text}

@@ -222,6 +222,8 @@ export const addRecipeToMealPlan = async (
             recipe: item as Recipe,
             // TODO: Implement it after MVP
             servingCount: 1,
+            // TODO: Handle serving count for ingredients in shopping list screen
+            ingredients: item?.ingredients ?? [],
           })),
           products: [],
           day,

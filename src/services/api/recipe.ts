@@ -16,7 +16,68 @@ let MOCK_RECIPES: DetailRecipe[] = [
     cover:
       'https://sun9-43.userapi.com/impg/X7BbDhzZaFt_D6Sf2s9ZcwcbRzaMjySzCg26VA/gJsGcvFllXc.jpg?size=1624x1624&quality=95&sign=94eacb0895c5467d56bb1754dc246743&type=album',
     description: '',
-    ingredients: [],
+    ingredients: [
+      {
+        id: 'p14',
+        image: null,
+        name: 'Йогурт натуральный 3,5%',
+        quantity: {
+          unit: {
+            id: 'pu1',
+            name: 'грамм',
+            nameEn: 'gram',
+            shortName: 'г',
+            shortNameEn: 'g',
+          },
+          value: 120,
+        },
+      },
+      {
+        id: 'p25',
+        image: null,
+        name: 'Яйца',
+        quantity: {
+          unit: {
+            id: 'pu2',
+            name: 'штук',
+            nameEn: '',
+            shortName: 'шт',
+            shortNameEn: '',
+          },
+          value: 1,
+        },
+      },
+      {
+        id: 'p27',
+        image: null,
+        name: 'Рисовая мука',
+        quantity: {
+          unit: {
+            id: 'pu1',
+            name: 'грамм',
+            nameEn: 'gram',
+            shortName: 'г',
+            shortNameEn: 'g',
+          },
+          value: 60,
+        },
+      },
+      {
+        id: 'p28',
+        image: null,
+        name: 'Разрыхлитель',
+        quantity: {
+          unit: {
+            id: 'pu1',
+            name: 'грамм',
+            nameEn: 'gram',
+            shortName: 'г',
+            shortNameEn: 'g',
+          },
+          value: 5,
+        },
+      },
+    ],
     steps: [],
   },
   {
@@ -116,28 +177,28 @@ let MOCK_RECIPES: DetailRecipe[] = [
       {
         id: 'step2',
         orderNumber: 2,
-        text: 'Second',
+        text: 'Формируем лодочку с высокими бортиками и выкладываем ее на противень застеленный пергаментной бумагой.',
         image:
           'https://sun2-9.userapi.com/impg/RnP3459VfxcWHAEkc0L6rrlt5jDp3TXcFcIXWQ/3Qxm6oO8cSk.jpg?size=1624x1624&quality=95&sign=a6d02ed732b45a5b5ef927240ef684c7&type=album',
       },
       {
         id: 'step3',
         orderNumber: 3,
-        text: 'Third',
+        text: 'Отправляем выпекаться в духовку на 10-15 минут при 180С.',
         image:
           'https://sun2-10.userapi.com/impg/WCMC21f9XPuZJiuWTqWmYUKhDuo_OsxZklDGcA/wjCyMYYy_dI.jpg?size=1624x1624&quality=95&sign=b2ba7121923efc930d1febba1b3efc92&type=album',
       },
       {
         id: 'step4',
         orderNumber: 4,
-        text: 'Fourth',
+        text: 'Посыпаем хачапури тертым сыром, в середину добавляем желток.',
         image:
           'https://sun2-12.userapi.com/impg/PLDAC9rWgzu9_5VGoU3sq_-D6upJaAbLgND_Fg/UDMASBmm_3g.jpg?size=1624x1624&quality=95&sign=93bc9894e6a26d56e10a8cdbe3113c86&type=album',
       },
       {
         id: 'step5',
         orderNumber: 5,
-        text: 'Fifth',
+        text: 'Убираем в духовку еще на 3-4 минуты. Пока сыр не расплавиться.',
         image:
           'https://sun2-11.userapi.com/impg/JPAB9kPt_yZfNR4_KE6Yz1FYAFG5nxLuioW5UQ/rXy0hHg36VU.jpg?size=1624x1624&quality=95&sign=91fba3f7baf47d891d766af21e366ec9&type=album',
       },
